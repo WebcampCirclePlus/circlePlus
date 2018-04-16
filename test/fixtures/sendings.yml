@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  sending_show_flg: false
+  sending_name: MyString
+  sending_code: MyString
+  sending_address: MyString
+
+two:
+  user_id: 1
+  sending_show_flg: false
+  sending_name: MyString
+  sending_code: MyString
+  sending_address: MyString
