@@ -1,0 +1,15 @@
+<h1>Admins::Artists#new</h1>
+<p>Find me in app/views/admins/artists/new.html.erb</p>
+<p>アーティスト一覧・新規追加</p>
+
+<% @artists.each do |artist| %>
+  <ul>
+    <il><%= link_to artist.artist_name, admins_artist_path(artist)%></li>
+  </ul>
+<% end %>
+
+<p>新しくアーティストを追加する</p>
+<%= form_for(@artist) do |f| %>
+    <%= f.text_field :artist_name %>
+    <%= f.submit "アーティストを追加する"%>
+<% end %>

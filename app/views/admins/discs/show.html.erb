@@ -1,0 +1,23 @@
+<h1>Admins::Discs#show</h1>
+<p>Find me in app/views/admins/discs/show.html.erb</p>
+
+<p><%= @item.album_name %>-<%= @disc.disc_type %>に含まれている曲一覧</p>
+
+<table>
+  <tr>
+    <th>曲名</th>
+    <th>編集</th>
+    <th>削除</th>
+  </tr>
+  <% @songs.each do |song| %>
+  <tr>
+    <td><%= song.song_name %></td>
+    <td><%= link_to "編集"%></td>
+    <td><%= link_to "削除"%></td>
+  </tr>
+  <% end %>
+</table>
+<p>ここでnested_form_fieldを使う</p>
+
+<%= link_to "このディスクを削除する"%>
+
