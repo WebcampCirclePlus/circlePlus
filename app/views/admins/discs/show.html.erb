@@ -1,23 +1,27 @@
 <h1>Admins::Discs#show</h1>
 <p>Find me in app/views/admins/discs/show.html.erb</p>
 
-<p><%= @item.album_name %>-<%= @disc.disc_type %>に含まれている曲一覧</p>
+<div class="disc-artist-name"><%= @artist.artist_name %></div>
+<div class="disc-an-dn-block">
+ <div class="disc-album-name"><%= @item.album_name %></div>
+ <div class="disc-disc-name">-<%= @disc.disc_type %>に含まれている曲一覧</div>
+</div>
 
-<table>
-  <tr>
-    <th>曲名</th>
-    <th>編集</th>
-    <th>削除</th>
-  </tr>
-  <% @songs.each do |song| %>
-  <tr>
-    <td><%= song.song_name %></td>
-    <td><%= link_to "編集"%></td>
-    <td><%= link_to "削除"%></td>
-  </tr>
-  <% end %>
+<table class="table table-bordered table-hover table-condensed table-responsive">
+ <tr>
+   <th class="song-name">曲名</th>
+   <th></th>
+   <th></th>
+ </tr>
+ <% @songs.each do |song| %>
+ <tr>
+   <td class="song-name"><%= song.song_name %></td>
+   <td><button class="btn btn-info btn-active btn-block btn-sm" text-color="#fff"><%= link_to "編集"%></button></td>
+   <td><button class="btn btn-warning btn-active btn-block btn-sm"><%= link_to "削除"%></button></td>
+ </tr>
+ <% end %>
 </table>
-<p>ここでnested_form_fieldを使う</p>
-
-<%= link_to "このディスクを削除する"%>
+<!-- <p>ここでnested_form_fieldを使う</p> -->
+<div class="disc-margin row"><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div><div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"><button class="btn btn-danger btn-block disc-margin"><%= link_to "このディスクを削除する"%></button></div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div></div>
+<div class="disc-margin row"><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div><div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"><button class="btn btn-success btn-block disc-margin"><%= link_to "元のページへ戻る"%></button></div><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div></div>
 
