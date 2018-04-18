@@ -3,12 +3,12 @@
 
 <p>購入履歴</p>
 
-
 <% @user.orders.each do |order| %>
 <p>購入日 <%= order.created_at %> </p>
 <% order.order_items.each do |order_item| %>
 <p>購入商品名：<%= order_item.item.album_name %></p>
 <p>個数：<%= order_item.item_order_counted %></p>
 <p>商品単価：<%= order_item.item_order_price %></p>
+
 <% end %>
 <% end %>
