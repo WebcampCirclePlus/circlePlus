@@ -1,2 +1,29 @@
 <h1>Orders#edit</h1>
 <p>Find me in app/views/orders/edit.html.erb</p>
+
+<P>配達先確認</P>
+<P>最終確認</P>
+<P>購入完了</P>
+
+<h2>最終確認</h2>
+
+<% @order.order_items.each do |order_item| %>
+<p>アルバム名：<%= order_item.item.album_name %></p>
+<p>ユグドラシル：<%= order_item.item.artist.artist_name %></p>
+<p>\<%= order_item.item_order_price %>円</p>
+<!-- 円マークが反映されないので必要ならば日本語を変更する -->
+<p>在庫：<%= order_item.item.stock %></p>
+<!-- ここの在庫消したい -->
+<p>数量<%= order_item.item_order_counted %></p>
+<p>計 \<%= order_item.item_order_counted * order_item.item_order_price %>円</p>
+</br>
+<% end %>
+
+<p>注文の合計　\<%= @sum %>円</p>
+
+<%= link_to "カートに戻る" ,cart_path %>
+<%= link_to "配送先を変更する",new_user_order_path(current_user.id) %>
+<!-- backで戻るかordernewに飛ばすか。order_newに飛ばした場合コントローラ内でわける？ -->
+<%= link_to "注文確定",thanks_path %>
+<!-- user_order_pathに直す。コントローラでredirect指定 -->
+

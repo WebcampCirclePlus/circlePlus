@@ -15,6 +15,12 @@ class ItemsController < ApplicationController
   end
 
   def search
+    # @q = Item.search(search_params)
+    # @items = @q
+      # .result
+      # .order(availability: :desc, album_name: :asc)
+      # .decorate
+      # gem追加とパラメータの追加、ビューの変更
   end
 
     private
