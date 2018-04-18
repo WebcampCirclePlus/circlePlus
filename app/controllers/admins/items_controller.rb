@@ -3,6 +3,7 @@ class Admins::ItemsController < ApplicationController
     @artist = Artist.find(params[:artist_id])
     @item = Item.find(params[:id])
     @discs = @item.discs
+    @genre = @item.genre
   end
 
 
