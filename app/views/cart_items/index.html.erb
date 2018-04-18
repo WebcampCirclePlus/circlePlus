@@ -1,0 +1,18 @@
+<h1>CartItems#index:マイカート</h1>
+<p>Find me in app/views/cart_items/index.html.erb</p>
+
+<p><%= current_user.user_name %>さんのカート一覧</p>
+
+<% @cart_items.each do |cart_item| %>
+アルバム名：<%= cart_item.item.album_name %></br>
+アーティスト名：<%= cart_item.item.artist.artist_name %></br>
+単価：<%= cart_item.item.item_price_tax_free %></br>
+数量：<%= cart_item.item_cart_counted %></br>
+合計：<%= cart_item.item.item_price_tax_free * cart_item.item_cart_counted %></br>
+<%= link_to "個数を変更する" %></br></br>
+<% end %>
+
+<p>合計：\<%= @sum  %>円</p>
+<!-- の出し方がわからないのでメンターさんに聞きます。 -->
+
+<%= link_to "注文確定", %>

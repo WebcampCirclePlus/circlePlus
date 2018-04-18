@@ -1,18 +1,52 @@
 <h1>Admins::Items#new</h1>
 <p>Find me in app/views/admins/items/new.html.erb</p>
 
-<p><%= @artist.artist_name %>の商品を追加</p>
+<h1><%= @artist.artist_name %>の商品を追加</h1>
 
-<%= form_for(@item) do |f| %>
-<p>シングル/アルバム名</p>
-<%= f.text_field :album_name %>
-<p>ジャンルID</p>
-<%= f.text_field :genre_id %>
-<p>レーベル名</p>
-<%= f.text_field :label %>
-<p>値段</p>
-<%= f.text_field :item_price_tax_free %>
-<p>在庫数</p>
-<%= f.text_field :stock %>
-<%= f.submit "商品を新規追加する"%>
-<% end %>
+<table>
+	<%= form_for(@item) do |f| %>
+		<tr>
+			<td class="col-lg-1 col-md-1 col-sm-1 col-xs-1">ジャケット</td>
+			<td class="col-lg-1 col-md-1 col-sm-1 col-xs-1 well"></td>
+			<td class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				<%= link_to "画像をアップロードする", :back, class: "btn btn-danger white-text" %>
+			</td>
+		</tr>
+		<tr>
+			<td>シングル/アルバム</td>
+			<td><%= f.text_field :album_name %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>ジャンル</td>
+			<td><!--<%= f.text_field :genre_id %>-->
+		        <select name="">
+		          <option value="" selected>J-ROCK</option>
+		          <option value="">サウンドトラック</option>
+		          <option value="">洋楽</option>
+		        </select>
+		    </td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>レーベル</td>
+			<td><%= f.text_field :label %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>値段</td>
+			<td><%= f.text_field :item_price_tax_free %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>在庫数</p>
+			<td><%= f.text_field :stock %></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td><%= link_to "商品を新規追加する", :back, class: "btn btn-danger white-text" %></td>
+		</tr>
+	<% end %>
+</table>
