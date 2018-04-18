@@ -1,7 +1,7 @@
 class Admins::ArtistsController < ApplicationController
   def show
     @artist = Artist.find(params[:id])
-    @items = @artist.items
+    # @items = @artist.items
   end
 
   def new

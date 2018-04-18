@@ -1,17 +1,61 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>CirclePlus</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-<body>
-	<!-- headerをrenderで追加予定 -->
+  <body>
 
-		<%= yield %>
+ <!--  admin-signin-header -->
+<div id="wrapper">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="circle-plus-icon text-danger" href="">Circle <span style="color:#fff;">Plus</span></a>
+   <a class="guest text-muted" href="">管理者ページ</a>
+<!-- ナビ内容 -->
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+        	ユーザー一覧
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+        	CD一覧
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          CD新規追加
+        </a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="#">
+          サインアウト 
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="header-box"></div>
+<!-- headerここまで -->
 
-<!-- footerを追加予定 -->
+    <%= yield %>
+
+<!-- footer -->
+<footer class="footer bg-dark">
+  <div class="container">
+    <p id="footer-text" style="color: #f8f9fa; text-align: center; ">©2018 circle_plus</p>
+  </div>
+</footer>
+</div>
+<!-- footerここまで -->
+
   </body>
+
 </html>

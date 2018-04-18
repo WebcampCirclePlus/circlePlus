@@ -100,9 +100,11 @@
       <td></td>
       <td></td>
       <td></td>
+
       <td>
         <%= link_to "前のページに戻る", :back, class: "btn btn-success white-text" %>
       </td>
+      <td><%= link_to "このdiscを編集する", admins_item_disc_path(@item, disc) %></td>
     </tr>
     <% end %>
   </table>
