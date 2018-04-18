@@ -1,8 +1,24 @@
 <h1>Admins#top</h1>
 <p>Find me in app/views/admins/top.html.erb</p>
-<p><%= link_to "商品", new_admins_artist_path%></p>
-<p><%= link_to "ユーザー"%></p>
-<p><%= link_to "在庫"%></p>
-<p><%= link_to "配送状況"%></p>
-<p><%= link_to "logout", destroy_admin_session_path, method: :delete%></p>
+
+<div class=" mx-auto col-10" style="width: 100%;">
+  <h2>管理したいものを選択する</h2>
+
+  <%= link_to new_admins_artist_path do %>
+  <button type="button" class="btn btn-warning btn-block mar"><div class="pad">商品</div></button>
+  <% end %>
+
+
+  <%= link_to admins_users_path do %>
+  <button type="button" class="btn btn-primary btn-block mar"><div class="pad">ユーザー</div></button>
+  <% end %>
+
+  <%= link_to  do %>
+  <button type="button" class="btn btn-success btn-block mar"><div class="pad">在庫</div></button>
+  <% end %>
+  <%= link_to  do %>
+  <button type="button" class="btn btn-info btn-block mar"><div class="pad">配送状況</div></button>
+  <% end %>
+  <p><%= link_to "logout", destroy_admin_session_path, method: :delete%></p>
+</div>
 

@@ -1,3 +1,33 @@
 // Place all the styles related to the admins/discs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.song-name{
+    text-align: center;
+}
+
+.disc-margin{
+    margin:5px 0 5px 0;
+}
+
+.disc-artist-name{
+    text-align:center;
+    font-size:35px;
+    background-color:RGBA(255,255,150,0.7);
+    margin: 10px 0;
+}
+
+.disc-an-dn-block{
+    text-align:center;
+}
+
+.disc-album-name{
+    display: inline-block;
+    font-size:30px;
+}
+
+.disc-disc-name{
+    display: inline-block;
+    font-size:20px;
+    margin-bottom: 20px;
+}
