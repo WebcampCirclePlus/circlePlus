@@ -8,6 +8,7 @@ class Admins::ItemsController < ApplicationController
 
 
   def new
+    @artist = Artist.find(params[:artist_id])
     @item = Item.new
   end
 end
