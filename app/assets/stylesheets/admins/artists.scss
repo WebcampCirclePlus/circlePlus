@@ -5,38 +5,13 @@
 
 
 
-/*文字のうめこみ*/
 .caption_box{
-  position: relative;
-
-  margin-top: 1em;
-  padding: 1em 2em;
-  border: 2px solid gray;
-  border-radius: 20px;
-}
-
-.caption_box .caption{
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0 1em;
-  margin: 0;
-  background-color: white;
-  transform: translateY(-50%) translateX(1em);
-}
-
-.caption {
-	font-size: 30px;
-	border-bottom: solid 2px gray;
+  border-right: 1px solid gray;
 }
 
 
-.circle {
-	border-radius: 20px;
-}
 
 
-/*artist/show css*/
 
 
 
