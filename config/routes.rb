@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   }
 
 namespace :admins do
-    resources :items, only: [:show, :new, :create] do
+    resources :items, only: [:show, :create] do
       resources :discs, only: [:show] do
         resource :songs, only: [:create, :destroy, :update]
     end
@@ -25,6 +25,11 @@ namespace :admins do
     resources :users, only: [:show, :index, :edit, :update]
 end
 
+namespace :admins do
+  resources :artists, only: [:show] do
+    resources :items, only: [:new]
+  end
+end
 
 resources :users, only: [:show, :edit, :update] do
     resources :sendings, only: [:create, :edit, :update]
