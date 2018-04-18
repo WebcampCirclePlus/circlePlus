@@ -12,17 +12,15 @@ Rails.application.routes.draw do
   }
 
   namespace :admins do
-    resources :artists, only: [:show , :new, :create] do
-      resources :items, only: [:show, :new] do
-        resources :discs, only: [:show] do
-          resource :songs
-        end
-      end
-    end
-  end
+   resources :items, only: [:show, :new, :create] do
+     resources :discs, only: [:show] do
+       resource :songs, only: [:create, :destroy, :update]
+     end
+   end
+   resources :artists, only: [:show , :new, :create]
+   resources :users, only: [:show, :index, :edit, :update]
+ end
 
-  resources :users, only: [:show]
-  resources :artists, only: [:create]
-  resources :items, only: [:create]
+ resources :users, only: [:show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
