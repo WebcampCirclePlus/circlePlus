@@ -3,18 +3,18 @@
 
 <div class="container">
 <div class="row">
-<div class="col-lg-10 mx-auto">
-<div class="caption_box my-5">
-<h2 class="caption">商品の追加・編集</h2>
+
+<div class="col-lg-12 mb-5">
+<div class="caption_box col-lg-4 float-left">
+<h3 class="border-bottom">商品の追加・編集</h3>
 <ol class="mt-5">
   <li class="pb-3">商品を追加したいアーティストを検索</li>
   <li class="pb-3">アーティストを選択し、商品一覧へ行く</li>
   <li class="pb-3">編集したい商品の選択・商品の新規作成</li>
 </ol>
 </div>
-
-<div class="caption_box mb-5">
-<h2 class="caption">Diskの追加・編集</h2>
+<div class="caption col-lg-4 float-left">
+<h3 class="border-bottom">Diskの追加・編集</h3>
 <ol class="mt-5">
   <li class="pb-3">商品を追加したいアーティストを検索</li>
   <li class="pb-3">アーティストを選択し、商品一覧へ行く</li>
@@ -23,8 +23,8 @@
 </ol>
 </div>
 
-<div class="caption_box mb-5">
-<h2 class="caption">曲の追加・編集</h2>
+<div class="col-lg-4 float-left">
+<h3 class="border-bottom">曲の追加・編集</h3>
 <ol class="mt-5">
   <li class="pb-3">商品を追加したいアーティストを検索</li>
   <li class="pb-3">アーティストを選択し、商品一覧へ行く</li>
@@ -35,14 +35,12 @@
 </div>
 </div>
 
-
 </div>
 </div>
 
 <div class="container">
 <div class="row">
-<div class="col-lg-1"></div>
-<div class="col-lg-5" style="margin-bottom: 50px;">
+<div class="col-lg-6" style="margin-bottom: 50px;">
 <h4 class="my-5 border-bottom text-center">商品を追加・編集したいアーティストを選択してください。</h4>
 <% @artists.each do |artist| %>
   <ul>
@@ -51,7 +49,7 @@
 <% end %>
 
 
-<div class="col-lg-5 bg-secondary circle" style="height: 250px; margin-bottom: 50px;">
+<div class="col-lg-6 bg-secondary" style="height: 250px; margin-bottom: 50px; border-radius: 20px;">
 <h4 class="my-5 border-bottom text-light text-center">アーティストが登録されていない場合</h4>
 <%= form_for(@artist) do |f| %>
     <%= f.text_field :artist_name,  :size=>"25" %>
@@ -61,8 +59,6 @@
 
 <% end %>
 </div>
-<div class="col-lg-1"></div>
-
 
 </div>
 </div>
