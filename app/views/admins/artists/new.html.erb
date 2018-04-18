@@ -13,7 +13,7 @@
   <li class="pb-3">編集したい商品の選択・商品の新規作成</li>
 </ol>
 </div>
-<div class="caption col-lg-4 float-left">
+<div class="caption_box col-lg-4 float-left">
 <h3 class="border-bottom">Diskの追加・編集</h3>
 <ol class="mt-5">
   <li class="pb-3">商品を追加したいアーティストを検索</li>
@@ -47,16 +47,16 @@
     <il><%= link_to artist.artist_name, admins_artist_path(artist)%></li>
   </ul>
 <% end %>
+</div>
 
 
-<div class="col-lg-6 bg-secondary" style="height: 250px; margin-bottom: 50px; border-radius: 20px;">
+<div class="col-sm-6 bg-secondary" style="height: 250px; margin-bottom: 50px; border-radius: 20px;">
 <h4 class="my-5 border-bottom text-light text-center">アーティストが登録されていない場合</h4>
 <%= form_for(@artist) do |f| %>
     <%= f.text_field :artist_name,  :size=>"25" %>
     <%= button_tag :type => "submit", :class =>"btn btn btn-primary" do %>
   <i class="fas fa-plus"></i>　アーティストを追加
 <% end %>
-
 <% end %>
 </div>
 
