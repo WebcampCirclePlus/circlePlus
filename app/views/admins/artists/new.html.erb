@@ -1,8 +1,4 @@
 
-
-
-<!-- body -->
-
 <h1 class="my-5 text-center border-bottom">行いたいことはなんですか？</h1>
 
 <div class="container">
@@ -50,10 +46,10 @@
 <h4 class="my-5 border-bottom text-center">商品を追加・編集したいアーティストを選択してください。</h4>
 <% @artists.each do |artist| %>
   <ul>
-    <li><%= link_to artist.artist_name, admins_artist_path(artist)%></li>
+    <il><%= link_to artist.artist_name, admins_artist_path(artist)%></li>
   </ul>
 <% end %>
-</div>
+
 
 <div class="col-lg-5 bg-secondary circle" style="height: 250px; margin-bottom: 50px;">
 <h4 class="my-5 border-bottom text-light text-center">アーティストが登録されていない場合</h4>
@@ -70,9 +66,4 @@
 
 </div>
 </div>
-
-
-
-<!-- body -->
-
 

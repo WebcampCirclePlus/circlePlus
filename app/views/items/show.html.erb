@@ -1,0 +1,12 @@
+<h1>Items#show:商品の詳細</h1>
+<p>Find me in app/views/items/show.html.erb</p>
+
+<h2>商品の詳細</h2>
+<!-- item画像を入れます -->
+<p>アルバム名：<%= @item.album_name %></p>
+<p>アーティスト名：<%= @item.artist.artist_name %></p>
+<p>価格：<%= @item.item_price_tax_free %></p>
+<p>在庫<%= @item.stock %>点あり</p>
+<%= link_to "カートに入れる" %>
+<%= link_to "戻る" %>
+<!-- ブラウザの戻る機能 -->

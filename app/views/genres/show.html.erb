@@ -1,0 +1,18 @@
+<h1>Genres#show:ジャンルごとのCD一覧</h1>
+<p>Find me in app/views/genres/show.html.erb</p>
+
+<h2><%= @genre.genre_name %><に属するCD一覧</h2>
+
+
+<% @genre.items.each do |item| %>
+	<!-- 画像の表示、nillだとerrorが出てしまうのでfallbackでno_image.jpgを指定する予定 -->
+	<%= link_to item.album_name, item_path(item.id) %></br>
+	<%= item.artist.artist_name %></br>
+	<%= item.item_price_tax_free %></br>
+	<%= item.label %></br>
+	<%= link_to "詳細ページ" %>
+	<!-- リンクの追加 -->
+
+<% end %>
+
+<!-- pagenateの指定 -->

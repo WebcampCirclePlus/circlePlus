@@ -1,0 +1,20 @@
+<h1>Users#edit:ユーザー編集</h1>
+<p>Find me in app/views/users/edit.html.erb</p>
+
+
+
+<h2><%= current_user.user_name %>の編集ページ</h2>
+
+<%= form_for current_user do |f| %>
+<p>ユーザーネーム：<%= f.text_field :user_name %></p>
+<p>氏名（カタカナ）：<%= f.text_field :name_kana %></p>
+<p>氏名（漢字）：<%= f.text_field :name_kanji %></p>
+<p>電話番号：<%= f.text_field :phone_number %></p>
+<p>Ｅｍａｉｌ：<%= f.email_field :email %></p>
+<p>パスワード：<%= f.password_field :password %></p>
+<%= f.submit "編集" %>
+<% end %>
+
+<%= link_to "マイページに戻る", user_path(current_user.id) %>
+
+<!-- ユーザー編集機能は実装していない状態 -->
