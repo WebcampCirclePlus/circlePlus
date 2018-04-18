@@ -14,6 +14,50 @@
  *= require_self
  */
 
- @import "bootstrap-sprockets";
- @import "bootstrap";
+ .btn-secondary {
+	margin: 5px
+}
 
+.nav-link {
+	font-size: 16px;
+}
+
+.circle-plus-icon {
+	font-size: 24px;
+}
+
+.guest {
+	font-size: 20px;
+	color: #fff;
+	margin-left: 15px;
+}
+
+.header-box {
+	height: 62px;
+	width: 100%;
+}
+
+
+
+
+/*footerをページ下部に固定させる処理*/
+body,#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+ 
+footer {
+  height: 50px;
+}
+
+#footer-text {
+	color: #f8f9fa;
+	text-align: center;
+	font-size: 20px;
+	margin: 15px 0 0 0;
+}
+
+
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";

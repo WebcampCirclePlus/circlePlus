@@ -1,22 +1,71 @@
-<h1>Admins::Artists#show</h1>
-<p>Find me in app/views/admins/artists/show.html.erb</p>
+<div class="container">
+<div class="row">
 
-<p> <%= @artist.artist_name %> の商品一覧</p>
+<h2 class="my-5 border-bottom"><%= @artist.artist_name %> の商品一覧</h2>
 
-<table>
-  <tr>
-    <th>シングル/アルバム名</th>
-    <th>詳細</th>
-  </tr>
-  <% @items.each do |item| %>
-  <tr>
-    <td><%= item.album_name %></td>
-    <td><%= link_to "この商品の詳細へ", admins_artist_item_path(@artist,item) %></td>
-  </tr>
+  <div class="my-3 col-12 mx-auto" style="width: 100%;">
+  <h3 class="border-bottom mb-5">商品を新規追加 or 一覧から編集したいCDを選んでください。</h3>
+  <%= link_to (new_admins_artist_item_path(@artist)), class:"btn btn-outline-danger btn-lg float-right btn-sm" do %>
+  <i class="fas fa-plus"></i> このアーティストの商品を追加する
   <% end %>
+  </div>
+<table class="table col-12 mx-auto" >
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ジャケット</th>
+      <th scope="col">シングル/アルバム名</th>
+      <th scope="col">レーベル</th>
+      <th scope="col">値段</th>
+      <th scope="col">ジャンル</th>
+      <th scope="col">在庫</th>
+      <th scope="col">発売日</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="tr">
+    <% @artist.items.each do |item| %>
+      <th scope="row"><img src="" style="width: 70px; height: 70px; background-color: black;"></th>
+      <td><%= item.album_name %></td>
+      <td><%= item.label %></td>
+      <td><%= item.item_price_tax_free %></td>
+      <td><%= item.genre.genre_name %></td>
+      <td><%= item.stock %></td>
+      <td><%= item.on_sale_date %></td>
+      <td><%= link_to "詳細", admins_artist_item_path(@artist,item), class: "btn btn-danger " %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
 
+<div class="mx-auto">
+<nav aria-label="... ">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <span class="page-link">Previous</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <span class="page-link">
+        2
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+</div>
 
-<p><%= link_to "このアーティストの商品を追加する",new_admins_artist_item_path(@artist) %></p>
+<div class="col-12 text-center mt-3" style="margin-bottom: 50px;">
+  
+<%= link_to (new_admins_artist_path), class:"btn btn-primary btn-lg" do %>
+<i class="fas fa-chevron-left"></i> アーティスト選択画面に戻る
+<% end %>
+</div>
 
-<p><%= link_to "アーティスト選択画面に戻る", new_admins_artist_path %></p>
+
+
+
