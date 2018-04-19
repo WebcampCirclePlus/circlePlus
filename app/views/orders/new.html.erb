@@ -1,2 +1,26 @@
-<h1>Orders#new</h1>
+<h2>Orders#new：配送先確認</h2>
 <p>Find me in app/views/orders/new.html.erb</p>
+<P>配達先確認</P>
+<P>最終確認</P>
+<P>購入完了</P>
+
+<% current_user.sendings.each do |sending| %>
+<%= @s_number += 1 %></br>
+<%= sending.sending_name %></br>
+<%= sending.sending_code %></br>
+<%= sending.sending_address %></br></br>
+<% end %>
+
+<%= link_to "配送先を選ぶ", '/users/1/orders/1/edit' %></br>
+
+<!-- user_orders_pathにする。コントローラでredirect先の指定 -->
+
+
+<h4>配送先新規作成</h4></br>
+<%= form_for(@sending, :url =>{:controller => :orders, :action => :sending_create}) do |f| %>
+<p>送付先名称：<%= f.text_field :sending_name %></p>
+<p>郵便番号：<%= f.text_field :sending_code %></p>
+<p>送付先住所：<%= f.text_field :sending_address %></p>
+<%= f.submit "送付先新規作成" %>
+<% end %>
+

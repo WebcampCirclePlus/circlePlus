@@ -1,18 +1,45 @@
-<h1>Genres#show:ジャンルごとのCD一覧</h1>
-<p>Find me in app/views/genres/show.html.erb</p>
-
-<h2><%= @genre.genre_name %><に属するCD一覧</h2>
-
-
+<!-- メインカラム -->
+<div class="container">
+<div class="row">
+<h2 class="border-bottom my-5"><%= @genre.genre_name %>に属するCD一覧</h2>
+<div class="col-lg-12 my-5">
 <% @genre.items.each do |item| %>
-	<!-- 画像の表示、nillだとerrorが出てしまうのでfallbackでno_image.jpgを指定する予定 -->
-	<%= link_to item.album_name, item_path(item.id) %></br>
-	<%= item.artist.artist_name %></br>
-	<%= item.item_price_tax_free %></br>
-	<%= item.label %></br>
-	<%= link_to "詳細ページ" %>
-	<!-- リンクの追加 -->
+<div class="card col-lg-4 mx-auto mb-3" style="width: 18rem;">
+  <img class="card-img-top mt-3" src="..." alt="Card image cap" style="height: 200px; background-color: gray; ">
+  <div class="card-body">
+    <h5><%= link_to item.album_name, item_path(item.id), class:"text-danger" %></h5>
+    <h5 class="card-title"><%= item.artist.artist_name %></h5>
+    <h5 class="card-title"><%= item.label %></h5>
+    <h5 class="card-title">¥<%= item.item_price_tax_free %></h5>
+    <%= link_to "詳細ページ", (),class:"btn btn-primary" %>
+  </div>
+</div>
+ <% end %>
 
-<% end %>
+</div>
+</div>
+</div>
+
+
 
 <!-- pagenateの指定 -->
+<div class="mx-auto my-5">
+<nav aria-label="... ">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <span class="page-link">Previous</span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <span class="page-link">
+        2
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+</div>

@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   get '/admins/' => 'admins#top'
   get '/' => 'items#index', as: 'top'
   get '/thanks' => 'users#thanks'
-  get '/my_cart' => 'cart_items#index', as: 'my_cart'
-  get 'cart_items/search' => 'cart_items#search'
+  get '/cart' => 'cart_items#index', as: 'cart'
+  get '/search' => 'items#search'
+  post 'new_user_order_path' => 'orders#sending_create'
 
   devise_for :admins, only: [:sign_in, :sign_out, :session],
   :controllers => {
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   }
 
 namespace :admins do
-    resources :items, only: [:show, :new, :create] do
+    resources :items, only: [:show, :create] do
       resources :discs, only: [:show] do
         resource :songs, only: [:create, :destroy, :update]
     end
@@ -30,6 +31,7 @@ namespace :admins do
     resource :items, only: [:new]
   end
 end
+
 
 
 resources :users, only: [:show, :edit, :update] do
