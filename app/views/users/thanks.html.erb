@@ -1,8 +1,10 @@
-<h1>Users#thanks：サンクスページ</h1>
-<p>Find me in app/views/users/thanks.html.erb</p>
+<div class=" mx-auto col-10 my-5" style="width: 50%; ">
+  <h2 style="height: 300px;">ご購入ありがとうございました。</h2>
 
-
-<h2>ご購入ありがとうございました。</h2>
-
-<%= link_to "マイページに戻る" %>
-<%= link_to "TOPページに戻る" %>
+  <%= link_to user_path(current_user) do %>
+  <button type="button" class="btn btn-warning">マイページに戻る</button>
+  <% end %>
+  <%= link_to top_path do %>
+  <button type="button" class="btn btn-warning">TOPページに戻る</button>
+  <% end %>
+</div>

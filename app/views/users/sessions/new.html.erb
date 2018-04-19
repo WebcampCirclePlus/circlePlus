@@ -1,6 +1,7 @@
-<h2>Sign in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class=" mx-auto col-10 my-5" style="width: 300px;">
+  <h2>Sign in</h2>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "email" %>
   </div>
@@ -10,16 +11,17 @@
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
+  <div class="field">
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me %>
+  </div>
   <% end -%>
   <!-- remenber me は消しても大丈夫です。 -->
 
   <div class="actions">
-    <%= f.submit "ユーザーとしてログイン" %>
+    <%= f.submit "ログイン" %>
   </div>
-<% end %>
+  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+  <% end %>
+</div>
 
-<%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
