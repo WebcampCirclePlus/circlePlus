@@ -33,7 +33,6 @@ namespace :admins do
 end
 
 
-
 resources :users, only: [:show, :edit, :update] do
     resources :sendings, only: [:create, :edit, :update]
     resources :orders, only: [:new, :create, :edit, :update]
