@@ -10,9 +10,10 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
+  <div class="content">
+    <div class="content-inside">
 
  <!--  admin-signin-header -->
- <div id="wrapper">
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <a class="circle-plus-icon text-danger" href="">Circle <span style="color:#fff;">Plus</span></a>
     <a class="guest text-muted" href="">管理者ページ</a>
@@ -46,13 +47,15 @@
 
 <%= yield %>
 
+  </div><!-- /.content -->
+</div><!-- /.content-inside -->
+
 <!-- footer -->
 <footer class="footer bg-dark">
   <div class="container">
     <p id="footer-text" style="color: #f8f9fa; text-align: center; ">©2018 circle_plus</p>
   </div>
 </footer>
-</div>
 <!-- footerここまで -->
 
 </body>

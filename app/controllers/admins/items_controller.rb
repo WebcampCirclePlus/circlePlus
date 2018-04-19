@@ -4,6 +4,8 @@ class Admins::ItemsController < ApplicationController
     @artist = @item.artist
     @discs = @item.discs
     @genre = @item.genre
+    @disc = Disc.find(params[:id])
+    @songs = @disc.songs
   end
 
 
