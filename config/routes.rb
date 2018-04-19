@@ -25,6 +25,12 @@ namespace :admins do
     resources :users, only: [:show, :index, :edit, :update]
 end
 
+namespace :admins do
+  resources :artists, only: [:show] do
+    resource :items, only: [:new]
+  end
+end
+
 
 resources :users, only: [:show, :edit, :update] do
     resources :sendings, only: [:create, :edit, :update]
