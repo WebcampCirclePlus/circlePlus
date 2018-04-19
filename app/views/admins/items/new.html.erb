@@ -12,9 +12,9 @@
 					<tr>
 						<div class="row">
 							<td class="col-lg-1 col-md-1 col-sm-1 col-xs-1">ジャケット</td>
-							<td class="col-lg-10 col-md-10 col-sm-10 col-xs-10 bg-info"></td>
+							<td class="col-lg-10 col-md-10 col-sm-10 col-xs-10"><img src="..." alt="Card image cap" style="height: 200px; background-color: gray; "><!-- item画像を入れます --></td>
 							<td class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-								<%= link_to "画像をアップロードする", :back, class: "btn btn-danger white-text" %>
+								<%= link_to "画像をアップロードする", :back, class: "btn btn-danger" %>
 							</td>
 						</div>
 					</tr>
@@ -25,13 +25,7 @@
 					</tr>
 					<tr>
 						<td>ジャンル</td>
-						<td><!--<%= f.text_field :genre_id %>-->
-					        <select name="">
-					          <option value="" selected>J-ROCK</option>
-					          <option value="">サウンドトラック</option>
-					          <option value="">洋楽</option>
-					        </select>
-					    </td>
+						<td><%= f.text_field :genre_id %></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -52,7 +46,7 @@
 					<tr>
 						<td></td>
 						<td></td>
-						<td><%= link_to "商品を新規追加する", :back, class: "btn btn-danger white-text" %></td>
+						<td><%= f.submit '商品を新規追加する', class: "btn btn-danger" %></td>
 					</tr>
 				<% end %>
 			</table>

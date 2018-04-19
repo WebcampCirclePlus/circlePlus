@@ -5,47 +5,45 @@
 			<h1>Items#show:商品の詳細</h1>
 			<p>Find me in app/views/items/show.html.erb</p>
 
-			<h2>商品の詳細</h2>]
+			<h2>商品の詳細</h2>
 			<div class = "row">
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 bg-info">
-					<!-- item画像を入れます -->
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<img src="..." alt="Card image cap" style="height: 200px; background-color: gray; "><!-- item画像を入れます -->
 				</div>
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-				<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 bg-info">
-					<div class="row">
-						<table>
-							<tr>
-								<td class="col-lg-2 col-md-2 col-sm-2 col-xs-2">アルバム名</td>
-								<td class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></td>
-								<td class="col-lg-9 col-md-9 col-sm-9 col-xs-9"><%= @item.album_name %></td>
-							</tr>
-							<tr>
-								<td>アーティスト名</td>
-								<td></td>
-								<td><%= @item.artist.artist_name %></td>
-							</tr>
-							<tr>
-								<td>価格</td>
-								<td></td>
-								<td><%= @item.item_price_tax_free %></td>
-							</tr>
-							<tr>
-								<td>在庫</td>
-								<td></td>
-								<td><%= @item.stock %>点あり</td>
-							</tr>
-							<tr>
-								<td><form method="post" action="#"><input type="text" name="" size="10">点</td>
-								<td>
-									<%= link_to "カートに入れる", :back, class: "btn btn-danger white-text" %>
-								</td>
-								<td>
-									<%= link_to "前のページに戻る", :back, class: "btn btn-success white-text" %>
-									<!-- ブラウザの戻る機能 -->
-								</td>
-							</tr>
-						</table>
-					</div>
+				<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 bg-info mb-3">
+					<table>
+						<tr>
+							<td>アルバム名</td>
+							<td></td>
+							<td><%= @item.album_name %></td>
+						</tr>
+						<tr>
+							<td>アーティスト名</td>
+							<td></td>
+							<td><%= @item.artist.artist_name %></td>
+						</tr>
+						<tr>
+							<td>価格</td>
+							<td></td>
+							<td><%= @item.item_price_tax_free %></td>
+						</tr>
+						<tr>
+							<td>在庫</td>
+							<td></td>
+							<td><%= @item.stock %>点あり</td>
+						</tr>
+						<tr>
+							<td><form method="post" action="#"><input type="text" name="" size="10">点</td>
+							<td>
+								<%= link_to "カートに入れる", :back, class: "btn btn-danger white-text" %>
+							</td>
+							<td>
+								<%= link_to "前のページに戻る", :back, class: "btn btn-success white-text" %>
+								<!-- ブラウザの戻る機能 -->
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
