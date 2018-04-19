@@ -4,6 +4,7 @@ class Admins::ItemsController < ApplicationController
     @artist = @item.artist
     @discs = @item.discs
     @genre = @item.genre
+    @song = @disc.songs
   end
 
 

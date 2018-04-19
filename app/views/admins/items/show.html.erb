@@ -1,112 +1,85 @@
-<h1>Admins::Items#show</h1>
-<p>Find me in app/views/admins/items/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h1>Admins::Items#show</h1>
+    <p>Find me in app/views/admins/items/show.html.erb</p>
 
-<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-  <h1><%= @artist.artist_name %>-<%= @item.album_name %>-詳細</h1>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+      <h1><%= @artist.artist_name %>-<%= @item.album_name %>-詳細</h1>
 
-  <table>
-    <tr class="bg-info">
-      <div class="row">
-        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">ジャケット</th>
-        <th class="col-lg-6 col-md-6 col-sm-6 col-xs-6">シングル/アルバム</th>
-        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">ジャンル</th>
-        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">レーベル</th>
-        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">値段</th>
-        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">在庫</th>
-        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></th>
-      </div>
-    </tr>
-    <tr>
-      <td><div class="well"></div></td>
-      <td><%= @item.album_name %></td>
-      <td><%= @genre.genre_name %></td>
-      <td><%= @item.label %></td>
-      <td><%= @item.item_price_tax_free %></td>
-      <td><%= @item.stock %></td>
-      <td>
-        <%= link_to "この商品の基本情報を編集する", :back, class: "btn btn-danger white-text" %>
-      </td>
-    </tr>
-  </table>
+      <table>
+        <tr class="bg-info">
+          <div class="row">
+            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">ジャケット</th>
+            <th class="col-lg-5 col-md-5 col-sm-5 col-xs-5">シングル/アルバム</th>
+            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">ジャンル</th>
+            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">レーベル</th>
+            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">値段</th>
+            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">在庫</th>
+            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">発売日</th>
+            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></th>
+          </div>
+        </tr>
+        <tr>
+          <td><div class="well"></div></td>
+          <td><%= @item.album_name %></td>
+          <td><%= @genre.genre_name %></td>
+          <td><%= @item.label %></td>
+          <td><%= @item.item_price_tax_free %></td>
+          <td><%= @item.on_sale_date %></td>
+          <td><%= @item.stock %></td>
+          <td>
+            <%= link_to "この商品の基本情報を編集する", :back, class: "btn btn-danger white-text" %>
+          </td>
+        </tr>
+      </table>
 
-  <p>含まれているdisc一覧</p>
-  <table>
-    <tr class="bg-info">
-      <div class="row">
-        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">type</th>
-        <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">曲数</th>
-        <th class="col-lg-8 col-md-8 col-sm-8 col-xs-8">曲名</th>
-      </div>
-    </tr>
-    <% @discs.each do |disc| %>
-    <tr>
-      <td><%= disc.disc_type %></td>
-      <td>cnt</td>
-      <td>曲名1</td>
-      <td>
-        <%= link_to "このdiscの収録曲を編集する", admins_item_disc_path(@artist, @item, disc), class: "btn btn-danger white-text" %>
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td>曲名2</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td>曲名3</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><%= disc.disc_type %></td>
-      <td>cnt</td>
-      <td>曲名1</td>
-      <td>
-        <%= link_to "このdiscの収録曲を編集する", admins_item_disc_path(@artist, @item, disc), class: "btn btn-danger white-text" %>
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td>曲名2</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td>曲名3</td>
-      <td></td>
-    </tr>
+      <p>含まれているdisc一覧</p>
+      <table>
+        <tr class="bg-info">
+          <div class="row">
+            <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">type</th>
+            <th class="col-lg-11 col-md-11 col-sm-11 col-xs-11">曲名</th>
+          </div>
+        </tr>
+        <% @discs.each do |disc| %>
+        <tr>
+          <td><%= disc.disc_type %></td>
+          <td>曲名1</td>
+          <td>
+            <%= link_to "このdiscの収録曲を編集する", admins_item_disc_path(@item), class: "btn btn-danger" %>
+          </td>
+          <td><%= link_to "このdiscを編集する", admins_item_disc_path(@item), class: "btn btn-warning" %></td>
+        </tr>
+        <% end %>
 
-    <tr>
-      <td>
-        <select name="">
-          <option value="" selected>CD</option>
-          <option value="">DVD</option>
-          <option value="">Blu-ray</option>
-        </select>
-      </td>
-      <td></td>
-      <td></td>
-      <td>
-        <%= link_to "この商品のdiscを追加する", admins_item_disc_path(@artist, @item, disc), class: "btn btn-danger white-text" %>
-      </td>
-    </tr>
+        <tr>
+          <td>
+            <select name="">
+              <option value="" selected>CD</option>
+              <option value="">DVD</option>
+              <option value="">Blu-ray</option>
+            </select>
+          </td>
+          <td></td>
+          <td>
+            <%= link_to admins_item_disc_path(@item) do %>
+              <button type="button" class = "btn btn-danger">この商品のdiscを追加する</button>
+            <% end %>
+          </td>
+          <td></td>
+        </tr>
 
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-
-      <td>
-        <%= link_to "前のページに戻る", :back, class: "btn btn-success white-text" %>
-      </td>
-      <td><%= link_to "このdiscを編集する", admins_item_disc_path(@item, disc) %></td>
-    </tr>
-    <% end %>
-  </table>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>
+            <%= link_to "前のページに戻る", :back, class: "btn btn-success" %>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+  </div>
 </div>
-<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
