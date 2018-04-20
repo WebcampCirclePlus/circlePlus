@@ -30,59 +30,33 @@
 <div class="row">
 
 <!-- サイドバー　アーティスト -->
-<div class="col-lg-2 my-5">
+<div class="col-lg-12 my-3">
 
 <!-- 折りたたみコンテンツ　ジャンル一覧 -->
 
 <div class="open">
   <div id="nav-drawer">
       <input id="nav-input" type="checkbox" class="nav-unshown">
-      <label class="btn btn-primary" for="nav-input">
+      <label class="col-lg-12 btn btn-danger" for="nav-input">
       ジャンル一覧</label>
       <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+
       <div id="nav-content">
-        
         <h2 class="text-center border-bottom my-2">ジャンル</h2>
         <% @genres.each do |genre| %>
-         <ul style="list-style: none; margin-left: 0;">
-          <li>
-            <%= link_to genre.genre_name , genre_path(genre.id), class:"btn btn-danger my-2" %></br>
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <%= link_to genre.genre_name , genre_path(genre.id), class:"nav-link text-danger" %>
           </li>
+          <% end %>
         </ul>
-        <% end %>
-      
-      </div>
-  </div>
-</div>
-
-
-
-
-  <div class="display-none">
-      <button type="button" class="my-3 mx-auto btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      <i class="fas fa-caret-down"></i> ジャンル一覧
-      </button>
-        <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-        <% @genres.each do |genre| %>
-         <ul style="list-style: none; margin-left: 0;">
-          <li>
-            <%= link_to genre.genre_name , genre_path(genre.id), class:"badge badge-warning my-2" %></br>
-          </li>
-        </ul>
-        <% end %>
-        </div>
-        </div>
-  </div>
-
-
-</div>
-
-
-
+        </div><!-- /nav-content -->
+      </div><!-- nav-drawer -->
+  </div><!-- open -->
+</div><!-- col-lg-12 my-3 -->
 
 <!-- メインカラム -->
-<div class="col-lg-10 my-5">
+<div class="col-lg-12 mb-5">
 
 <div class="container">
 <div class="row">
@@ -94,7 +68,11 @@
     <h5 class="card-title"><%= item.album_name %></h5>
     <h5 class="card-title"><%= item.artist.artist_name %></h5>
     <h5 class="card-title">¥<%= item.item_price_tax_free %></h5>
-    <%= link_to "詳細ページ" ,item_path(item.id), class:"btn btn-primary" %>
+    <div class="card-body button-center" style="padding: 0;">
+    <%= link_to item_path(item.id), class:"btn btn-outline-danger card-button" do %>
+    詳細 <i class="fas fa-chevron-right"></i>
+    <% end %>
+    </div>
   </div>
 </div>
  <% end %>
