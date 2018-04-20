@@ -35,81 +35,40 @@
  </tbody>
 </table>
 
-
- <h3 class="my-5">含まれているdisc一覧</h3>
+  <h3 class="my-5">含まれているdisc一覧</h3>
 
 <table class="table">
- <thead class="thead-light">
-   <tr>
-     <th scope="col">Type</th>
-     <th scope="col">曲数</th>
-     <th scope="col" style="width: 300px;">曲名</th>
-     <th scope="col"></th>
-     <th scope="col"></th>
-   </tr>
- </thead>
- <% @discs.each do |disc| %>
- <tbody>
-   <tr>
-     <th scope="row"><%= disc.disc_type %></th>
-     <td>cnt</td>
-     <td>
-     <!-- 折りたたみコンテンツ　曲名一覧 -->
-     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-     <i class="fas fa-caret-down"></i> 曲名一覧
-     </button>
-       <div class="collapse" id="collapseExample">
-       <div class="card card-body">
-       <% @songs.each do |song| %><!-- 曲名のeach -->
-        <ul>
-         <li><%= song.song_name %></li>
-       </ul>
-       <% end %>
-       </div>
-       </div>
 
-     </td>
-     <td></td>
-     <td><%= link_to admins_item_disc_path(@artist, @item, disc), class: "btn btn-danger white-text" do %>
-     <i class="fas fa-wrench"></i> 収録曲を編集
-     <% end %>
-     </td>
-   </tr>
- </tbody>
- <tbody>
-   <tr>
-     <td>
-       <!-- ドロップダウン -->
-       <select name="">
-         <option value="" selected>CD</option>
-         <option value="">DVD</option>
-         <option value="">Blu-ray</option>
-       </select>
-     </td>
-     <td></td>
-     <td></td>
-     <td></td>
-     <td>
-         <%= link_to admins_item_disc_path(@artist, @item, disc), class: "btn btn-danger white-text" do %>
-           <i class="fas fa-plus"></i> discを追加
-         <% end %>
-     </td>
-   </tr>
- </tbody>
- <tbody>
-   <tr>
-     <td></td>
-     <td></td>
-     <td></td>
-     <td></td>
-     <td>
-         <%= link_to admins_item_disc_path(@item, disc), class:"btn btn-danger white-text" do %>
-          <i class="fas fa-wrench"></i> このdiscを編集する
-         <% end %>
-     </td>
-   </tr>
- </tbody>
- <% end %><!-- /each文 -->
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">曲数</th>
+      <th scope="col" style="width: 300px;">曲名</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <% @discs.each do |disc| %>
+  <tbody>
+    <tr>
+      <th scope="row"><%= disc.disc_type %></th>
+      <td>cnt</td>
+      <td>
+      <%= disc.id %>
+      <!-- 折りたたみコンテンツ　曲名一覧 -->
+      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <i class="fas fa-caret-down"></i> 曲名一覧
+      </button>
+        <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+        <% @songs.each do |song| %><!-- 曲名のeach -->
+         <ul>
+          <li><%= disc.id %><%= song.song_name %></li>
+        </ul>
+        <% end %>
+        </div>
+        </div>
+
 
 </table>
 <div class="text-center">
