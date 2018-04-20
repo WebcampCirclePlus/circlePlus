@@ -30,9 +30,35 @@
 <div class="row">
 
 <!-- サイドバー　アーティスト -->
-<div class="col-lg-2 my-5 bg-secondary">
+<div class="col-lg-2 my-5">
 
 <!-- 折りたたみコンテンツ　ジャンル一覧 -->
+
+<div class="open">
+  <div id="nav-drawer">
+      <input id="nav-input" type="checkbox" class="nav-unshown">
+      <label class="btn btn-primary" for="nav-input">
+      ジャンル一覧</label>
+      <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+      <div id="nav-content">
+        
+        <h2 class="text-center border-bottom my-2">ジャンル</h2>
+        <% @genres.each do |genre| %>
+         <ul style="list-style: none; margin-left: 0;">
+          <li>
+            <%= link_to genre.genre_name , genre_path(genre.id), class:"btn btn-danger my-2" %></br>
+          </li>
+        </ul>
+        <% end %>
+      
+      </div>
+  </div>
+</div>
+
+
+
+
+  <div class="display-none">
       <button type="button" class="my-3 mx-auto btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
       <i class="fas fa-caret-down"></i> ジャンル一覧
       </button>
@@ -47,16 +73,7 @@
         <% end %>
         </div>
         </div>
-
-
-
-
-
-
-
-
-
-
+  </div>
 
 
 </div>
@@ -71,8 +88,8 @@
 <div class="row">
 
 <% @items.each do |item| %>
-<div class="card col-lg-4 mx-auto mb-3" style="width: 18rem;">
-  <img class="card-img-top mt-3" src="..." alt="Card image cap" style="height: 200px; background-color: gray; ">
+<div class="card mx-auto mb-3" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap" style="height: 200px; background-color: gray; ">
   <div class="card-body">
     <h5 class="card-title"><%= item.album_name %></h5>
     <h5 class="card-title"><%= item.artist.artist_name %></h5>
@@ -81,9 +98,10 @@
   </div>
 </div>
  <% end %>
+</div>
 
-</div>
-</div>
+</div><!-- /row -->
+</div><!-- /container -->
 
 <!-- ページャー -->
 <div class="mx-auto my-5">
