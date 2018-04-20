@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
 # Use sqlite3 as the database for Active Record
@@ -54,8 +53,19 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 ##original
+#管理者機能
 gem 'devise'
 
 #bootstrap
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'jquery-rails'
+
+#検索機能
+gem 'ransack'
+
+#カミナリ
+gem 'kaminari'
+
+#添付
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
