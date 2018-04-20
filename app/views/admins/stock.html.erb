@@ -1,0 +1,20 @@
+<h1>Admins#stock</h1>
+<p>Find me in app/views/admins/stock.html.erb</p>
+
+<div class=" mx-auto col-10" style="width: 100%;">
+  <p>在庫数の一覧</p>
+  <table>
+   <tr>
+     <th>シングル/アルバム名</th>
+     <th>在庫数</th>
+     <th>在庫数を変更</th>
+   </tr>
+   <% @items.each do |item| %>
+   <tr>
+    <td><%= item.album_name %></td>
+     <td><%= item.stock %></td>
+     <td>変更ボタン</td>
+   </tr>
+   <% end %>
+ </table>
+</div>

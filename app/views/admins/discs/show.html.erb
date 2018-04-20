@@ -1,18 +1,19 @@
 
-<h1>Admins::Discs#show</h1>
-<p>Find me in app/views/admins/discs/show.html.erb</p>
+<h2 class="text-center border-bottom my-5"><%= @artist.artist_name %></h2>
 
 <h2 class="text-center border-bottom my-5"><%= @artist.artist_name %></h2>
 
 <h3 class="text-center mb-5">
  <%= @item.album_name %> の <%= @disc.disc_type %>
  に含まれている曲一覧
+
 </h3>
 
 <div class="container">
 <div class="row">
 
 <table class="table col-lg-10 mx-auto">
+
  <thead>
    <tr>
      <th scope="col" class="text-center">曲名</th>
@@ -37,10 +38,12 @@
    </tr>
  </tbody>
  <% end %>
+
 </table>
 
 <!-- <p>ここでnested_form_fieldを使う</p> -->
 <div class="col-lg-10 mx-auto my-3">
+
  <div class="mx-auto" style="width: 50%;">
    <%= link_to (), class:"btn btn-danger mr-5" do %>
        <i class="fas fa-trash-alt"></i> このディスクを消去する
@@ -50,6 +53,7 @@
        <i class="fas fa-chevron-left"></i> 戻る
    <% end %>
  </div>
+
 </div>
 
 </div><!-- /row -->

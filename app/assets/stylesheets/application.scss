@@ -33,24 +33,30 @@
 }
 
 .header-box {
-	height: 62px;
+	height: 56px;
 	width: 100%;
 }
 
 
-
+ html, body {
+  height: 100%;
+  margin: 0;
+}
 
 /*footerをページ下部に固定させる処理*/
-body,#wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+
+.content {
+  min-height: 100%;
+}
+.content-inside {
+  padding: 20px;
+  padding-bottom: 50px;
+}
+.footer {
+  height: 50px;
+  margin-top: -50px;
 }
  
-footer {
-  height: 50px;
-}
-
 #footer-text {
 	color: #f8f9fa;
 	text-align: center;
