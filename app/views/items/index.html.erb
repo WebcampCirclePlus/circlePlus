@@ -31,11 +31,31 @@
 
 <!-- サイドバー　アーティスト -->
 <div class="col-lg-2 my-5 bg-secondary">
-<h3 class="text-light text-center my-3 border-bottom">ジャンル</h3>
 
-<% @genres.each do |genre| %>
-<%= link_to genre.genre_name , genre_path(genre.id), class:"badge badge-warning my-2" %></br>
-<% end %>
+<!-- 折りたたみコンテンツ　ジャンル一覧 -->
+      <button type="button" class="my-3 mx-auto btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <i class="fas fa-caret-down"></i> ジャンル一覧
+      </button>
+        <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+        <% @genres.each do |genre| %>
+         <ul style="list-style: none; margin-left: 0;">
+          <li>
+            <%= link_to genre.genre_name , genre_path(genre.id), class:"badge badge-warning my-2" %></br>
+          </li>
+        </ul>
+        <% end %>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+
 
 
 

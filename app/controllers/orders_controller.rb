@@ -1,10 +1,14 @@
 class OrdersController < ApplicationController
   def new
   	@sending = Sending.new
+    @sendings = Sending.all
   	@s_number = 0
+    @order = Order.new
   end
 
   def create
+    @order = Order.new(order_params)
+    user_id = current_user.id
   end
 
   def sending_create
@@ -35,4 +39,10 @@ class OrdersController < ApplicationController
   	params.require(:sending).permit(:sending_code, :sending_name, :sending_address,:user_id)
   end
 
+  def order_params
+    params.require(:order).permit(:sending_id , :user_id)
+  end
+
+  def order_item__params
+    params.require(:order_item).permit(:)
 end

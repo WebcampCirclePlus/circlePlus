@@ -1,40 +1,60 @@
 
-<h1>Admins::Discs#show</h1>
-<p>Find me in app/views/admins/discs/show.html.erb</p>
+<h2 class="text-center border-bottom my-5"><%= @artist.artist_name %></h2>
 
-<div class="disc-artist-name"><%= @artist.artist_name %></div>
-<div class="disc-an-dn-block">
-  <div class="disc-album-name"><%= @item.album_name %></div>
-  <div class="disc-disc-name">-<%= @disc.disc_type %>に含まれている曲一覧</div>
-</div>
+<h2 class="text-center border-bottom my-5"><%= @artist.artist_name %></h2>
 
-<table class="table table-bordered table-hover table-condensed table-responsive">
-  <tr>
-    <th class="song-name">曲名</th>
-    <th></th>
-    <th></th>
-  </tr>
-  <% @songs.each do |song| %>
-  <tr>
-    <td class="song-name"><%= song.song_name %></td>
-    <td><button class="btn btn-info btn-active btn-block btn-sm" text-color="#fff"><%= link_to "編集"%></button></td>
-    <td><button class="btn btn-warning btn-active btn-block btn-sm"><%= link_to "削除"%></button></td>
-  </tr>
-  <% end %>
+<h3 class="text-center mb-5">
+ <%= @item.album_name %> の <%= @disc.disc_type %>
+ に含まれている曲一覧
+
+</h3>
+
+<div class="container">
+<div class="row">
+
+<table class="table col-lg-10 mx-auto">
+
+ <thead>
+   <tr>
+     <th scope="col" class="text-center">曲名</th>
+     <th scope="col">編集</th>
+     <th scope="col">削除</th>
+   </tr>
+ </thead>
+ <% @songs.each do |song| %>
+ <tbody>
+   <tr>
+     <th scope="row"><%= song.song_name %></th>
+     <td>
+       <%= link_to (), class:"btn btn-warning" do %>
+       <i class="fas fa-wrench"></i>
+       <% end %>
+     </td>
+     <td>
+       <%= link_to (), class:"btn btn-danger" do %>
+       <i class="fas fa-trash-alt"></i>
+       <% end %>
+     </td>
+   </tr>
+ </tbody>
+ <% end %>
+
 </table>
+
 <!-- <p>ここでnested_form_fieldを使う</p> -->
-<div class="disc-margin row">
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-    <button class="btn btn-danger btn-block disc-margin"><%= link_to "このディスクを削除する"%></button>
-  </div>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-</div>
-<div class="disc-margin row">
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-    <button class="btn btn-success btn-block disc-margin"><%= link_to "元のページへ戻る"%></button>
-  </div>
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+<div class="col-lg-10 mx-auto my-3">
+
+ <div class="mx-auto" style="width: 50%;">
+   <%= link_to (), class:"btn btn-danger mr-5" do %>
+       <i class="fas fa-trash-alt"></i> このディスクを消去する
+   <% end %>
+
+   <%= link_to :back, class:"btn btn-success white-text ml-5" do %>
+       <i class="fas fa-chevron-left"></i> 戻る
+   <% end %>
+ </div>
+
 </div>
 
+</div><!-- /row -->
+</div><!-- /container -->
