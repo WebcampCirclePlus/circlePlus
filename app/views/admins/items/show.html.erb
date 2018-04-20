@@ -1,113 +1,116 @@
 
+<h1>Admins::Items#show</h1>
+<p>Find me in app/views/admins/items/show.html.erb</p>
 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 mx-auto">
-  <h2 class="my-5"><%= @artist.artist_name %> / <%= @item.album_name %>-詳細</h2>
+ <h2 class="my-5"><%= @artist.artist_name %> / <%= @item.album_name %>-詳細</h2>
 
-  <table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">ジャケット</th>
-      <th scope="col">シングル/アルバム</th>
-      <th scope="col">ジャンル</th>
-      <th scope="col">レーベル</th>
-      <th scope="col">値段</th>
-      <th scope="col">在庫</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">
-        <img src="" style="width: 100px; height: 100px; background-color: gray;" >
-      </th>
-      <td><%= @item.album_name %></td>
-      <td><%= @genre.genre_name %></td>
-      <td><%= @item.label %></td>
-      <td><%= @item.item_price_tax_free %></td>
-      <td><%= @item.stock %></td>
-      <td>
-       <%= link_to admins_artist_path(@artist), class: "btn btn-danger white-text" do %>
-        <i class="fas fa-wrench"></i> 編集
-       <% end %>
-      </td>
-    </tr>
-  </tbody>
+ <table class="table">
+ <thead class="thead-dark">
+   <tr>
+     <th scope="col">ジャケット</th>
+     <th scope="col">シングル/アルバム</th>
+     <th scope="col">ジャンル</th>
+     <th scope="col">レーベル</th>
+     <th scope="col">値段</th>
+     <th scope="col">在庫</th>
+     <th scope="col"></th>
+   </tr>
+ </thead>
+ <tbody>
+   <tr>
+     <th scope="row">
+       <img src="" style="width: 100px; height: 100px; background-color: gray;" >
+     </th>
+     <td><%= @item.album_name %></td>
+     <td><%= @genre.genre_name %></td>
+     <td><%= @item.label %></td>
+     <td><%= @item.item_price_tax_free %></td>
+     <td><%= @item.stock %></td>
+     <td>
+      <%= link_to admins_artist_path(@artist), class: "btn btn-danger white-text" do %>
+       <i class="fas fa-wrench"></i> 編集
+      <% end %>
+     </td>
+   </tr>
+ </tbody>
 </table>
 
 
-  <h3 class="my-5">含まれているdisc一覧</h3>
+ <h3 class="my-5">含まれているdisc一覧</h3>
 
 <table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Type</th>
-      <th scope="col">曲数</th>
-      <th scope="col" style="width: 300px;">曲名</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <% @discs.each do |disc| %>
-  <tbody>
-    <tr>
-      <th scope="row"><%= disc.disc_type %></th>
-      <td>cnt</td>
-      <td>
-      <!-- 折りたたみコンテンツ　曲名一覧 -->
-      <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-      <i class="fas fa-caret-down"></i> 曲名一覧
-      </button>
-        <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-        <% @songs.each do |song| %><!-- 曲名のeach -->
-         <ul>
-          <li><%= song.song_name %></li>
-        </ul>
-        <% end %>
-        </div>
-        </div>
+ <thead class="thead-light">
+   <tr>
+     <th scope="col">Type</th>
+     <th scope="col">曲数</th>
+     <th scope="col" style="width: 300px;">曲名</th>
+     <th scope="col"></th>
+     <th scope="col"></th>
+   </tr>
+ </thead>
+ <% @discs.each do |disc| %>
+ <tbody>
+   <tr>
+     <th scope="row"><%= disc.disc_type %></th>
+     <td>cnt</td>
+     <td>
+     <!-- 折りたたみコンテンツ　曲名一覧 -->
+     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+     <i class="fas fa-caret-down"></i> 曲名一覧
+     </button>
+       <div class="collapse" id="collapseExample">
+       <div class="card card-body">
+       <% @songs.each do |song| %><!-- 曲名のeach -->
+        <ul>
+         <li><%= song.song_name %></li>
+       </ul>
+       <% end %>
+       </div>
+       </div>
 
-      </td>
-      <td></td>
-      <td><%= link_to admins_item_disc_path(@artist, @item, disc), class: "btn btn-danger white-text" do %>
-      <i class="fas fa-wrench"></i> 収録曲を編集
-      <% end %>
-      </td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td>
-        <!-- ドロップダウン -->
-        <select name="">
-          <option value="" selected>CD</option>
-          <option value="">DVD</option>
-          <option value="">Blu-ray</option>
-        </select>
-      </td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>
-          <%= link_to admins_item_disc_path(@artist, @item, disc), class: "btn btn-danger white-text" do %>
-            <i class="fas fa-plus"></i> discを追加
-          <% end %>
-      </td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>
-          <%= link_to admins_item_disc_path(@item, disc), class:"btn btn-danger white-text" do %>
-           <i class="fas fa-wrench"></i> このdiscを編集する
-          <% end %>
-      </td>
-    </tr>
-  </tbody>
-  <% end %><!-- /each文 -->
+     </td>
+     <td></td>
+     <td><%= link_to admins_item_disc_path(@artist, @item, disc), class: "btn btn-danger white-text" do %>
+     <i class="fas fa-wrench"></i> 収録曲を編集
+     <% end %>
+     </td>
+   </tr>
+ </tbody>
+ <tbody>
+   <tr>
+     <td>
+       <!-- ドロップダウン -->
+       <select name="">
+         <option value="" selected>CD</option>
+         <option value="">DVD</option>
+         <option value="">Blu-ray</option>
+       </select>
+     </td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td>
+         <%= link_to admins_item_disc_path(@artist, @item, disc), class: "btn btn-danger white-text" do %>
+           <i class="fas fa-plus"></i> discを追加
+         <% end %>
+     </td>
+   </tr>
+ </tbody>
+ <tbody>
+   <tr>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td>
+         <%= link_to admins_item_disc_path(@item, disc), class:"btn btn-danger white-text" do %>
+          <i class="fas fa-wrench"></i> このdiscを編集する
+         <% end %>
+     </td>
+   </tr>
+ </tbody>
+ <% end %><!-- /each文 -->
+
 </table>
 <div class="text-center">
 <%= link_to :back, class: "btn btn-success white-text" do %>
@@ -116,6 +119,3 @@
 </div>
 
 </div>
-
-
-

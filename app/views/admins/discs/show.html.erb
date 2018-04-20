@@ -1,52 +1,59 @@
 
 <h2 class="text-center border-bottom my-5"><%= @artist.artist_name %></h2>
 
+<h2 class="text-center border-bottom my-5"><%= @artist.artist_name %></h2>
+
 <h3 class="text-center mb-5">
-  <%= @item.album_name %> の <%= @disc.disc_type %>
-  に含まれている曲一覧
+ <%= @item.album_name %> の <%= @disc.disc_type %>
+ に含まれている曲一覧
+
 </h3>
 
 <div class="container">
 <div class="row">
 
 <table class="table col-lg-10 mx-auto">
-  <thead>
-    <tr>
-      <th scope="col" class="text-center">曲名</th>
-      <th scope="col">編集</th>
-      <th scope="col">削除</th>
-    </tr>
-  </thead>
-  <% @songs.each do |song| %>
-  <tbody>
-    <tr>
-      <th scope="row"><%= song.song_name %></th>
-      <td>
-        <%= link_to (), class:"btn btn-warning" do %>
-        <i class="fas fa-wrench"></i>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to (), class:"btn btn-danger" do %>
-        <i class="fas fa-trash-alt"></i>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-  <% end %>
+
+ <thead>
+   <tr>
+     <th scope="col" class="text-center">曲名</th>
+     <th scope="col">編集</th>
+     <th scope="col">削除</th>
+   </tr>
+ </thead>
+ <% @songs.each do |song| %>
+ <tbody>
+   <tr>
+     <th scope="row"><%= song.song_name %></th>
+     <td>
+       <%= link_to (), class:"btn btn-warning" do %>
+       <i class="fas fa-wrench"></i>
+       <% end %>
+     </td>
+     <td>
+       <%= link_to (), class:"btn btn-danger" do %>
+       <i class="fas fa-trash-alt"></i>
+       <% end %>
+     </td>
+   </tr>
+ </tbody>
+ <% end %>
+
 </table>
 
 <!-- <p>ここでnested_form_fieldを使う</p> -->
 <div class="col-lg-10 mx-auto my-3">
-  <div class="mx-auto" style="width: 50%;">
-    <%= link_to (), class:"btn btn-danger mr-5" do %>
-        <i class="fas fa-trash-alt"></i> このディスクを消去する
-    <% end %>
 
-    <%= link_to :back, class:"btn btn-success white-text ml-5" do %>
-        <i class="fas fa-chevron-left"></i> 戻る
-    <% end %>
-  </div>
+ <div class="mx-auto" style="width: 50%;">
+   <%= link_to (), class:"btn btn-danger mr-5" do %>
+       <i class="fas fa-trash-alt"></i> このディスクを消去する
+   <% end %>
+
+   <%= link_to :back, class:"btn btn-success white-text ml-5" do %>
+       <i class="fas fa-chevron-left"></i> 戻る
+   <% end %>
+ </div>
+
 </div>
 
 </div><!-- /row -->
