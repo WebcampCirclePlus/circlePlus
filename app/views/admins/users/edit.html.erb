@@ -3,4 +3,7 @@
 
 <p>ユーザー編集ページ</p>
 
-
+<%= form_for(@user) do |f| %>
+<h4>Name <%= f.text_field :user_name %></h4>
+<%= f.submit "Update User" %>
+<% end %>

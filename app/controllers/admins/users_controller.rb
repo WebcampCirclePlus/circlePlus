@@ -8,5 +8,7 @@ class Admins::UsersController < ApplicationController
   end
 
   def edit
+    #あとで時間があったらcurrent_userに変える
+    @user = User.find(params[:id])
   end
 end

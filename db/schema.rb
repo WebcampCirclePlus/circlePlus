@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416102447) do
+ActiveRecord::Schema.define(version: 20180421052416) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20180416102447) do
     t.integer "artist_id"
     t.integer "admin_id"
     t.string "label"
-    t.text "item_img"
+    t.text "item_img_id"
     t.string "album_name"
     t.integer "item_price_tax_free"
     t.integer "stock"
