@@ -69,3 +69,6 @@ gem 'kaminari'
 #添付
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+
+#デバッグ
+gem "pry-rails"
