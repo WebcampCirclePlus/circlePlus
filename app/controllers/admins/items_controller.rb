@@ -13,13 +13,12 @@ class Admins::ItemsController < ApplicationController
   end
 
   def create
-
     item = Item.new(item_params)
     item.item_show_flg = 1
     item.admin_id = current_admin.id
     item.save
     @item = item.artist_id
-    redirect_to admins_item_path(@item, item)
+    redirect_to admins_item_path(@item)
   end
 
   private
