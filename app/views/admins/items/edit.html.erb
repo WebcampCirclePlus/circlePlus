@@ -8,22 +8,22 @@
 		</div>
 
 	    <div class="row">
-		    <table class="table col-12 mx-auto" >
-		      <thead class="thead-light">
-		        <tr>
-		          <th scope="col">ジャケット</th>
-		          <th scope="col">シングル/アルバム名</th>
-		          <th scope="col">レーベル</th>
-		          <th scope="col">値段</th>
-		          <th scope="col">ジャンル</th>
-		          <th scope="col">在庫</th>
-		          <th scope="col">発売日</th>
-		          <th scope="col"></th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		        <tr class="tr">
-		        	<%= form_for(@item, url: admins_item_path(item)) do |f| %>
+        	<%= form_for(@item, url: edit_admins_item_path(item) do |f| %>
+			    <table class="table col-12 mx-auto" >
+			      <thead class="thead-light">
+			        <tr>
+			          <th scope="col">ジャケット</th>
+			          <th scope="col">シングル/アルバム名</th>
+			          <th scope="col">レーベル</th>
+			          <th scope="col">値段</th>
+			          <th scope="col">ジャンル</th>
+			          <th scope="col">在庫</th>
+			          <th scope="col">発売日</th>
+			          <th scope="col"></th>
+			        </tr>
+			      </thead>
+			      <tbody>
+			        <tr class="tr">
 						<td></td>
 						<td><%= @item.album_name %></td>
 						<td><%= @item.label %></td>
@@ -31,11 +31,11 @@
 						<td><%= @item.genre_id %></td>
 						<td><%= @item.stock %></td>
 						<td><%= @item.on_sale_date %></td>
-						<td><%= class: "btn btn-danger" do %><% end %></td>
-					<% end %>
-		        </tr>
-		      </tbody>
-			</table>
+						<td><%= link_to "更新", class: "btn btn-danger" do %><% end %></td>
+			        </tr>
+			      </tbody>
+				</table>
+			<% end %>
 		</div>
 	</div>
 </div>
