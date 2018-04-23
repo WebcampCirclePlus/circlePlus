@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get '/cart' => 'cart_items#index', as: 'cart'
   get '/search' => 'items#search'
   post 'new_user_order_path' => 'orders#sending_create'
-  
 
   devise_for :admins, only: [:sign_in, :sign_out, :session],
   :controllers => {
@@ -44,6 +43,7 @@ Rails.application.routes.draw do
   get 'admins/stock'=> 'admins#stock', as: 'admins_stock'
 
   get 'admins/status'=> 'admins#status', as: 'admins_status'
+  patch 'admins/items/:item_id/hidden' => 'admins/items#hidden', as: 'hidden_item'
 
   resources :users, only: [:show, :edit, :update] do
     resources :sendings, only: [:create, :edit, :update]
