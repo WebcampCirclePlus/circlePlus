@@ -3,47 +3,141 @@
 
 <head>
   <title>CirclePlus</title>
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> <!-- fontawesome CDN -->
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-<body>
+
+<body class="bg-light">
   <div class="content">
     <div class="content-inside">
+    <div class="header-box" style="width: 100%; height: 60px;"></div>
 
- <!--  admin-signin-header -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="circle-plus-icon text-danger" href="">Circle <span style="color:#fff;">Plus</span></a>
-    <a class="guest text-muted" href="">管理者ページ</a>
+<!-- user sign_in header -->
+<% if user_signed_in? %>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="height: 60px; background-color: black;">
+      <%= link_to top_path,class:"circle-plus-icon text-danger" do %>
+        Circle <span class="text-light">Plus</span></a>
+      <% end %>
+    <h2 class="guest text-muted pt-3"><%=  current_user.user_name %></h2>
     <!-- ナビ内容 -->
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
         <li class="nav-item">
-          <a class="nav-link" href="#">
-           ユーザー一覧
-         </a>
+          <%= link_to user_path(current_user.id), class:"nav-link mx-2" do %>
+           <i class="far fa-user-circle"></i> My page
+          <% end %>
        </li>
        <li class="nav-item">
-        <a class="nav-link" href="#">
-        	CD一覧
-        </a>
+        <%= link_to destroy_user_session_path, method: :delete, class:"nav-link mx-2"  do %>
+          <i class="fas fa-sign-out-alt"></i> Sign Out
+        <% end %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          CD新規追加
-        </a>
+        <%= link_to search_path, class:"btn btn-outline-light mx-2" do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to cart_path, class:"btn btn-outline-light mx-2" do %>
+          <i class="fas fa-shopping-cart"></i>
+         <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- user sign_in headerここまで -->
+
+<!--  admin-signin-header -->
+<% elsif admin_signed_in? %>
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="height: 60px; background-color: black;">
+    <a class="circle-plus-icon text-danger" href="">Circle <span class="text-light">Plus</span></a>
+    <h2 class="guest text-muted pt-3">管理者ページ</h2>
+    <!-- ナビ内容 -->
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+        <li class="nav-item">
+        <%= link_to admins_users_path, class:"nav-link mx-2" do %>
+           ユーザー一覧
+         <% end %>
+       </li>
+       <li class="nav-item">
+        <%= link_to (), class:"nav-link mx-2" do %>
+           CD一覧
+         <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to new_admins_artist_path, class:"nav-link mx-2" do %>
+           CD新規追加
+         <% end %>
       </li>
       
       <li class="nav-item">
-        <%= link_to "サインアウト", destroy_user_session_path, method: :delete ,class: "nav-link" %>
+        <%= link_to destroy_admin_session_path, method: :delete, class:"nav-link mx-2"  do %>
+          <i class="fas fa-sign-out-alt"></i> Log Out
+        <% end %>
       </li>
     </ul>
   </div>
 </nav>
 <div class="header-box"></div>
-<!-- headerここまで -->
+<!-- admin-signin-headerここまで -->
+
+<% else %>
+<% if current_page?(admins_path) %>
+<!-- 管理者ログアウト時ヘッダー -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="height: 60px; background-color: black;">
+    <%= link_to admins_path,class:"circle-plus-icon text-danger" do %>
+        Circle <span class="text-light">Plus</span></a>
+      <% end %>
+    <!-- ナビ内容 -->
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+       <li class="nav-item">
+        <%= link_to new_admin_session_path, class:"nav-link mx-2" do %>
+          <i class="fas fa-sign-in-alt"></i> ログイン
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<% else %>
+<!-- ユーザーログアウト時ヘッダー（ゲスト） -->
+<!-- user guest header -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="height: 60px; background-color: black;">
+    <%= link_to top_path,class:"circle-plus-icon text-danger" do %>
+        Circle <span class="text-light">Plus</span></a>
+      <% end %>
+    <h2 class="guest text-muted pt-3">ゲスト 様</h2>
+    <!-- ナビ内容 -->
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+        <li class="nav-item">
+          <%= link_to new_user_registration_path, class:"nav-link mx-2" do %>
+            <i class="far fa-address-card"></i> 新規登録
+          <% end %>
+       </li>
+       <li class="nav-item">
+        <%= link_to new_user_session_path, class:"nav-link mx-2" do %>
+          <i class="fas fa-sign-in-alt"></i> ログイン
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to search_path, class:"btn btn-outline-light mx-2" do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- guest headerここまで -->
+<% end %>
+<% end %>
 
 <%= yield %>
 
@@ -51,10 +145,8 @@
 </div><!-- /.content-inside -->
 
 <!-- footer -->
-<footer class="footer bg-dark">
-  <div class="container">
-    <p id="footer-text" style="color: #f8f9fa; text-align: center; ">©2018 circle_plus</p>
-  </div>
+<footer class="footer" style="background-color: black;">
+  <p class="text-light" id="footer-text">©2018 circle_plus</p>
 </footer>
 <!-- footerここまで -->
 

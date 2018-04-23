@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  attachment :item_img
+
   has_many :discs
 
   has_many :users

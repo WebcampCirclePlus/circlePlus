@@ -1,9 +1,54 @@
 <h1>Admins::Users#edit</h1>
 <p>Find me in app/views/admins/users/edit.html.erb</p>
 
-<p>ユーザー編集ページ</p>
+<div class=" mx-auto col-10" style="width: 500px;">
+  <p>ユーザー編集</p>
+  <%= form_for(@user, url: admins_user_path, method: :patch) do |f| %>
+  <table>
+    <tr>
+     <th>ユーザーネーム</th>
+     <th><%= f.text_field :user_name %></th>
+     <th></th>
+   </tr>
+   <tr>
+     <th>名前（姓、名）</th>
+     <th><%= f.text_field :name_kanji %></th>
+     <th></th>
+   </tr>
 
-<%= form_for(@user) do |f| %>
-<h4>Name <%= f.text_field :user_name %></h4>
-<%= f.submit "Update User" %>
-<% end %>
+   <tr>
+     <td>名前（カナ）</td>
+     <td><%= f.text_field :name_kana %></td>
+     <td></td>
+   </tr>
+   <tr>
+     <td>郵便番号</td>
+     <td><%= f.text_field :postal_code %></td>
+     <td></td>
+   </tr>
+   <tr>
+     <td>住所</td>
+     <td><%= f.text_field :address %></td>
+     <td></td>
+   </tr>
+   <tr>
+     <td>電話番号</td>
+     <td><%= f.text_field :phone_number %></td>
+     <td></td>
+   </tr>
+   <tr>
+     <td>メールアドレス</td>
+     <td><%= f.text_field :email %></td>
+     <td></td>
+   </tr>
+   <tr>
+     <td></td>
+     <td></td>
+     <td><%= f.submit "Update User" %></td>
+   </tr>
+ </table>
+ <% end %>
+</div>
+
+
+
