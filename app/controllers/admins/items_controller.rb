@@ -29,6 +29,12 @@ class Admins::ItemsController < ApplicationController
     redirect_to admins_item_path(item)
   end
 
+  def hidden
+    item = Item.find(params[:item_id])
+    item.update(item_show_flg: 0)
+    redirect_to admins_artist_path(item.artist.id)
+  end
+
   private
 
   def item_params
