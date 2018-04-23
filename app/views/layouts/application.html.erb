@@ -3,7 +3,7 @@
 
 <head>
   <title>CirclePlus</title>
-  <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet"> <!-- WEBフォントの使用 -->
+  <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> <!-- fontawesome CDN -->
   <%= csrf_meta_tags %>
 
@@ -19,7 +19,9 @@
 <!-- user sign_in header -->
 <% if user_signed_in? %>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="height: 60px; background-color: black;">
-    <a class="circle-plus-icon text-danger" href="">Circle <span class="text-light">Plus</span></a>
+      <%= link_to top_path,class:"circle-plus-icon text-danger" do %>
+        Circle <span class="text-light">Plus</span></a>
+      <% end %>
     <h2 class="guest text-muted pt-3"><%=  current_user.user_name %></h2>
     <!-- ナビ内容 -->
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -35,12 +37,12 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to (), class:"btn btn-outline-light mx-2" do %>
+        <%= link_to search_path, class:"btn btn-outline-light mx-2" do %>
           <i class="fas fa-search"></i>
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to (cart_path), class:"btn btn-outline-light mx-2" do %>
+        <%= link_to cart_path, class:"btn btn-outline-light mx-2" do %>
           <i class="fas fa-shopping-cart"></i>
          <% end %>
       </li>
@@ -59,19 +61,19 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
         <li class="nav-item">
-          <a class="nav-link" href="#">
+        <%= link_to admins_users_path, class:"nav-link mx-2" do %>
            ユーザー一覧
-         </a>
+         <% end %>
        </li>
        <li class="nav-item">
-        <a class="nav-link" href="#">
-        	CD一覧
-        </a>
+        <%= link_to (), class:"nav-link mx-2" do %>
+           CD一覧
+         <% end %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          CD新規追加
-        </a>
+        <%= link_to new_admins_artist_path, class:"nav-link mx-2" do %>
+           CD新規追加
+         <% end %>
       </li>
       
       <li class="nav-item">
@@ -85,11 +87,34 @@
 <div class="header-box"></div>
 <!-- admin-signin-headerここまで -->
 
-<% else %>
 
+
+<% else %>
+<% if current_page?(admins_path) %>
+<!-- 管理者ログアウト時ヘッダー -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="height: 60px; background-color: black;">
+    <%= link_to admins_path,class:"circle-plus-icon text-danger" do %>
+        Circle <span class="text-light">Plus</span></a>
+      <% end %>
+    <!-- ナビ内容 -->
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+       <li class="nav-item">
+        <%= link_to new_admin_session_path, class:"nav-link mx-2" do %>
+          <i class="fas fa-sign-in-alt"></i> ログイン
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<% else %>
+<!-- ユーザーログアウト時ヘッダー（ゲスト） -->
 <!-- user guest header -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="height: 60px; background-color: black;">
-    <a class="circle-plus-icon text-danger" href="">Circle <span class="text-light">Plus</span></a>
+    <%= link_to top_path,class:"circle-plus-icon text-danger" do %>
+        Circle <span class="text-light">Plus</span></a>
+      <% end %>
     <h2 class="guest text-muted pt-3">ゲスト 様</h2>
     <!-- ナビ内容 -->
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -105,17 +130,16 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <a class="btn btn-outline-light mx-2" href="#">
+        <%= link_to search_path, class:"btn btn-outline-light mx-2" do %>
           <i class="fas fa-search"></i>
-        </a>
+        <% end %>
       </li>
     </ul>
   </div>
 </nav>
 <!-- guest headerここまで -->
-
 <% end %>
-
+<% end %>
 
 <%= yield %>
 
