@@ -16,7 +16,6 @@ class Admins::ItemsController < ApplicationController
     item.item_show_flg = 1
     item.admin_id = current_admin.id
     item.save
-<<<<<<< HEAD
     redirect_to admins_item_path(item)
   end
 
@@ -28,10 +27,6 @@ class Admins::ItemsController < ApplicationController
     item = Item.find(params[:id])
     item.update(item_params)
     redirect_to admins_item_path(item)
-=======
-    @item = item.artist_id
-    redirect_to admins_item_path(@item)
->>>>>>> 48f7a3dcce32232072d2b70c1cba12087a768a1d
   end
 
   private
