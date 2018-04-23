@@ -20,7 +20,7 @@
    <tbody>
      <tr>
        <th scope="row">
-         <img src="" style="width: 100px; height: 100px; background-color: gray;" >
+         <%= attachment_image_tag @item, :item_img, style: "width: 100px; height: 100px;" %>
        </th>
        <td><%= @item.album_name %></td>
        <td><%= @genre.genre_name %></td>
