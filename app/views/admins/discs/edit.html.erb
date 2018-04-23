@@ -1,2 +1,12 @@
 <h1>Admins::Discs#edit</h1>
 <p>Find me in app/views/admins/discs/edit.html.erb</p>
+
+<h2>ディスク編集</h2>
+<p><%= @item.album_name %>---<%= @disc.disc_type %>の曲一覧</p>
+
+
+<% @disc.songs.each do |song| %>
+  <%= form_for(song, url: admins_item_disc_song_path(@item, @disc, song), method: :patch) do |f| %>
+  <p><%= f.text_field :song_name, value: song.song_name %>---<%= f.submit "更新" %>---<%= link_to "削除", admins_item_disc_song_path(@item, @disc, song), method: :delete %></p>
+  <% end %>
+<% end %> 
