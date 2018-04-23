@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   get '/cart' => 'cart_items#index', as: 'cart'
   get '/search' => 'items#search'
   post 'new_user_order_path' => 'orders#sending_create'
+<<<<<<< HEAD
+  post '/orders/confirm' => 'orders#confirm'
+  post '/orders/complete' => 'orders#complete'
+=======
   
+>>>>>>> 604ba5d3c278900b774ddc271c78012664eb901d
 
   devise_for :admins, only: [:sign_in, :sign_out, :session],
   :controllers => {
