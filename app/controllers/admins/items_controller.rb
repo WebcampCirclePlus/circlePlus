@@ -6,26 +6,32 @@ class Admins::ItemsController < ApplicationController
     @genre = @item.genre
   end
 
-
   def new
     @artist = Artist.find(params[:artist_id])
     @item = Item.new
   end
 
   def create
-
     item = Item.new(item_params)
     item.item_show_flg = 1
     item.admin_id = current_admin.id
     item.save
-    @item = item.artist_id
-    redirect_to admins_item_path(@item, item)
+    redirect_to admins_item_path(item)
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+    redirect_to admins_item_path(item)
   end
 
   private
 
   def item_params
-    #params.require(:genre).permit(:genre_id)
-    params.require(:item).permit(:admin_id, :item_show_flg, :artist_id, :genre_id, :label, :item_img, :album_name, :item_price_tax_free, :stock, :on_sale_date)
+    params.require(:item).permit(:admin_id, :item_show_flg, :artist_id, :genre_id, :label, :item_img, :album_name, :item_price_tax_free, :stock, :on_sale_date, :created_at, :updated_at)
   end
 end
