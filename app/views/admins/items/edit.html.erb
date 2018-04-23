@@ -1,2 +1,41 @@
-<h1>Admins::Items#edit</h1>
-<p>Find me in app/views/admins/items/edit.html.erb</p>
+<div class="container">
+	<div class="row">
+		<h1>Admins::Items#edit</h1>
+		<p>Find me in app/views/admins/items/edit.html.erb</p>
+
+	    <div class="my-3 col-12 mx-auto" style="width: 100%;">
+	      <h3 class="border-bottom mb-5">商品の詳細を編集してください。</h3>
+		</div>
+
+	    <div class="row">
+		    <table class="table col-12 mx-auto" >
+		      <thead class="thead-light">
+		        <tr>
+		          <th scope="col">ジャケット</th>
+		          <th scope="col">シングル/アルバム名</th>
+		          <th scope="col">レーベル</th>
+		          <th scope="col">値段</th>
+		          <th scope="col">ジャンル</th>
+		          <th scope="col">在庫</th>
+		          <th scope="col">発売日</th>
+		          <th scope="col"></th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		        <tr class="tr">
+		        	<%= form_for(@item, url: admins_item_path(item)) do |f| %>
+						<td></td>
+						<td><%= @item.album_name %></td>
+						<td><%= @item.label %></td>
+						<td><%= @item.item_price_tax_free %></td>
+						<td><%= @item.genre_id %></td>
+						<td><%= @item.stock %></td>
+						<td><%= @item.on_sale_date %></td>
+						<td><%= class: "btn btn-danger" do %><% end %></td>
+					<% end %>
+		        </tr>
+		      </tbody>
+			</table>
+		</div>
+	</div>
+</div>
