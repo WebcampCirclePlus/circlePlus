@@ -5,9 +5,6 @@ before_action :authenticate_user!
   end
 
   def show
-  	@user = User.find(params[:id])
-  	# userの変数は後々消す
-  	@sending = Sending.new
   end
 
   def edit
@@ -18,33 +15,24 @@ before_action :authenticate_user!
   	user = User.find(params[:id])
   	if user.id = current_user.id
   	 user.update(user_params)
-  	 redirect_to user_path(user.id)
+  	 redirect_to user_path(user)
   	else
   	   render:edit
   	end
   end
 
-  def destroy
-    if user.id = current_user.id
-      user.update(update_params)
-      # self.deleted = true
-      # save
-      # or
-      save(:quit_flg =>true)
-      # trueの場合に～…みたいな記述をしなければ。
-      redirect_to top_path
-    else
-      render:show
-    end
+  def destroy_update
+      current_user.update(quit_flg: 1)
+      redirect_to logout_path
   end
 
   private
   def user_params
-  	params.require(:user).permit(:email, :password, :user_name, :name_kana ,:name_kanji,:phone_number)
+  	params.require(:user).permit(:email, :user_name, :name_kana ,:name_kanji,:phone_number, :postal_code,:address)
   end
 
   def update_params
-    params.require(:user).permit(:quit_flg)
+    params.fetch(:user,{}).permit(:email)
   end
 
 end

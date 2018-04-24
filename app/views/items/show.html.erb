@@ -34,9 +34,9 @@
 							<td><%= @item.stock %>点あり</td>
 						</tr>
 						<tr>
-							<td><form method="post" action="#"><input type="text" name="" size="10">点</td>
+							<td><%= form_for(@cart_item , url:item_cart_items_path(@item)) do |f| %>
+	<%= f.number_field :item_cart_counted ,value:"1", in: 1...21, size: 20 %>点<%= f.submit "カートにいれる" %><% end %></td>
 							<td>
-								<%= link_to "カートに入れる", :back, class: "btn btn-danger white-text" %>
 							</td>
 							<td>
 								<%= link_to "前のページに戻る", :back, class: "btn btn-success white-text" %>

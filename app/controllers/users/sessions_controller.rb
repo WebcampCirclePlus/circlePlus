@@ -3,7 +3,11 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   def after_sign_in_path_for(resource)
-    top_path
+    if current_user.quit_flg == 0
+      top_path
+    else
+      logout_path
+    end
   end
 
   def after_sign_out_path_for(resource)

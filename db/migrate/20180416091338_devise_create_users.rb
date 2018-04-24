@@ -37,7 +37,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :postal_code
       t.string :address
       t.string :phone_number
-      t.boolean :quit_flg, null:false , default:false
+      t.boolean :quit_flg
 
       t.timestamps null: false
     end

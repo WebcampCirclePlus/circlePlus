@@ -1,73 +1,37 @@
 class OrdersController < ApplicationController
-before_aciton:authenticate_user!
-before_action :create,only: [:complete]
+before_action :authenticate_user!
 
   def new
-  	@sending = Sending.new
-    @sendings = Sending.all
-  	@s_number = 0
-    @order = Order.new(order_params)
-    @order_item = Order_item.new(order_item_params)
-  end
-
-  def confirm
-    @order = Order.new(order_params)
-    @order_item = Order_item.new(order_item_params)
-    if @order.valid?
-      render :action => 'confirm'
-    else
-      render :action => 'new'
-    end
+    @order = Order.new
   end
 
   def create
-    @order = Order.new(order_params)
-    @order_items
-    user_id = current_user.id
+    order = Order.new(order_params)
+    order.user_id = current_user.id
+    order.status = 1
+    order.save
+
+    current_user.cart_items.each do |ci|
+      order_item = OrderItem.new(order_item_params)
+      order_item.order_id = order.id
+      order_item.item_id = ci.item_id
+      order_item.item_order_counted = ci.item_cart_counted
+      item = Item.find_by(params[:item_id])
+      order_item.item_order_price = item.item_price_tax_free
+      ci.destroy
+      order_item.save
+    end
+    redirect_to thanks_path
   end
 
-  def complete
-    render :action => 'complete'
-  end
-
-  # def create
-    # @order = Order.new(order_params)
-    # user_id = current_user.id
-  # end
-
-  # def sending_create
-  	# sending = Sending.new(sending_params)
-    # sending.user_id = current_user.id
-  	# if sending.save
-  		# redirect_to new_user_order_path(current_user.id)
-  	# else
-  		# render:index
-  	# end
-  # end
-
-  # def edit
-    # @order = Order.find(params[:id])
-    # @sum = 0
-    # @order.order_items.each do |order|
-      # p = order.item_order_counted * order.item_order_price
-      # @sum += p
-    # end
-  # end
-
-  # def update
-
-  # end
+  # orderのshowを作る。
 
 	private
-  # def sending_params
-  	# params.require(:sending).permit(:sending_code, :sending_name, :sending_address,:user_id)
-  # end
-
   def order_params
-    params.require(:order).permit(:sending_id , :user_id)
+    params.require(:order).permit(:user_id, :order_sending_str, :order_sending_postal_code)
   end
 
-  def order_item__params
-    params.require(:order_item).permit(:order_id)
+  def order_item_params
+    params.fetch(:order_item, {}).permit(:order_id, :item_id, :item_order_counted, :item_order_price)
   end
 end

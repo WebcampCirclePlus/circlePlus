@@ -14,6 +14,7 @@ before_action :authenticate_user!, expect: [:index, :show]
 
   def show
     @item = Item.find(params[:id])
+    @cart_item = CartItem.new
   end
 
   def search
