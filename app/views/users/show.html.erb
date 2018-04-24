@@ -1,54 +1,29 @@
 <h1>Users#show:マイページ</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+<%= link_to "退会", user_destroy_path, method: :patch %>
 
-<% if current_user.id != @user.id %>
-<p>このページは表示できません。</p>
-
-<% else %>
-<h2><%= @user.user_name %>のマイページ</h2>
+<h2><%= current_user.user_name %>のマイページ</h2>
 
 	<h3>User Info</h3>
-<p>Name</p>
-<%= @user.name_kana %>
-<%= @user.name_kanji %>
-<p>Tel</p>
-<%= @user.phone_number %>
-<p>郵便番号</p>
-<%= @user.postal_code %>
-<p>Address</p>
-<%= @user.address %>
+<p>Name：<%= current_user.name_kanji %>（<%= current_user.name_kana %>）</p>
+<p>Email：<%= current_user.email %></p>
+<p>Tel：<%= current_user.phone_number %></p>
+<p>郵便番号：<%= current_user.postal_code %></p>
+<p>住所：<%= current_user.address %></p>
 
-<p><%= link_to "Edit",edit_user_path(@user.id) %></p>
+
+<p><%= link_to "編集",edit_user_path(current_user.id) %></p>
 <!-- リンク先を追加 -->
 
-<h2>配送先住所</h2>
-<% @user.sendings.each do |sending| %>
-<p><%= sending.sending_name %></p>
-<p><%= sending.sending_code %></p>
-<p><%= sending.sending_address %></p>
-<%= link_to "編集",edit_user_sending_path(sending.id) %>
-<!-- リンクの追加 -->
-<% end %>
-
-<h2>配送先の新規作成</h2>
-<%= form_for ([@user,@sending]) do |f| %>
-<p>a<%= f.text_field :sending_name %></p>
-<p>b<%= f.text_field :sending_code %></p>
-<p>c<%= f.text_area :sending_address %></p>
-<%= f.submit "新しい送付先を追加する" %>
-<% end %>
-
-<% @user.orders.each do |order| %>
+<% current_user.orders.each do |order| %>
 	<p>配送状況：<%= order.status %></p>
-	<% order.order_items.each do |order_item| %>
-		<p>購入商品名：<%= order_item.item.album_name %></p>
-		<p>個数：<%= order_item.item_order_counted %>商品単価：<%= order_item.item_order_price %></p>
+	<% order.order_items.each do |oi| %>
+		<p>購入商品名：<%= oi.item.album_name %></p>
+		<p>個数：<%= oi.item_order_counted %>  小計：<%=oi.item_order_counted * oi.item_order_price %></p>
 	<% end %>
-<% end %>
+	--
+<% end %></br></br>
 
 <!-- orderのpagenate -->
 
-<%= link_to "退会" %>
-<!-- リンクの追加 -->
 
-<% end %>

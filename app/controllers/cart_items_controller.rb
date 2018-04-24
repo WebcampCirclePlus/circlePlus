@@ -6,22 +6,29 @@ class CartItemsController < ApplicationController
   		@price = cart_item.item.item_price_tax_free * cart_item.item_cart_counted
   		@sum += @price
   	end
-    @cart_item = current_user.cart_items
   end
 
-def update
-    cart_item = CartItem.find(params[:id])
-    if current_user.id = cart_item.user_id
-    cart_item.update(cart_item_params)
-    redirect_to cart_path(current_user)
+  def create
+    item = Item.find(params[:item_id])
+    cart_item = CartItem.new(ci_update_params)
+    cart_item.user_id = current_user.id
+    cart_item.item_id = item.id
+    if cart_item.save
+    redirect_to cart_path
   else
-    render :index
+    redirect_to item_path(item)
+  end
+  end
+
+  def update
+  	cart_item.update
   end
 end
 
   private
-  def cart_item_params
-    params.require(:cart_item).permit(:item_cart_counted)
+
+  def ci_update_params
+    params.require(:cart_item).permit(:user_id, :item_id, :item_cart_counted)
   end
 
 end

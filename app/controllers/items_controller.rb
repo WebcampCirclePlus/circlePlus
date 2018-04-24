@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+before_action :authenticate_user!, expect: [:index, :show]
+
   def create
     item = Item.new(items_params)
     item.save
@@ -12,6 +14,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @cart_item = CartItem.new
   end
 
   def search
