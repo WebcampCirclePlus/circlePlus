@@ -1,26 +1,28 @@
 <h2>Orders#new：配送先確認</h2>
 <p>Find me in app/views/orders/new.html.erb</p>
-<P>配達先確認</P>
+
+<% if current_user.cart_items.empty? %>
+<p>！カートにアイテムがありません！</p>
+
+<% else %>
 <P>最終確認</P>
-<P>購入完了</P>
+<h4>カート内容</h4>
 
-<% current_user.sendings.each do |sending| %>
-<%= @s_number += 1 %></br>
-<%= sending.sending_name %></br>
-<%= sending.sending_code %></br>
-<%= sending.sending_address %></br></br>
+
+<% current_user.cart_items.each do |ci| %>
+<p>アルバム名：<%= ci.item.album_name %></p>
+<p>アーティスト名：<%= ci.item.artist.artist_name %></p>
+<p>レーベル：<%= ci.item.label %></p>
+<p>単価：<%= ci.item.item_price_tax_free %></p>
+<p>購入個数：<%= ci.item_cart_counted %></p>
+<p>合計：<%= ci.item.item_price_tax_free * ci.item_cart_counted %></p></br>
+<!-- ジャケット画像の追加は任意。アルバム名～レーベルの配置も変えてください。 -->
+<% end %>
+<h4>配送先</h4>
+<%= form_for(@order ,url:user_orders_path,method: :post) do |f| %>
+<%= f.text_field :order_sending_postar_code, value:current_user.postal_code %>
+<%= f.text_field :order_sending_str, value:current_user.address %>
+<%= f.submit "確定" %>
 <% end %>
 
-<%= link_to "配送先を選ぶ", '/users/1/orders/1/edit' %></br>
-
-<!-- user_orders_pathにする。コントローラでredirect先の指定 -->
-
-
-<h4>配送先新規作成</h4></br>
-<%= form_for(@sending, :url =>{:controller => :orders, :action => :sending_create}) do |f| %>
-<p>送付先名称：<%= f.text_field :sending_name %></p>
-<p>郵便番号：<%= f.text_field :sending_code %></p>
-<p>送付先住所：<%= f.text_field :sending_address %></p>
-<%= f.submit "送付先新規作成" %>
 <% end %>
-

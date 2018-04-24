@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
+before_action :authenticate_user!
+
   def thanks
   end
 
   def show
-  	@user = User.find(params[:id])
-  	# userの変数は後々消す
-  	@sending = Sending.new
   end
 
   def edit
@@ -14,17 +13,26 @@ class UsersController < ApplicationController
 
   def update
   	user = User.find(params[:id])
-  	id = current_user.id
-  	if user.update(user_params)
-  	   redirect_to user_path(user.id)
+  	if user.id = current_user.id
+  	 user.update(user_params)
+  	 redirect_to user_path(user)
   	else
-  	   redirect_to edit_user_path(user.id)
+  	   render:edit
   	end
+  end
+
+  def destroy_update
+      current_user.update(quit_flg: 1)
+      redirect_to logout_path
   end
 
   private
   def user_params
-  	params.require(:user).permit(:email, :password, :user_name, :name_kana ,:name_kanji,:phone_number)
+  	params.require(:user).permit(:email, :user_name, :name_kana ,:name_kanji,:phone_number, :postal_code,:address)
+  end
+
+  def update_params
+    params.fetch(:user,{}).permit(:email)
   end
 
 end
