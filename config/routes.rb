@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     resources :sendings, only: [:create, :edit, :update]
     resources :orders, only: [:new, :create, :edit, :update]
-    resources :cart_items, only: [:index]
+    resources :cart_items, only: [:index, :update]
   end
   resources :artists, only: [:create]
   resources :genres, only: [:show]
