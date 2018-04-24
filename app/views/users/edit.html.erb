@@ -5,7 +5,7 @@
 
 <h2><%= current_user.user_name %>の編集ページ</h2>
 
-<%= form_for(current_user , url: user_path , method: :put) do |f| %>
+<%= form_for(current_user , url: user_path , method: :patch) do |f| %>
 <p>ユーザーネーム：<%= f.text_field :user_name %></p>
 <p>氏名（カタカナ）：<%= f.text_field :name_kana %></p>
 <p>氏名（漢字）：<%= f.text_field :name_kanji %></p>

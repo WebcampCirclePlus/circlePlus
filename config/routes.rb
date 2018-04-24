@@ -27,7 +27,6 @@ devise_for :users, :controllers => {
       resources :cart_items, only: [:create]
   end
 
-
 # ADMINS
   devise_for :admins, only: [:sign_in, :sign_out, :session],
   :controllers => {
