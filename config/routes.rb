@@ -56,6 +56,7 @@ devise_for :users, :controllers => {
   patch 'admins/items/:item_id/hidden' => 'admins/items#hidden', as: 'hidden_item'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   resources :users, only: [:show, :edit, :update] do
     resources :sendings, only: [:create, :edit, :update]
     resources :orders, only: [:new, :create, :edit, :update]
@@ -67,6 +68,9 @@ devise_for :users, :controllers => {
 
 =======
 >>>>>>> 11e79ed477d192880de26a5d370270ee6ded9546
+=======
+
+>>>>>>> 9df3aa59b590a2fafd25fc642818944892781394
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 

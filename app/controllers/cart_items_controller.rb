@@ -7,6 +7,7 @@ class CartItemsController < ApplicationController
   		@sum += @price
   	end
 <<<<<<< HEAD
+<<<<<<< HEAD
     @cart_item = current_user.cart_items
   end
 
@@ -18,6 +19,8 @@ def update
   else
     render :index
 =======
+=======
+>>>>>>> 9df3aa59b590a2fafd25fc642818944892781394
   end
 
   def create
@@ -34,11 +37,15 @@ def update
 
   def update
   	cart_item.update
+<<<<<<< HEAD
 >>>>>>> 11e79ed477d192880de26a5d370270ee6ded9546
+=======
+>>>>>>> 9df3aa59b590a2fafd25fc642818944892781394
   end
 end
 
   private
+<<<<<<< HEAD
 <<<<<<< HEAD
   def cart_item_params
     params.require(:cart_item).permit(:item_cart_counted)
@@ -46,6 +53,11 @@ end
   def ci_update_params
     params.require(:cart_item).permit(:user_id, :item_id, :item_cart_counted)
 >>>>>>> 11e79ed477d192880de26a5d370270ee6ded9546
+=======
+
+  def ci_update_params
+    params.require(:cart_item).permit(:user_id, :item_id, :item_cart_counted)
+>>>>>>> 9df3aa59b590a2fafd25fc642818944892781394
   end
 
 end
