@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
- 
-
- 
 
 # USERS
 devise_for :users, :controllers => {
@@ -15,8 +12,8 @@ devise_for :users, :controllers => {
   end
 
   get '/' => 'items#index', as: 'top'
-　get 'items/search_result'
   get 'items/search'
+  get 'items/search_result'
   get '/cart' => 'cart_items#index', as: 'cart'
   get '/thanks' => 'users#thanks'
   patch '/users/:id'=> 'users#destroy_update', as: 'user_destroy'
@@ -26,7 +23,7 @@ devise_for :users, :controllers => {
   end
   resources :artists, only: [:create]
   resources :genres, only: [:show]
-  resources :items, only: [:intex, :show, :create]  do
+  resources :items, only: [:index, :show, :create]  do
       resources :cart_items, only: [:create]
   end
 
@@ -51,7 +48,7 @@ devise_for :users, :controllers => {
   end
   namespace :admins do
     resources :artists, only: [:show] do
-      resource :items, only: [:new] 
+      resource :items, only: [:new]
     end
   end
   get 'admins/stock'=> 'admins#stock', as: 'admins_stock'
