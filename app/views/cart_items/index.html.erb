@@ -37,17 +37,10 @@
       <td></td>
       <td>¥<%= cart_item.item.item_price_tax_free %></td>
       <td>
-     	
+     
+      <form>
       <%= cart_item.item_cart_counted %>
       <%= link_to "更新" %>
-
-      <%= form_for(cart_item, url: user_cart_item_path(current_user), method: :patch) do |f| %>
-      <%= f.text_field :item_cart_counted %>
-      <%= f.submit '更新' %>
-      <% end %>
-      
-
-      <form>
       <div class="form-group">
           <select class="form-width form-control" id="exampleFormControlSelect1">
            <option>1</option>

@@ -1,76 +1,65 @@
 Rails.application.routes.draw do
-
-
-# USERS
-devise_for :users, :controllers => {
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions',
-    :passwords => 'users/passwords'
-  }
-  devise_scope :user do
-    get '/logout', to: 'devise/sessions#destroy', as: :logout
-  end
-
-  get '/' => 'items#index', as: 'top'
-  get 'items/search'
   get 'items/search_result'
-  get '/cart' => 'cart_items#index', as: 'cart'
+
+  get 'items/search'
+
+  get 'item/search'
+
+  namespace :admins do
+    get 'discs/edit'
+  end
+
+  namespace :admins do
+    get 'items/edit'
+  end
+
+  get '/admins/' => 'admins#top'
+  get '/' => 'items#index', as: 'top'
   get '/thanks' => 'users#thanks'
-  patch '/users/:id'=> 'users#destroy_update', as: 'user_destroy'
+  get '/cart' => 'cart_items#index', as: 'cart'
+  get '/search' => 'items#search'
+  post 'new_user_order_path' => 'orders#sending_create'
 
-  resources :users, only: [:show, :edit, :update] do
-    resources :orders, only: [:new, :create, :edit, :update]
-  end
-  resources :artists, only: [:create]
-  resources :genres, only: [:show]
-  resources :items, only: [:index, :show, :create]  do
-      resources :cart_items, only: [:create]
-  end
-
-
-# ADMINS
   devise_for :admins, only: [:sign_in, :sign_out, :session],
   :controllers => {
     :sessions => 'admins/sessions'
   }
-  get '/admins/' => 'admins#top'
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions',
+    :passwords => 'users/passwords'
+  }
 
   namespace :admins do
-    get 'discs/edit'
-    get 'items/edit'
-    resources :artists, only: [:show , :new, :create]
-    resources :users, only: [:show, :index, :edit, :update]
     resources :items, only: [:show, :create, :edit, :update] do
       resources :discs, only: [:show, :edit, :update] do
         resources :songs, only: [:create, :destroy, :update]
       end
     end
+    resources :artists, only: [:show , :new, :create]
+    resources :users, only: [:show, :index, :edit, :update]
   end
+
   namespace :admins do
     resources :artists, only: [:show] do
-      resource :items, only: [:new]
+      resource :items, only: [:new] 
     end
   end
+
   get 'admins/stock'=> 'admins#stock', as: 'admins_stock'
+
   get 'admins/status'=> 'admins#status', as: 'admins_status'
   patch 'admins/items/:item_id/hidden' => 'admins/items#hidden', as: 'hidden_item'
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   resources :users, only: [:show, :edit, :update] do
     resources :sendings, only: [:create, :edit, :update]
     resources :orders, only: [:new, :create, :edit, :update]
-    resources :cart_items, only: [:index, :update]
+    resources :cart_items, only: [:index]
   end
   resources :artists, only: [:create]
   resources :genres, only: [:show]
   resources :items, only: [:intex, :show, :create]
 
-=======
->>>>>>> 11e79ed477d192880de26a5d370270ee6ded9546
-=======
-
->>>>>>> 9df3aa59b590a2fafd25fc642818944892781394
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 
