@@ -23,8 +23,10 @@ class CartItemsController < ApplicationController
   def update
   	cart_item.update
   end
+end
 
   private
+
   def ci_update_params
     params.require(:cart_item).permit(:user_id, :item_id, :item_cart_counted)
   end
