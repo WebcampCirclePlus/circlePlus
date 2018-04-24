@@ -10,6 +10,7 @@ class Admins::DiscsController < ApplicationController
     @item = Item.find(params[:item_id])
     @disc = Disc.find(params[:id])
     @songs = @disc.songs
+    @song = Song.new
   end
 
 end
