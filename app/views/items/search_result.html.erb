@@ -1,4 +1,4 @@
-<div class=" mx-auto my-5 col-10" style="width: 1000px;">
+<div class=" mx-auto my-5 col-10" style="width: 1050px;">
   <h2><%= @q.album_name_cont %>の検索結果(部分一致)</h2>
 
   <!-- 検索結果があるかないかのチェック -->
@@ -13,10 +13,10 @@
         <th>ジャケット</th>
         <th>シングル/アルバム名</th>
         <th>ジャンルID</th>
-        <th>アーティストID</th>
         <th>値段（単価）</th>
         <th>在庫</th>
         <th>発売日</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -26,10 +26,10 @@
         <td><%= attachment_image_tag item, :item_img, style: "width: 100px; height: 100px;" %></td>
         <td><%= item.album_name %></td>
         <td><%= item.genre_id %></td>
-        <td><%= item.artist_id %></td>
         <td><%= item.item_price_tax_free %></td>
         <td><%= item.stock %></td>
         <td><%= item.on_sale_date %></td>
+        <td><%= link_to "この商品の詳細へ", admins_item_path(item), :class=>"btn btn-success"  %></td>
       </tr>
       <% end %>
 

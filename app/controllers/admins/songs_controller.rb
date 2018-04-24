@@ -15,6 +15,15 @@ class Admins::SongsController < ApplicationController
     redirect_to edit_admins_item_disc_path(@item, @disc)
   end
 
+  def create
+    @item = Item.find(params[:item_id])
+    @disc = Disc.find(params[:disc_id])
+    song = Song.new(song_params)
+    song.disc_id = @disc.id
+    song.save
+    redirect_to edit_admins_item_disc_path(@item, @disc)
+  end
+
   private
   def song_params
     params.require(:song).permit(:song_name)
