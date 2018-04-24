@@ -7,58 +7,50 @@
 <div class="row">
 
 <div class="mt-5 col-10 mx-auto" style="width: 100%;">
-  <h1 class="border-bottom mb-5 float-left">
-    <i class="fas fa-shopping-cart"></i><%= current_user.user_name %> Cart
-  </h1>
+ <h1 class="border-bottom mb-5 float-left">
+   <i class="fas fa-shopping-cart"></i><%= current_user.user_name %> Cart
+ </h1>
 <%= link_to new_user_order_path(current_user.id), class:"btn btn-outline-danger col-2 float-right" do %>
-      <i class="fas fa-shopping-basket"></i> レジに進む
+     <i class="fas fa-shopping-basket"></i> レジに進む
 <% end %>
 </div>
 
 <table class="table col-10 mx-auto">
-  <thead class="table-danger">
-    <tr>
-      <th scope="col">ジャケット</th>
-      <th scope="col">商品名</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th scope="col">値段</th>
-      <th scope="col">個数</th>
-      <th scope="col">削除</th>
-      <th scope="col">小計</th>
-    </tr>
-  </thead>
-  <% @cart_items.each do |cart_item| %>
-  <tbody>
-    <tr>
-      <th scope="row"><img src="" style="width: 100px; height: 100px; background-color: black;"></th>
-      <td><%= cart_item.item.album_name %></td>
-      <td></td>
-      <td></td>
-      <td>¥<%= cart_item.item.item_price_tax_free %></td>
-      <td>
-     	
+ <thead class="table-danger">
+   <tr>
+     <th scope="col">ジャケット</th>
+     <th scope="col">商品名</th>
+     <th scope="col"></th>
+     <th scope="col"></th>
+     <th scope="col">値段</th>
+     <th scope="col">個数/更新</th>
+     <th scope="col">削除</th>
+     <th scope="col">小計</th>
+   </tr>
+ </thead>
+ <% @cart_items.each do |cart_item| %>
+ <tbody>
+   <tr>
+     <th scope="row"><img src="" style="width: 100px; height: 100px; background-color: black;"></th>
+     <td><%= cart_item.item.album_name %></td>
+     <td></td>
+     <td></td>
+     <td>¥<%= cart_item.item.item_price_tax_free %></td>
+     <td>
 
 
-      <form>
-      <%= cart_item.item_cart_counted %>
-      <%= link_to "更新" %>
-      <div class="form-group">
-          <select class="form-width form-control" id="exampleFormControlSelect1">
-           <option>1</option>
-           <option>2</option>
-           <option>3</option>
-           <option>4</option>
-           <option>5</option>
-          </select>
-          </div>
-        </form>
-      </td>
-      <td><button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button></td>
-      <td>¥<%= cart_item.item.item_price_tax_free * cart_item.item_cart_counted %></td>
-    </tr>
-  </tbody>
-  <% end %>
+     <%= form_for(cart_item, url: user_cart_item_path(current_user.id,cart_item.id), method: :patch) do |f| %>
+    <%= f.text_field :item_cart_counted, :size=>"10x10" %>
+      <%= button_tag :type => "submit", :class =>"btn btn-danger" do %>
+        <i class="fas fa-sync"></i>
+      <% end %>
+    <% end %>
+    
+     <td><button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button></td>
+     <td>¥<%= cart_item.item.item_price_tax_free * cart_item.item_cart_counted %></td>
+   </tr>
+ </tbody>
+ <% end %>
 </table>
 
 <div class="col-lg-10 text-right mx-auto my-5">
