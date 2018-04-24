@@ -45,6 +45,7 @@
       <th scope="col">Type</th>
       <th scope="col">曲数</th>
       <th scope="col">曲名一覧</th>
+      <th></th>
     </tr>
   </thead>
   
@@ -65,7 +66,7 @@
           <% end %>
         </div>
       </td>
-      
+      <td><%= link_to "編集", edit_admins_item_disc_path(@item, disc.id) %></td>
     </tr>
     <% end %>
   </tbody>

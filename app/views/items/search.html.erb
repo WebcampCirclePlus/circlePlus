@@ -1,6 +1,8 @@
-<h1>Items#search：検索ページ</h1>
-<p>Find me in app/views/items/search.html.erb</p>
-
-<p>商品の検索ページ</p>
-
-<p>Ransackの利用</p>
+<div class=" col-10 search-mar">
+  <h2>商品の検索ページ</h2>
+  <%= search_form_for(@q, url: items_search_result_path, method: :get) do |f|%>
+  <p>検索したい商品名を入力してください。</p>
+  <p><%= f.search_field :album_name_cont %></p>
+  <%= f.submit %>
+  <% end %>
+</div>

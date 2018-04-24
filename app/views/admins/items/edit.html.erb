@@ -8,34 +8,36 @@
 		</div>
 
 	    <div class="row">
-		    <table class="table col-12 mx-auto" >
-		      <thead class="thead-light">
-		        <tr>
-		          <th scope="col">ジャケット</th>
-		          <th scope="col">シングル/アルバム名</th>
-		          <th scope="col">レーベル</th>
-		          <th scope="col">値段</th>
-		          <th scope="col">ジャンル</th>
-		          <th scope="col">在庫</th>
-		          <th scope="col">発売日</th>
-		          <th scope="col"></th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		        <tr class="tr">
-		        	<%= form_for(@item, url: admins_item_path(item)) do |f| %>
-						<td></td>
-						<td><%= @item.album_name %></td>
-						<td><%= @item.label %></td>
-						<td><%= @item.item_price_tax_free %></td>
-						<td><%= @item.genre_id %></td>
-						<td><%= @item.stock %></td>
-						<td><%= @item.on_sale_date %></td>
-						<td><%= class: "btn btn-danger" do %><% end %></td>
-					<% end %>
-		        </tr>
-		      </tbody>
-			</table>
+        	<%= form_for(@item, url: admins_item_path, method: :patch) do |f| %>
+			    <table class="table col-12 mx-auto" >
+			      <thead class="thead-light">
+			        <tr>
+			          <th scope="col">ジャケット</th>
+			          <th scope="col">シングル/アルバム名</th>
+			          <th scope="col">レーベル</th>
+			          <th scope="col">値段</th>
+			          <th scope="col">ジャンル</th>
+			          <th scope="col">在庫</th>
+			          <th scope="col">発売日</th>
+			          <th scope="col"></th>
+			        </tr>
+			      </thead>
+			      <tbody>
+			        <tr class="tr">
+						<td><%= f.attachment_field :item_img %></td>
+						<td><%= f.text_field :album_name %></td>
+						<td><%= f.text_field :label %></td>
+						<td><%= f.text_field :item_price_tax_free %></td>
+						<td><%= f.text_field :genre_id %></td>
+						<td><%= f.text_field :stock %></td>
+						<td><%= f.text_field :on_sale_date %></td>
+						<td>
+							<%= f.submit "更新", class: "btn btn-danger" %><% end %>
+							<%= link_to "削除", hidden_item_path(@item), method: :patch, class: "btn btn-danger" %>
+						</td>
+			        </tr>
+			      </tbody>
+				</table>
 		</div>
 	</div>
 </div>

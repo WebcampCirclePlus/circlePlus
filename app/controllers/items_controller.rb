@@ -18,12 +18,12 @@ before_action :authenticate_user!, expect: [:index, :show]
   end
 
   def search
-    # @q = Item.search(search_params)
-    # @items = @q
-      # .result
-      # .order(availability: :desc, album_name: :asc)
-      # .decorate
-      # gem追加とパラメータの追加、ビューの変更
+    @q = Item.ransack(params[:q])
+  end
+
+  def search_result
+    @q = Item.ransack(params[:q])
+    @items = @q.result(distinct: true)
   end
 
     private
