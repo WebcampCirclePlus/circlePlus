@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'items/search_result'
+
+  get 'items/search'
+
+  get 'item/search'
+
   namespace :admins do
     get 'discs/edit'
   end
