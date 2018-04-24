@@ -55,7 +55,6 @@ devise_for :users, :controllers => {
   get 'admins/status'=> 'admins#status', as: 'admins_status'
   patch 'admins/items/:item_id/hidden' => 'admins/items#hidden', as: 'hidden_item'
 
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 
