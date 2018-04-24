@@ -6,10 +6,11 @@
 
 	<h3>User Info</h3>
 <p>Name：<%= current_user.name_kanji %>（<%= current_user.name_kana %>）</p>
+<p>Email：<%= current_user.email %></p>
 <p>Tel：<%= current_user.phone_number %></p>
 <p>郵便番号：<%= current_user.postal_code %></p>
-<p>Address：<%= current_user.address %></p>
-<p>Address：<%= current_user.email %></p>
+<p>住所：<%= current_user.address %></p>
+
 
 <p><%= link_to "編集",edit_user_path(current_user.id) %></p>
 <!-- リンク先を追加 -->
