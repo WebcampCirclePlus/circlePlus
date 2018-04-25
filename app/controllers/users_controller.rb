@@ -5,24 +5,23 @@ before_action :authenticate_user!
   end
 
   def show
+    @order = current_user.orders.order('id ASC').limit(20).page(params[:page]).per(3)
+    # @order = current_user.orders.page(params[:page]).per(3)
   end
 
   def edit
-  	@user = current_user
   end
 
   def update
-  	user = User.find(params[:id])
-  	if user.id = current_user.id
-  	 user.update(user_params)
-  	 redirect_to user_path(user)
-  	else
-  	   render:edit
-  	end
+  	user = current_user
+  	user.update(user_params)
+  	redirect_to edit_user_path(user.id)
   end
 
+
+
   def destroy_update
-      current_user.update(quit_flg: 1)
+      current_user.update(quit_flg: true)
       redirect_to logout_path
   end
 
@@ -30,9 +29,4 @@ before_action :authenticate_user!
   def user_params
   	params.require(:user).permit(:email, :user_name, :name_kana ,:name_kanji,:phone_number, :postal_code,:address)
   end
-
-  def update_params
-    params.fetch(:user,{}).permit(:email)
-  end
-
 end

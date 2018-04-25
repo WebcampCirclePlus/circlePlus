@@ -37,10 +37,12 @@
       <td></td>
       <td>¥<%= cart_item.item.item_price_tax_free %></td>
       <td>
-     	
 
 
-      <form>
+      <%= form_for(cart_item, url: user_cart_item_path(current_user.id,cart_item.id), method: :patch) do |f| %>
+     <%= f.text_field :item_cart_counted %>
+     <%= f.submit '更新' %>
+     <% end %>
       <%= cart_item.item_cart_counted %>
       <%= link_to "更新" %>
       <div class="form-group">

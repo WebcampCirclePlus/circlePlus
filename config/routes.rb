@@ -2,23 +2,24 @@ Rails.application.routes.draw do
 
 
 # USERS
+ devise_scope :user do
+    get '/logout', to: 'users/sessions#destroy', as: :logout
+  end
 devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions',
     :passwords => 'users/passwords'
   }
-  devise_scope :user do
-    get '/logout', to: 'devise/sessions#destroy', as: :logout
-  end
 
   get '/' => 'items#index', as: 'top'
   get 'items/search'
   get 'items/search_result'
   get '/cart' => 'cart_items#index', as: 'cart'
   get '/thanks' => 'users#thanks'
-  patch '/users/:id'=> 'users#destroy_update', as: 'user_destroy'
 
-  resources :users, only: [:show, :edit, :update] do
+
+  resources :users, only: [:edit, :update, :show] do
+    resources :cart_items, only: [:update]
     resources :orders, only: [:new, :create, :edit, :update]
   end
   resources :artists, only: [:create]
@@ -26,6 +27,8 @@ devise_for :users, :controllers => {
   resources :items, only: [:index, :show, :create]  do
       resources :cart_items, only: [:create]
   end
+
+patch '/users/:id/destroy'=> 'users#destroy_update', as: 'user_destroy'
 
 # ADMINS
   devise_for :admins, only: [:sign_in, :sign_out, :session],

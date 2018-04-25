@@ -20,11 +20,17 @@ class CartItemsController < ApplicationController
   end
   end
 
-  def update
-  	cart_item.update
-  end
+def update
+  cart_item = CartItem.find(params[:id])
+   current_user.id = cart_item.user_id
+   cart_item.update(cart_item_params)
+   redirect_to cart_path(current_user)
+end
 
   private
+  def cart_item_params
+   params.require(:cart_item).permit(:item_cart_counted)
+ end
   def ci_update_params
     params.require(:cart_item).permit(:user_id, :item_id, :item_cart_counted)
   end
