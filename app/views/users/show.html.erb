@@ -1,31 +1,92 @@
 <h4>Users#show:マイページ</h4>
 <p>Find me in app/views/users/show.html.erb</p>
 
-<h2><%= current_user.user_name %>のマイページ</h2>
+<div class="well text-center">
 
 	<h3>User Info</h3>
-<p>Name：<%= current_user.name_kanji %>（<%= current_user.name_kana %>）</p>
+	<p>UserName:<%= current_user.user_name %></p>
 <p>Email：<%= current_user.email %></p>
-<p>Tel：<%= current_user.phone_number %></p>
-<p>郵便番号：<%= current_user.postal_code %></p>
-<p>住所：<%= current_user.address %></p>
 
+<%= link_to "My Cart", cart_path(current_user), class:"btn btn-info" %></br></br>
+</div>
 
-<p><%= link_to "編集",edit_user_path(current_user.id) %></p>
-<!-- リンク先を追加 -->
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">注文履歴</a></li>
+  <li><a data-toggle="tab" href="#menu1">登録情報</a></li>
+  <li><a data-toggle="tab" href="#menu2">Q&A</a></li>
+</ul>
 
-<% current_user.orders.each do |order| %>
-<%= order.id %>
-	<p>配送状況：<%= order.status %></p>
-	<% order.order_items.each do |oi| %>
-		<p>購入商品名：<%= oi.item.album_name %></p>
-		<p>個数：<%= oi.item_order_counted %>  小計：<%=oi.item_order_counted * oi.item_order_price %></p>
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+	<h3>Order History</h3>
+	<% @sum = 1 %><% @total = 0 %>
+	<% current_user.orders.each do |order| %>
+	<p>注文番号：<%= @sum %>　配送状況：<%= order.status %></p>
+		<% order.order_items.each do |oi| %>
+			<p>購入商品名：<%= oi.item.album_name %>個数：<%= oi.item_order_counted %> 小計：<%=oi.item_order_counted * oi.item_order_price %></p>
+			<% @total += oi.item_order_counted * oi.item_order_price %>
+		<% end %>
+		<p>合計：<%= @total %>円</p>--
+	<% @sum += 1 %>
 	<% end %>
-	--</br>
+	<%= paginate @order, window: 2 %></br>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+	<h3>Your registration Info</h3>
+	<p>Name：<%= current_user.name_kanji %>（<%= current_user.name_kana %>）</p>
+	<p>Tel：<%= current_user.phone_number %></p>
+	<p>郵便番号：<%= current_user.postal_code %></p>
+	<p>住所：<%= current_user.address %></p>
+	<p><%= link_to "情報を編集する",edit_user_path(current_user) %></p>
+ </div>
+ <div id="menu2" class="tab-pane fade">
+ 	<h3>よくあるご質問</h3>
+ 	<div class="panel-group" id="accordion">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+	      <h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+	        Q:CirclePlusはどんなサイトですか。</a>
+	      </h4>
+	    </div>
+		<div id="collapse1" class="panel-collapse collapse in">
+		   <div class="panel-body">CirclePlusは、Circle+が運営する疑似ECサイトです。</br>ECは、電子商取引(Electronic Commerce)の略称で、PCやスマホ、タブレット等のデバイスによる注文から決済を行うことで商品やサービスの売買を行う商取引を指します。
+		   </div>
+		</div>
+		  </div>
+	 	<div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Q:Circle+とはどんな団体ですか。</a>
+		      </h4>
+		 	 </div>
+		    <div id="collapse2" class="panel-collapse collapse">
+		      <div class="panel-body">Circle+は、有志による非営利団体です。Rails学習が主目的であった初学者が、未来のエンジニアへと進化を図ろうとしています。ECサイトにおけるイノベーションを創造する「エンジニア」こそが、必要とされている。Circle+は、エンジニア発イノベーションを加速するために、IT業界として提供できる価値・存在意義を再定義し、発信していくことを目的とし、発足いたしました。
+		      </div>
+		  	</div>
+		</div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Q：退会したいのですが。</a>
+		      </h4>
+		    </div>
+			    <div id="collapse3" class="panel-collapse collapse">
+			      <div class="panel-body">こちらより退会処理を行うことができます。
+			      	<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">退会する</a>
+					  <div class="collapse" id="collapseExample">
+					  <div class="card card-body">
+					    <p>一度行った退会処理は取り消すことができません。</p>
+					    <p>また、同じメールアドレスでの会員登録はできませんので、退会処理を行う際はご注意ください。</br><%= link_to "承諾して退会する", user_destroy_path(current_user),method: :patch %></br></p>
+					  </div>
+		    		  </div>
+		   		  </div>
+		        </div>
+</div>
 
-<% end %><%= paginate @order, window: 2 %></br>
+  </br>
+  </br>
+  </br>
 
-<!-- orderのpagenate -->
-
-
-<%= link_to "退会", user_destroy_path(current_user),method: :patch %>
+</div>
+</div>

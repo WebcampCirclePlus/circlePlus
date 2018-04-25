@@ -4,7 +4,6 @@ class ArtistsController < ApplicationController
     artist.save
     redirect_to admins_artist_path(artist)
   end
-  
   private
   def artist_params
     params.require(:artist).permit(:artist_name)
