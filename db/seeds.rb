@@ -37,9 +37,9 @@ Sending.create(:user_id => 2, :sending_show_flg => 1, :sending_name => "会社",
 Sending.create(:user_id => 3, :sending_show_flg => 1, :sending_name => "会社", :sending_code => "1233333", :sending_address=>"徳島県◯◯◯3-3-3")
 Sending.create(:user_id => 4, :sending_show_flg => 1, :sending_name => "会社", :sending_code => "1234444", :sending_address=>"千葉県◯◯◯4-4-4")
 
-Item.create(:genre_id => 2, :artist_id => 3, :admin_id => 1, :label => "トイズファクトリー", :item_img => nil, :album_name => "BUMP OF CHICKEN BEST", :item_price_tax_free => 2880, :stock => 500, :on_sale_date => "2013/7/3", :item_show_flg => 0)
-Item.create(:genre_id => 3, :artist_id => 1, :admin_id => 2, :label => "ワーナーミュージック・ジャパン", :item_img => nil, :album_name => "グレイテスト・ショーマン", :item_price_tax_free => 2138, :stock => 200, :on_sale_date => "2018/1/17", :item_show_flg => 0)
-Item.create(:genre_id => 4, :artist_id => 2, :admin_id => 1, :label => "SYCOM", :item_img => nil, :album_name =>"TAKE ME HOME", :item_price_tax_free => 1399, :stock => 100, :on_sale_date => "2012/11/9", :item_show_flg => 0)
+Item.create(:genre_id => 2, :artist_id => 3, :admin_id => 1, :label => "トイズファクトリー", :item_img => File.open("./app/assets/images/BUMP.jpg"), :album_name => "BUMP OF CHICKEN BEST", :item_price_tax_free => 2880, :stock => 500, :on_sale_date => "2013/7/3", :item_show_flg => 0)
+Item.create(:genre_id => 3, :artist_id => 1, :admin_id => 2, :label => "ワーナーミュージック・ジャパン", :item_img => File.open("./app/assets/images/greatest_showman.jpeg"), :album_name => "グレイテスト・ショーマン", :item_price_tax_free => 2138, :stock => 200, :on_sale_date => "2018/1/17", :item_show_flg => 0)
+Item.create(:genre_id => 4, :artist_id => 2, :admin_id => 1, :label => "SYCOM", :item_img => File.open("./app/assets/images/takemehome.jpeg"), :album_name =>"TAKE ME HOME", :item_price_tax_free => 1399, :stock => 100, :on_sale_date => "2012/11/9", :item_show_flg => 0)
 
 
 Disc.create(:item_id => 1, :disc_type => "CD1")

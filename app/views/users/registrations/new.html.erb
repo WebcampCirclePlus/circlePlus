@@ -1,45 +1,79 @@
-<h2>新規登録</h2>
+<div class="container">
+<div class="row">
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+<table class="col mx-auto" style="width: 100%;">
+  <tr>
+    <th><h2>新規登録</h2></th>
+    <th></th>
+  </tr>
 
-  <div class="field">
-    <%= f.label :氏名（カタカナ）%>
-    <%= f.text_field :name_kana, autofocus: true ,placeholder: "氏名（カタカナ）" %>
-  </div>
-  <div class="field">
-    <%= f.label :氏名（漢字） %>
-    <%= f.text_field :name_kanji, autofocus: true ,placeholder: "氏名（漢字）"%>
-  </div>
-  <div class="field">
-    <%= f.label :ユーザーネーム %>
-    <%= f.text_field :user_name, autofocus: true,placeholder: "ユーザーネーム" %>
-  </div>
-  <div class="field">
-    <%= f.label :電話番号 %>
-    <%= f.text_field :phone_number, autofocus: true ,placeholder: "電話番号" %>
-  </div>
-  <div class="field">
-    <%= f.label :Email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "email" %>
-  </div>
+  <tr>
+    <div class="field">
+      <td><span class = "fa fa-user"></span><%= f.label :氏名（カタカナ）%></td>
+      <td><%= f.text_field :name_kana, autofocus: true, placeholder: "氏名（カタカナ）" %></span></td>
+    </div>
+  </tr>
 
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(最大<%= @minimum_password_length %>文字 )</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "off" ,placeholder: "パスワード" %>
-  </div>
+  <tr>
+    <div class="field">
+      <td><span class = "fa fa-user"></span><%= f.label :氏名（漢字） %></td>
+      <td><%= f.text_field :name_kanji, autofocus: true ,placeholder: "氏名（漢字）"%></td>
+    </div>
+  </tr>
 
-  <div class="field">
-    <%= f.label :パスワード確認 %>
-    <%= f.password_field :password_confirmation, autocomplete: "off",placeholder: "パスワード確認" %>
-  </div>
+  <tr>
+    <div class="field">
+      <td><span class = "fa fa-user"></span><%= f.label :ユーザーネーム %></td>
+      <td><%= f.text_field :user_name, autofocus: true,placeholder: "ユーザーネーム" %></td>
+    </div>
+  </tr>
 
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
+  <tr>
+    <div class="field">
+      <td><span class = "fa fa-phone"></span><%= f.label :電話番号 %></td>
+      <td><%= f.text_field :phone_number, autofocus: true ,placeholder: "電話番号" %></td>
+    </div>
+  </tr>
+
+  <tr>
+    <div class="field">
+      <td><span class = "fa fa-envelope"></span><%= f.label :Email %></td>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "email" %></td>
+    </div>
+  </tr>
+
+  <tr>
+    <div class="field">
+      <td><span class = "fa fa-lock"></span><%= f.label :パスワード %>
+      <% if @minimum_password_length %>
+      <em>(最大<%= @minimum_password_length %>文字 )</em>
+      <% end %></td>
+      <td><%= f.password_field :password, autocomplete: "off" ,placeholder: "パスワード" %></td>
+    </div>
+  </tr>
+
+  <tr>
+    <div class="field">
+      <td><span class = "fa fa-check-circle"></span><%= f.label :パスワード確認 %></td>
+      <td><%= f.password_field :password_confirmation, autocomplete: "off",placeholder: "パスワード確認" %></td>
+    </div>
+  </tr>
+
+  <tr>
+    <div class="actions">
+      <td><%= f.submit "新規登録", class:"btn btn-lg btn-danger btn-base-1 mt-20" %></td>
+      <td></td>
+    </div>
+  </tr>
+
+   <tr>
+    <td><%= link_to "Topに戻る", top_path, class: "btn btn-lg btn-success btn-base-1 mt-20" %></td>
+    <td></td>
+  </tr>
+</table>
 <% end %>
 
-<%= link_to "Topに戻る",top_path %>
+</div>
+</div>

@@ -1,12 +1,27 @@
-<h1>Admins::Discs#edit</h1>
-<p>Find me in app/views/admins/discs/edit.html.erb</p>
-
-<h2>ディスク編集</h2>
-<p><%= @item.album_name %>---<%= @disc.disc_type %>の曲一覧</p>
-
-
-<% @disc.songs.each do |song| %>
+<div class=" mx-auto my-5 col-8" style="width: 700px;">
+  <h2>ディスク編集</h2>
+  <h3>シングル・アルバム名：<%= @item.album_name %></h3>
+  <h3>ディスクタイプ：<%= @disc.disc_type %></h3>
+  <!-- 曲の編集・削除 -->
+  <% @disc.songs.each do |song| %>
   <%= form_for(song, url: admins_item_disc_song_path(@item, @disc, song), method: :patch) do |f| %>
-  <p><%= f.text_field :song_name, value: song.song_name %>---<%= f.submit "更新" %>---<%= link_to "削除", admins_item_disc_song_path(@item, @disc, song), method: :delete %></p>
+  <table>
+    <tr>
+      <td ><%= f.text_field :song_name, value: song.song_name %></td>
+      <td><%= f.submit "更新", :class=>"btn btn-success" %></td>
+      <td><%= link_to "削除", admins_item_disc_song_path(@item, @disc, song), method: :delete, :class=>"btn btn-danger" %></td>
+    </tr>
+  </table>
   <% end %>
-<% end %> 
+  <% end %>
+  <!-- 曲の編集・削除終わり -->
+
+  <!-- 曲を追加 -->
+  <%= form_for(@song, url: admins_item_disc_songs_path(@item, @disc), method: :post) do |f| %>
+  <td><%= f.text_field :song_name %></td>
+  <td><%= f.submit "曲を追加", :class=>"btn btn-primary" %></td>
+  <% end %>
+  <!-- 曲を追加終わり -->
+
+<%= link_to "アイテムの詳細に戻る", admins_item_path(@item), :class=>"btn btn-info" %>
+</div>
