@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-before_action :authenticate_user!, expect: [:index, :show]
+before_action :authenticate_user!, only: [:create]
 
   def create
     item = Item.new(items_params)

@@ -16,6 +16,8 @@
 </div>
 
 <table class="table col-10 mx-auto">
+  
+ 
  <thead class="table-danger">
    <tr>
      <th scope="col">ジャケット</th>
@@ -39,7 +41,7 @@
      <td>
 
 
-     <%= form_for(cart_item, url: user_cart_item_path(current_user.id,cart_item.id), method: :patch) do |f| %>
+     <%= form_for(cart_item, url: user_cart_item_path(current_user,cart_item), method: :patch) do |f| %>
      <%= f.number_field :item_cart_counted , in: 1...20 %>
       <%= button_tag :type => "submit", :class =>"btn btn-danger" do %>
         <i class="fas fa-sync"></i>
@@ -55,6 +57,7 @@
    </tr>
  </tbody>
  <% end %>
+
 </table>
 
 <div class="col-lg-10 text-right mx-auto my-5">

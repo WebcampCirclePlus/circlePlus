@@ -72,3 +72,4 @@ gem "refile-mini_magick"
 
 #デバッグ
 gem "pry-rails"
+gem "pry-byebug"

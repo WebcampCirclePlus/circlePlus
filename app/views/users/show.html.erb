@@ -1,6 +1,5 @@
-<h1>Users#show:マイページ</h1>
+<h4>Users#show:マイページ</h4>
 <p>Find me in app/views/users/show.html.erb</p>
-<%= link_to "退会", user_destroy_path, method: :patch %>
 
 <h2><%= current_user.user_name %>のマイページ</h2>
 
@@ -16,14 +15,17 @@
 <!-- リンク先を追加 -->
 
 <% current_user.orders.each do |order| %>
+<%= order.id %>
 	<p>配送状況：<%= order.status %></p>
 	<% order.order_items.each do |oi| %>
 		<p>購入商品名：<%= oi.item.album_name %></p>
 		<p>個数：<%= oi.item_order_counted %>  小計：<%=oi.item_order_counted * oi.item_order_price %></p>
 	<% end %>
-	--
-<% end %></br></br>
+	--</br>
+
+<% end %><%= paginate @order, window: 2 %></br>
 
 <!-- orderのpagenate -->
 
 
+<%= link_to "退会", user_destroy_path(current_user),method: :patch %>
