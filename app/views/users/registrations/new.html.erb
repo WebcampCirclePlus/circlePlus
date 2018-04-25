@@ -19,28 +19,42 @@
   <tr>
     <div class="field">
       <td><span class = "fa fa-user"></span><%= f.label :氏名（漢字） %></td>
-      <td><%= f.text_field :name_kanji, autofocus: true ,placeholder: "氏名（漢字）"%></td>
+      <td><%= f.text_field :name_kanji, autofocus: false, placeholder: "氏名（漢字）"%></td>
     </div>
   </tr>
 
   <tr>
     <div class="field">
       <td><span class = "fa fa-user"></span><%= f.label :ユーザーネーム %></td>
-      <td><%= f.text_field :user_name, autofocus: true,placeholder: "ユーザーネーム" %></td>
+      <td><%= f.text_field :user_name, autofocus: false, placeholder: "ユーザーネーム" %></td>
     </div>
   </tr>
 
   <tr>
     <div class="field">
       <td><span class = "fa fa-phone"></span><%= f.label :電話番号 %></td>
-      <td><%= f.text_field :phone_number, autofocus: true ,placeholder: "電話番号" %></td>
+      <td><%= f.text_field :phone_number, autofocus:  false, placeholder: "電話番号" %></td>
+    </div>
+  </tr>
+
+  <tr>
+    <div class="field">
+      <td><span>〒</span><%= f.label :郵便番号 %></td>
+      <td><%= f.text_field :postal_code, autofocus: false, placeholder: "郵便番号" %></td>
+    </div>
+  </tr>
+
+  <tr>
+    <div class="field">
+      <td><span class = "fa fa-map-marker"></span><%= f.label :住所 %></td>
+      <td><%= f.text_field :address, autofocus: false, placeholder: "住所" %></td>
     </div>
   </tr>
 
   <tr>
     <div class="field">
       <td><span class = "fa fa-envelope"></span><%= f.label :Email %></td>
-      <td><%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "email" %></td>
+      <td><%= f.email_field :email, autofocus: false, autocomplete: "email", placeholder: "email" %></td>
     </div>
   </tr>
 
@@ -50,14 +64,14 @@
       <% if @minimum_password_length %>
       <em>(最大<%= @minimum_password_length %>文字 )</em>
       <% end %></td>
-      <td><%= f.password_field :password, autocomplete: "off" ,placeholder: "パスワード" %></td>
+      <td><%= f.password_field :password, autocomplete: "off" , placeholder: "パスワード" %></td>
     </div>
   </tr>
 
   <tr>
     <div class="field">
       <td><span class = "fa fa-check-circle"></span><%= f.label :パスワード確認 %></td>
-      <td><%= f.password_field :password_confirmation, autocomplete: "off",placeholder: "パスワード確認" %></td>
+      <td><%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "パスワード確認" %></td>
     </div>
   </tr>
 
