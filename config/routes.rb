@@ -20,7 +20,7 @@ devise_for :users, :controllers => {
 
  resources :users, only: [:show, :edit, :update] do
    resources :orders, only: [:new, :create, :edit, :update]
-    resources :cart_items, only: [:update]
+    resources :cart_items, only: [:update, :destroy]
  end
  resources :artists, only: [:create]
  resources :genres, only: [:show]
