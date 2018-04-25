@@ -27,6 +27,12 @@ def update
   redirect_to cart_path(current_user)
 end
 
+def destroy
+  cart_item = CartItem.find(params[:id])
+  cart_item.destroy
+  redirect_to cart_path(current_user)
+end
+
  private
  def cart_item_params
   params.require(:cart_item).permit(:item_cart_counted)
