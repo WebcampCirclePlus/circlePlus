@@ -26,6 +26,7 @@ Genre.create(:genre_name => "アニメ/キッズ/ゲーム")
 Artist.create(:artist_name => "Various Artist")
 Artist.create(:artist_name => "One Direction")
 Artist.create(:artist_name => "BUMP OF CHICKEN")
+Artist.create(:artist_name => "Avicii")
 
 Sending.create(:user_id => 1, :sending_show_flg => 1, :sending_name => "自宅", :sending_code => "1111111", :sending_address=>"東京都◯◯◯1-1-1")
 Sending.create(:user_id => 2, :sending_show_flg => 1, :sending_name => "自宅", :sending_code => "2222222", :sending_address=>"埼玉県◯◯◯2-2-2")
@@ -37,9 +38,17 @@ Sending.create(:user_id => 2, :sending_show_flg => 1, :sending_name => "会社",
 Sending.create(:user_id => 3, :sending_show_flg => 1, :sending_name => "会社", :sending_code => "1233333", :sending_address=>"徳島県◯◯◯3-3-3")
 Sending.create(:user_id => 4, :sending_show_flg => 1, :sending_name => "会社", :sending_code => "1234444", :sending_address=>"千葉県◯◯◯4-4-4")
 
+
 Item.create(:genre_id => 2, :artist_id => 3, :admin_id => 1, :label => "トイズファクトリー", :item_img => File.open("./app/assets/images/BUMP.jpg"), :album_name => "BUMP OF CHICKEN BEST", :item_price_tax_free => 2880, :stock => 500, :on_sale_date => "2013/7/3", :item_show_flg => 0)
 Item.create(:genre_id => 3, :artist_id => 1, :admin_id => 2, :label => "ワーナーミュージック・ジャパン", :item_img => File.open("./app/assets/images/greatest_showman.jpeg"), :album_name => "グレイテスト・ショーマン", :item_price_tax_free => 2138, :stock => 200, :on_sale_date => "2018/1/17", :item_show_flg => 0)
 Item.create(:genre_id => 4, :artist_id => 2, :admin_id => 1, :label => "SYCOM", :item_img => File.open("./app/assets/images/takemehome.jpeg"), :album_name =>"TAKE ME HOME", :item_price_tax_free => 1399, :stock => 100, :on_sale_date => "2012/11/9", :item_show_flg => 0)
+Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSAL MUSIC", :item_img => File.open("./app/assets/images/true.jpg"), :album_name => "TRUE", :item_price_tax_free => 5980, :stock => 500, :on_sale_date => "2013/1/1", :item_show_flg => 0)
+Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSAL MUSIC", :item_img => File.open("./app/assets/images/stories.jpg"), :album_name => "STORIES", :item_price_tax_free => 6980, :stock => 1000, :on_sale_date => "2014/1/1", :item_show_flg => 0)
+Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSAL MUSIC", :item_img => File.open("./app/assets/images/days.jpg"), :album_name => "THE DAYS", :item_price_tax_free => 3980, :stock => 3000, :on_sale_date => "2015/1/1", :item_show_flg => 0)
+Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSAL MUSIC", :item_img => File.open("./app/assets/images/triangle.jpg"), :album_name => "TRIANGLE", :item_price_tax_free => 6980, :stock => 1000, :on_sale_date => "2014/1/1", :item_show_flg => 0)
+Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSAL MUSIC", :item_img => File.open("./app/assets/images/waiting.jpg"), :album_name => "WAITING FOR LOVE", :item_price_tax_free => 3980, :stock => 3000, :on_sale_date => "2015/1/1", :item_show_flg => 0)
+Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSAL MUSIC", :item_img => File.open("./app/assets/images/wake.jpg"), :album_name => "WAKE ME UP!", :item_price_tax_free => 5980, :stock => 500, :on_sale_date => "2013/1/1", :item_show_flg => 0)
+Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSAL MUSIC", :item_img => File.open("./app/assets/images/better.jpg"), :album_name => "FOR A BETTER DAY", :item_price_tax_free => 5980, :stock => 500, :on_sale_date => "2013/1/1", :item_show_flg => 0)
 
 
 Disc.create(:item_id => 1, :disc_type => "CD1")
