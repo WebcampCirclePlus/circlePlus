@@ -9,7 +9,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:user_name, :name_kanji ,:name_kana, :phone_number, :postal_code, :address])
   end
 
-
-
-
 end
