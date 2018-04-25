@@ -31,7 +31,9 @@
  <% @cart_items.each do |cart_item| %>
  <tbody>
    <tr>
-     <th scope="row"><img src="" style="width: 100px; height: 100px; background-color: black;"></th>
+     <th scope="row">
+     <%= attachment_image_tag cart_item.item, :item_img, class:"card-img-top", style: "width: 100px; height: 100px;" %>
+     </th>
      <td><%= cart_item.item.album_name %></td>
      <td></td>
      <td></td>

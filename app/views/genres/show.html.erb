@@ -4,8 +4,8 @@
 <h2 class="border-bottom my-5"><%= @genre.genre_name %>に属するCD一覧</h2>
 <div class="col-lg-12 my-5">
 <% @genre.items.each do |item| %>
-<div class="card col-lg-4 mx-auto mb-3" style="width: 18rem;">
-  <img class="card-img-top mt-3" src="..." alt="Card image cap" style="height: 200px; background-color: gray; ">
+<div class="card mx-auto mb-3" style="width: 18rem;">
+<%= attachment_image_tag item, :item_img, class:"card-img-top", style: "height: 200px;" %>
   <div class="card-body">
     <h5><%= link_to item.album_name, item_path(item.id), class:"text-danger" %></h5>
     <h5 class="card-title"><%= item.artist.artist_name %></h5>

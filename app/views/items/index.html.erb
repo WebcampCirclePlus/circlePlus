@@ -63,7 +63,7 @@
 
 <% @items.each do |item| %>
 <div class="card mx-auto mb-3" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap" style="height: 200px; background-color: gray; ">
+<%= attachment_image_tag item, :item_img, class:"card-img-top", style: "height: 200px;" %>
   <div class="card-body">
     <h5 class="card-title"><%= item.album_name %></h5>
     <h5 class="card-title"><%= item.artist.artist_name %></h5>
