@@ -2,7 +2,7 @@
 <p>Find me in app/views/orders/new.html.erb</p>
 
 <% if current_user.cart_items.empty? %>
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
   カートに商品がありません！
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -21,14 +21,35 @@
 
 
 <div class="col-10">
-<div class="card" style="width: 90%;">
+	<!-- エラーメッセージ -->
+	<% if @order.errors.any? %>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  <strong><%= @order.errors.count %>件のエラーがあります。</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span></button>
+	</div>
+    <% @order.errors.full_messages.each do |msg| %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  	<%= msg %>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+    <% end %>
+    <% end %>
+
+<div class="card pb-3" style="width: 90%;">
   <div class="card-body">
-    <h5 class="card-title text-center">カート内容</h5>
-    <div class="card" style="width: 18rem;">
+    <h5 class="card-title text-center">注文内容</h5>
+    <div class="card mr-2 ml-2" style="width: 95%;">
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+    <% current_user.cart_items.each do |ci| %>
+    <li class="list-group-item text-center"><%= ci.item.album_name %></li>
+    <li class="list-group-item"><p>アーティスト名：<%= ci.item.artist.artist_name %></p>
+<p>レーベル：<%= ci.item.label %></p>
+<p>単価：<%= ci.item.item_price_tax_free %>　購入個数：<%= ci.item_cart_counted %></p>
+<p class="text-right">小計：<%= ci.item.item_price_tax_free * ci.item_cart_counted %></p></li>
+    <% end %>
   </ul>
 </div>
   </div>
