@@ -5,8 +5,10 @@ before_action :authenticate_user!
   end
 
   def show
-    @order = current_user.orders.order('id ASC').limit(20).page(params[:page]).per(3)
-    # @order = current_user.orders.page(params[:page]).per(3)
+    @orders = current_user.orders
+    @order = @orders.page(params[:page]).per(2)
+    @total = 0
+    @sum = 1
   end
 
   def edit
@@ -15,7 +17,7 @@ before_action :authenticate_user!
   def update
   	user = current_user
   	user.update(user_params)
-  	redirect_to edit_user_path(user.id)
+  	redirect_to user_path(user.id)
   end
 
 
