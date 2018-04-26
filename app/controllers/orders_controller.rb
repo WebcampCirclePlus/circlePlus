@@ -6,22 +6,24 @@ before_action :authenticate_user!
   end
 
   def create
-    order = Order.new(order_params)
-    order.user_id = current_user.id
-    order.status = 1
-    order.save
-
-    current_user.cart_items.each do |ci|
-      order_item = OrderItem.new(order_item_params)
-      order_item.order_id = order.id
-      order_item.item_id = ci.item_id
-      order_item.item_order_counted = ci.item_cart_counted
-      item = Item.find_by(params[:item_id])
-      order_item.item_order_price = item.item_price_tax_free
-      ci.destroy
-      order_item.save
+    @order = Order.new(order_params)
+    @order.user_id = current_user.id
+    @order.status = 1
+    if @order.save
+      current_user.cart_items.each do |ci|
+        order_item = OrderItem.new(order_item_params)
+        order_item.order_id = order.id
+        order_item.item_id = ci.item_id
+        order_item.item_order_counted = ci.item_cart_counted
+        item = Item.find_by(params[:item_id])
+        order_item.item_order_price = item.item_price_tax_free
+        ci.destroy
+        order_item.save
+      end
+      redirect_to thanks_path
+    else
+      render :new
     end
-    redirect_to thanks_path
   end
 
   # orderのshowを作る。
