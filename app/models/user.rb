@@ -8,6 +8,7 @@ class User < ApplicationRecord
                    with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
                    message: "全角カタカナのみで入力して下さい"
                  }
+
   validates :user_name, presence: true
   validates :name_kanji, presence: true
   validates :name_kana, presence: true

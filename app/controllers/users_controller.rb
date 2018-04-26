@@ -7,7 +7,6 @@ before_action :authenticate_user!
   def show
     @orders = current_user.orders
     @order = @orders.page(params[:page]).per(2)
-    @total = 0
     @sum = 1
   end
 

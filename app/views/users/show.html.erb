@@ -31,7 +31,7 @@
     Order History</h5>
   </div>
 </div>
-<% current_user.orders.each do |order| %>
+<% current_user.orders.each do |order| %><% @total = 0 %>
 		<div class="card">
 		  <div class="card-body text-center">
 		  	<a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= order.id %>">

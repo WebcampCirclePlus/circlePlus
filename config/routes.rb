@@ -42,7 +42,7 @@ patch '/users/:id/destroy'=> 'users#destroy_update', as: 'user_destroy'
    get 'discs/edit'
    get 'items/edit'
    resources :artists, only: [:show , :new, :create]
-   resources :users, only: [:show, :index, :edit, :update]
+   resources :users, only: [:index, :edit, :update, :show]
    resources :items, only: [:show, :create, :edit, :update] do
      resources :discs, only: [:show, :edit, :update] do
        resources :songs, only: [:create, :destroy, :update]
