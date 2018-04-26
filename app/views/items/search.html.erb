@@ -1,8 +1,11 @@
-<div class=" col-10 search-mar">
-  <h2>商品の検索ページ</h2>
-  <%= search_form_for(@q, url: items_search_result_path, method: :get) do |f|%>
-  <p>検索したい商品名を入力してください。</p>
-  <p><%= f.search_field :album_name_cont %></p>
-  <%= f.submit %>
+  <h2 class="border-bottom text-center my-5">商品の検索ページ</h2>
+
+ <h3 class="text-center mb-3">検索したい商品名を入力してください。</h3>
+ <div class="mx-auto my-5" style="width: 40%;">
+  <%= search_form_for(@q, url: items_search_result_path, method: :get, html: {class: 'form-inline'}) do |f|%>
+  <%= f.search_field :album_name_cont, class:"form-control mr-sm-2", size:50, placeholder:"Search" %>
+  <%= f.submit :class=>"btn btn-outline-success my-2 my-sm-0" %>
   <% end %>
 </div>
+
+
