@@ -27,6 +27,7 @@ Artist.create(:artist_name => "Various Artist")
 Artist.create(:artist_name => "One Direction")
 Artist.create(:artist_name => "BUMP OF CHICKEN")
 Artist.create(:artist_name => "Avicii")
+Artist.create(:artist_name => "BABY-T")
 
 Sending.create(:user_id => 1, :sending_show_flg => 1, :sending_name => "自宅", :sending_code => "1111111", :sending_address=>"東京都◯◯◯1-1-1")
 Sending.create(:user_id => 2, :sending_show_flg => 1, :sending_name => "自宅", :sending_code => "2222222", :sending_address=>"埼玉県◯◯◯2-2-2")
@@ -49,6 +50,7 @@ Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSA
 Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSAL MUSIC", :item_img => File.open("./app/assets/images/waiting.jpg"), :album_name => "WAITING FOR LOVE", :item_price_tax_free => 3980, :stock => 3000, :on_sale_date => "2015/1/1", :item_show_flg => 0)
 Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSAL MUSIC", :item_img => File.open("./app/assets/images/wake.jpg"), :album_name => "WAKE ME UP!", :item_price_tax_free => 5980, :stock => 500, :on_sale_date => "2013/1/1", :item_show_flg => 0)
 Item.create(:genre_id => 5, :artist_id => 4, :admin_id => 1, :label => "UNIVERSAL MUSIC", :item_img => File.open("./app/assets/images/better.jpg"), :album_name => "FOR A BETTER DAY", :item_price_tax_free => 5980, :stock => 500, :on_sale_date => "2013/1/1", :item_show_flg => 0)
+Item.create(:genre_id => 1, :artist_id => 5, :admin_id => 1, :label => "JIN", :item_img => File.open("./app/assets/images/jin.jpg"), :album_name => "WALL", :item_price_tax_free => 5980, :stock => 500, :on_sale_date => "2017/1/1", :item_show_flg => 0)
 
 
 Disc.create(:item_id => 1, :disc_type => "CD1")

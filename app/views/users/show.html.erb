@@ -1,31 +1,69 @@
 <!-- <h4>Users#show:マイページ</h4>
 <p>Find me in app/views/users/show.html.erb</p>
  -->
-<div class="row justify-content-center">
-<div class="col-10">
-	<div class="well well-lg text-center">
-<ul class="list-group mt-4">
-	<li class="list-group-item bg-danger text-white"><h5 class="">User Info</h5></li>
-  <li class="list-group-item p-3"><p class="col-2 float-left">Name:</p><a class="list-group-item list-group-item-action d-inline col-8 float-right"><%= current_user.user_name %></a></li>
-   <li class="list-group-item p-3"><p class="col-2 float-left">Email：</p><a class="list-group-item list-group-item-action d-inline col-8 float-right"><%= current_user.email %></a></li>
-  <li class="list-group-item"><%= link_to cart_path(current_user), class:"btn btn-warning pl-3 pr-3 w-75" do %>My Cart<i class="fas fa-shopping-cart ml-2"></i><% end %></li>
-</ul></br>
 
-	</div>
+<div class="container">
+<div class="row">
 
-<ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+<div class="col-10 mx-auto">
+
+<div class="container">
+<div class="row">
+	<!-- left column -->
+	<div class="col-lg-4 mt-5">
+		<ul class="list-group">
+		<li class="list-group-item bg-danger text-white" style="height: 270px;">
+		<p class="text-center mt-3">
+		<i class="fas fa-user-circle" style="font-size: 10em;"></i>
+		</p>
+		<h3 class="text-center">User Info</h3>
+		</li>
+		</ul>
+	</div><!-- /left column -->
+
+	<!-- right column -->
+	<div class="col-lg-8 text-center">
+		<ul class="list-group mt-5">
+ 			<li class="list-group-item p-4" style="height: 100px;">
+	 			<h3 class="col-12">Name：  <%= current_user.user_name %></h3>
+ 			</li>
+   			<li class="list-group-item p-4" style="height: 100px;">
+   				<h3 class="col-12">Email：  <%= current_user.email %></h3>
+   			</li>
+  			<li class="list-group-item" style="height: 70px;">
+  				<%= link_to cart_path(current_user), class:"btn btn-warning px-3 w-75" do %>
+  				My Cart<i class="fas fa-shopping-cart ml-2"></i>
+  				<% end %>
+  			</li>
+		</ul>
+
+	</div><!-- /right column -->
+
+</div><!-- /row -->
+</div><!-- /container -->
+
+
+
+
+
+<!-- タブ切り替え -->
+<ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">注文履歴</a>
+    <a class="nav-link active text-secondary" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">注文履歴</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">登録情報</a>
+    <a class="nav-link text-secondary" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">登録情報</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Q&A</a>
+    <a class="nav-link text-secondary" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Q&A</a>
   </li>
 </ul>
-<div class="tab-content" id="myTabContent">
+<!-- /タブ切り替え -->
+
+<div class="tab-content mb-5" id="myTabContent">
+<!-- 注文履歴 -->
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
   	<div class="card text-center mt-4">
   <div class="card-body bg-info text-white"><h5>
     Order History</h5>
@@ -44,69 +82,98 @@
 			<% end %>
 			<p>合計：<%= @total %>円</p></br>
 				<% @sum += 1 %>
+
 				</div>
 			</div>
-		</div>
-	<% end %>
-  </div>
+	</div><!-- /list-group -->
+	<% end %><!-- order each -->
+   </div>
+
+<!--   登録情報 -->
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-  	<ul class="list-group mt-4">
-	<li class="list-group-item bg-info text-white"><h5 class="text-center">Your Information</h5></li>
-  <li class="list-group-item p-3"><p class="col-2 float-left">Name:</p><a class="list-group-item list-group-item-action d-inline col-8 float-right"><%= current_user.name_kanji %>（<%= current_user.name_kana %>）</a></li>
-   <li class="list-group-item p-3"><p class="col-2 float-left">Tel：</p><a class="list-group-item list-group-item-action d-inline col-8 float-right"><%= current_user.phone_number %></a></li>
-   <li class="list-group-item p-3"><p class="col-2 float-left">Postal Code：</p><a class="list-group-item list-group-item-action d-inline col-8 float-right"><%= current_user.postal_code %></a></li>
-   <li class="list-group-item p-3"><p class="col-3 float-left">Address：</p><a class="list-group-item list-group-item-action d-inline col-8 float-right"><%= current_user.address %></a></li>
-  <li class="list-group-item text-center"><%= link_to "情報を編集する",edit_user_path(current_user),class:"btn btn-warning w-75 " %></li>
+  	<ul class="list-group">
+	<li class="list-group-item bg-secondary text-white"><h5 class="text-center">Your Information</h5></li>
+  <li class="list-group-item p-3"><p class="col-2 float-left">Name:</p><a class="d-inline col-8 float-right"><%= current_user.name_kanji %>（<%= current_user.name_kana %>）</a></li>
+   <li class="list-group-item p-3"><p class="col-2 float-left">Tel：</p><a class="d-inline col-8 float-right"><%= current_user.phone_number %></a></li>
+   <li class="list-group-item p-3"><p class="col-2 float-left">Postal Code：</p><a class="d-inline col-8 float-right"><%= current_user.postal_code %></a></li>
+   <li class="list-group-item p-3"><p class="col-3 float-left">Address：</p><a class="d-inline col-8 float-right"><%= current_user.address %></a></li>
+  <li class="list-group-item text-center"><%= link_to edit_user_path(current_user),class:"btn btn-warning w-75" do %>
+  	<i class="fas fa-wrench"></i> 情報を編集する
+  	<% end %>
+  </li>
 </ul></br>
   </div>
+
+ <!--  Q&A -->
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-  	<div class="card text-center mt-4">
-  <div class="card-body bg-info text-white">
+  	<div class="card text-center">
+  <div class="card-body bg-secondary text-white">
     <h5>よくあるご質問</h5>
   </div>
 </div>
-		<div class="card">
-		  <div class="card-body text-center">
-		  	<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-				        Q：CirclePlusはどんなサイトですか。</a>
-		  </div>
-		 	<div id="collapse1" class="card-collapse collapse in">
-				<div class="card-body">CirclePlusは、Circle+が作成した疑似ECサイトです。</br>ECは、電子商取引(Electronic Commerce)の略称で、PCやスマホ、タブレット等のデバイスによる注文から決済を行うことで商品やサービスの売買を行う商取引を指します。</br>
-				</div>
-			</div>
-		</div>
-		<div class="card">
-		  <div class="card-body text-center">
-		  	<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-				       Q：Circle+はどんな団体ですか。</a>
-		  </div>
-		 	<div id="collapse2" class="card-collapse collapse in">
-				<div class="card-body">Circle+は、有志による非営利団体です。</br>Rails学習が主目的であった初学者が、エンジニアへと進化を図ろうとしています。</br>近年、ECサイトにおけるイノベーションを創造する「エンジニア」こそが、必要とされています。</br>Circle+は、エンジニア発のイノベーションを加速するために、IT業界として提供できる価値・存在意義を再定義し、発信していくことを目的とし、発足いたしました。</br>
-				</div>
-			</div>
-		</div>
-		<div class="card text-center">
-		  <div class="card-body">
-		  	<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-				       Q：退会したいのですが。</a>
-		  </div>
-		 	<div id="collapse3" class="card-collapse collapse in">
-				<div class="card-body">
-					こちらより退会処理を行うことができます。</br>
-				  <a class="btn btn-warning mr-5 ml-5 w-50" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">退会する</a></br>
+
+
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Q：CirclePlusはどんなサイトですか。
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        CirclePlusは、Circle+が作成した疑似ECサイトです。</br>ECは、電子商取引(Electronic Commerce)の略称で、PCやスマホ、タブレット等のデバイスによる注文から決済を行うことで商品やサービスの売買を行う商取引を指します。</br>
+      </div>
+    </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Q：Circle+はどんな団体ですか。</a>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+       Circle+は、有志による非営利団体です。</br>Rails学習が主目的であった初学者が、エンジニアへと進化を図ろうとしています。</br>近年、ECサイトにおけるイノベーションを創造する「エンジニア」こそが、必要とされています。</br>Circle+は、エンジニア発のイノベーションを加速するために、IT業界として提供できる価値・存在意義を再定義し、発信していくことを目的とし、発足いたしました。</br>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Q：退会したいのですが。</a>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body text-center">
+					こちらより退会処理を行うことができます。<br>
+				  <a class="btn btn-danger w-50 my-3" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">退会する</a>
 	 			  <div class="collapse" id="collapseExample">
 				    <div class="card card-body">
-				  	  <p class="text-danger">一度行った退会処理は取り消すことができません。</p>
-					  <p>また、同じメールアドレスでの会員登録はできません。</p><%= link_to "承諾して退会する", user_destroy_path(current_user),method: :patch ,class:"text-center" %>
+				  	  <p class="text-danger text-center">一度行った退会処理は取り消すことができません。</p>
+					  <p class="text-center">また、同じメールアドレスでの会員登録はできません。</p><%= link_to "承諾して退会する", user_destroy_path(current_user),method: :patch ,class:"text-center" %>
 					</div>
 		    	  </div>
-				</div>
-			</div>
-		</div>
-  </div>
+		</div><!-- /card-body -->
+    </div><!-- /card -->
+
+   </div><!-- /card -->
+  </div><!-- /accordion -->
+
+	
+		
+  </div><!-- div class="tab-pane fade" id="contact" role="tabpanel"  -->
 
 
 </div>
-  </br>
 </div>
-</div>
+</div><!-- /col-10 mx-auto -->
+</div><!-- /row -->
+</div><!-- /container -->
