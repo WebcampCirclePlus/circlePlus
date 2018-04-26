@@ -49,16 +49,18 @@
 
 		<div class="w-100 bg-white py-3 px-5 mb-5">
 <h4 class="text-center">商品内容</h4>
+
+
 <ul class="nav nav-tabs" id="myTab" role="tablist"><% @n = 1%>
 	<% @item.discs.each do |id| %>
   <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home<%= @n %>" role="tab" aria-controls="home" aria-selected="true">No.<%= @n %></a>
+    <a class="nav-link <% if @n == 1 %>active<% end %>" id="home-tab" data-toggle="tab" href="#home<%= @n %>" role="tab" aria-controls="home" aria-selected="true">No.<%= @n %></a>
   </li><% @n += 1 %><% end %>
 </ul>
 
 <div class="tab-content" id="myTabContent"><% @n2 = 1%>
 	<% @item.discs.each do |ud| %>
-  			<div class="tab-pane fade show active" id="home<%= @n2 %>" role="tabpanel" aria-labelledby="home-tab">商品型：<%= ud.disc_type %></br>
+  			<div class="tab-pane fade <% if @n2 == 1 %>show active<% end %>" id="home<%= @n2 %>" role="tabpanel" aria-labelledby="home-tab">商品型：<%= ud.disc_type %></br>
 				<% @no = 1 %>
 				<% ud.songs.each do |is| %>
 				No.<%= @no %>：<%= is.song_name%><br><% @no += 1 %>
@@ -67,6 +69,9 @@
 
 <% end %>
 </div>
+
+
+
 </div>
 
 
