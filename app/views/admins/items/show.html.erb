@@ -28,7 +28,7 @@
        <td><%= @item.item_price_tax_free %></td>
        <td><%= @item.stock %></td>
        <td>
-        <%= link_to admins_artist_path(@artist), class: "btn btn-danger white-text" do %>
+        <%= link_to edit_admins_item_path(@item), class: "btn btn-danger white-text" do %>
         <i class="fas fa-wrench"></i> 編集
         <% end %>
       </td>
@@ -66,13 +66,16 @@
           <% end %>
         </div>
       </td>
-      <td><%= link_to "編集", edit_admins_item_disc_path(@item, disc.id) %></td>
+      <td>
+        <%= link_to edit_admins_item_disc_path(@item, disc), class: "btn btn-danger white-text mt-3" do %>
+        <i class="fas fa-wrench"></i> 編集
+        <% end %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 <div class="text-center">
-  <%= link_to :back, class: "btn btn-success white-text" do %>
+  <%= link_to :back, class: "btn btn-success white-text mb-3" do %>
   <i class="fas fa-chevron-left"></i> 戻る
   <% end %>
 </div>
