@@ -12,6 +12,8 @@ devise_for :users, :controllers => {
     :passwords => 'users/passwords'
   }
 
+  get 'items/search' => 'items#search'
+  get 'items/search_result' => 'items#search_result'
 
   resources :users, only: [:edit, :update, :show] do
     resources :cart_items, only: [:update]
@@ -24,8 +26,6 @@ devise_for :users, :controllers => {
   end
 
  get '/' => 'items#index', as: 'top'
-  get 'items/search'
-  get 'items/search_result'
   get '/cart' => 'cart_items#index', as: 'cart'
   get '/thanks' => 'users#thanks'
 patch '/users/:id/destroy'=> 'users#destroy_update', as: 'user_destroy'
