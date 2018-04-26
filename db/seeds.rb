@@ -8,10 +8,10 @@
 Admin.create(:admin_name =>"管理人A", :email =>"kanri1@cp.com", :password =>"111111")
 Admin.create(:admin_name =>"管理人B", :email =>"kanri2@cp.com", :password =>"111111")
 
-User.create(:user_name =>"まことさん", :name_kanji => "佐藤 誠", :name_kana => "サトウ マコト", :postal_code => "1111111", :address =>"東京都◯◯◯1-1-1", :phone_number => "0311111111", :email =>"1@cp.com", :password =>"111111", :quit_flg => 0)
-User.create(:user_name =>"とおるさん", :name_kanji => "鈴木 徹", :name_kana => "スズキ トオル", :postal_code => "2222222", :address =>"埼玉県◯◯◯2-2-2", :phone_number => "0322222222", :email =>"2@cp.com", :password =>"111111", :quit_flg => 0)
-User.create(:user_name =>"ゆたかさん", :name_kanji => "田中 豊", :name_kana => "タナカ ユタカ", :postal_code => "3333333", :address =>"茨城県◯◯◯3-3-3", :phone_number => "0333333333", :email =>"3@cp.com", :password =>"111111", :quit_flg => 0)
-User.create(:user_name =>"さとるさん", :name_kanji => "小林 聡", :name_kana => "コバヤシ サトル", :postal_code => "4444444", :address =>"京都府◯◯◯4-4-4", :phone_number => "0344444444", :email =>"4@cp.com", :password =>"111111", :quit_flg => 0)
+User.create(:user_name =>"まことさん", :name_kanji => "佐藤 誠", :name_kana => "サトウマコト", :postal_code => "1111111", :address =>"東京都◯◯◯1-1-1", :phone_number => "0311111111", :email =>"1@cp.com", :password =>"111111", :quit_flg => 0)
+User.create(:user_name =>"とおるさん", :name_kanji => "鈴木 徹", :name_kana => "スズキトオル", :postal_code => "2222222", :address =>"埼玉県◯◯◯2-2-2", :phone_number => "0322222222", :email =>"2@cp.com", :password =>"111111", :quit_flg => 0)
+User.create(:user_name =>"ゆたかさん", :name_kanji => "田中 豊", :name_kana => "タナカユタカ", :postal_code => "3333333", :address =>"茨城県◯◯◯3-3-3", :phone_number => "0333333333", :email =>"3@cp.com", :password =>"111111", :quit_flg => 0)
+User.create(:user_name =>"さとるさん", :name_kanji => "小林 聡", :name_kana => "コバヤシサトル", :postal_code => "4444444", :address =>"京都府◯◯◯4-4-4", :phone_number => "0344444444", :email =>"4@cp.com", :password =>"111111", :quit_flg => 0)
 
 
 Genre.create(:genre_name => "j-POP")
