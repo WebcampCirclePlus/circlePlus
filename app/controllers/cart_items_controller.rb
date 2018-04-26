@@ -22,6 +22,14 @@ class CartItemsController < ApplicationController
 
 def update
   cart_item = CartItem.find(params[:id])
+  current_user.id = cart_item.user_id
+  cart_item.update(cart_item_params)
+  redirect_to cart_path(current_user)
+end
+
+
+def destroy
+  cart_item = CartItem.find(params[:id])
    current_user.id = cart_item.user_id
    cart_item.update(cart_item_params)
    redirect_to cart_path(current_user)

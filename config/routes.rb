@@ -12,7 +12,8 @@ devise_for :users, :controllers => {
     :passwords => 'users/passwords'
   }
 
-get 'items/search' => 'items#search'
+  get 'items/search' => 'items#search'
+
   get 'items/search_result' => 'items#search_result'
 
   resources :users, only: [:edit, :update, :show] do
