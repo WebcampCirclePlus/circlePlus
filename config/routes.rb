@@ -17,7 +17,7 @@ devise_for :users, :controllers => {
   get 'items/search_result' => 'items#search_result'
 
   resources :users, only: [:edit, :update, :show] do
-    resources :cart_items, only: [:update]
+    resources :cart_items, only: [:update, :destroy]
     resources :orders, only: [:new, :create, :edit, :update]
   end
   resources :artists, only: [:create]

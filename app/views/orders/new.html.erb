@@ -1,10 +1,40 @@
-<h2>Orders#new：配送先確認</h2>
+<h2>Orders#new：最終確認</h2>
 <p>Find me in app/views/orders/new.html.erb</p>
 
 <% if current_user.cart_items.empty? %>
-<p>！カートにアイテムがありません！</p>
-
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  カートに商品がありません！
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>TOPページ→商品詳細</strong>より商品を追加することができます。
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="alert alert-danger" role="alert" style="height: 100px">
+  <h4><strong>カートに商品を追加してください。</strong></h4>
+</div>
 <% else %>
+
+
+<div class="col-10">
+<div class="card" style="width: 90%;">
+  <div class="card-body">
+    <h5 class="card-title text-center">カート内容</h5>
+    <div class="card" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+</div>
+  </div>
+</div>
+</div>
+
 <P>最終確認</P>
 <h4>カート内容</h4>
 
@@ -22,7 +52,7 @@
 <%= form_for(@order ,url:user_orders_path,method: :post) do |f| %>
 <%= f.text_field :order_sending_postar_code, value:current_user.postal_code %>
 <%= f.text_field :order_sending_str, value:current_user.address %>
-<%= f.submit "確定" %>
+<%= f.submit "確定", data: {confirm: "本当に確定しますか？"} %>
 <% end %>
 
 <% end %>
