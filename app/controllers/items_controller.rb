@@ -1,12 +1,6 @@
 class ItemsController < ApplicationController
 before_action :authenticate_user!, only: [:create]
 
-  def create
-    item = Item.new(items_params)
-    item.save
-    redirect_to admins_artist_item_path(item)
-  end
-
   def index
     @genres = Genre.all
     @items = Item.page(params[:page]).reverse_order
