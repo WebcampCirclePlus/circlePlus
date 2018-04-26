@@ -29,7 +29,11 @@
         <td><%= item.item_price_tax_free %></td>
         <td><%= item.stock %></td>
         <td><%= item.on_sale_date %></td>
+        <% if  %>
         <td><%= link_to "この商品の詳細へ", admins_item_path(item), :class=>"btn btn-success"  %></td>
+        <% else %>
+        <td><%= link_to "この商品の詳細へ", item_path(item), :class=>"btn btn-success"  %></td>
+        <% end %>
       </tr>
       <% end %>
 
