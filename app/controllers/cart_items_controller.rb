@@ -10,15 +10,28 @@ class CartItemsController < ApplicationController
 
   def create
     item = Item.find(params[:item_id])
+    #if cart_items.include?(item.id)
+
+    #  if 
     cart_item = CartItem.new(ci_update_params)
-    cart_item.user_id = current_user.id
-    cart_item.item_id = item.id
-    if cart_item.save
-    redirect_to cart_path
-  else
-    redirect_to item_path(item)
-  end
-  end
+    if item.stock >= cart_item.item_cart_counted
+      @cart_items = current_user.cart_items
+      catch :not_prime do
+        #@cart_items.each do |cart_item|
+        #  if cart_item.id == cart_item.id
+        #    throw :not_prime
+        #  end
+        #end
+        cart_item.user_id = current_user.id
+        cart_item.item_id = item.id
+        if cart_item.save
+          redirect_to cart_path
+        else
+          redirect_to item_path(item)
+        end
+      end
+    end
+    end
 
   def update
     cart_item = CartItem.find(params[:id])
