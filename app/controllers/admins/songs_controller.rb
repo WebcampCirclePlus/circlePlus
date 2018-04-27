@@ -1,4 +1,5 @@
 class Admins::SongsController < ApplicationController
+before_action :authenticate_admin_user!
   def update
     @item = Item.find(params[:item_id])
     @disc = Disc.find(params[:disc_id])

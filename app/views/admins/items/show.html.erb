@@ -4,7 +4,6 @@
 
 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 mx-auto">
  <h2 class="my-5"><%= @artist.artist_name %> / <%= @item.album_name %>-詳細</h2>
-
  <table class="table">
    <thead class="thead-dark">
      <tr>
@@ -35,7 +34,9 @@
     </tr>
   </tbody>
 </table>
-
+<%= link_to top_path, class: "btn btn-warning white-text float-right" do %>
+        <i class="fas fa-plus"></i> Disc追加
+        <% end %>
 <h3 class="my-5">含まれているdisc一覧</h3>
 
 <table class="table">
@@ -46,9 +47,9 @@
       <th scope="col">曲数</th>
       <th scope="col">曲名一覧</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
-  
   <tbody>
     <% @discs.each do |disc| %>
     <tr>
@@ -69,6 +70,10 @@
       <td>
         <%= link_to edit_admins_item_disc_path(@item, disc), class: "btn btn-danger white-text mt-3" do %>
         <i class="fas fa-wrench"></i> 編集
+        <% end %></td>
+        <td>
+      <%= link_to top_path, class: "btn btn-danger white-text mt-3" do %>
+        <i class="far fa-trash-alt"></i> 削除
         <% end %></td>
     </tr>
     <% end %>

@@ -55,7 +55,9 @@
 <% elsif admin_signed_in? %>
 
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="height: 60px; background-color: black;">
-    <a class="circle-plus-icon text-danger" href="">Circle <span class="text-light">Plus</span></a>
+    <%= link_to admins_path,class:"circle-plus-icon text-danger" do %>
+        Circle <span class="text-light">Plus</span></a>
+      <% end %>
     <h2 class="guest text-muted pt-3">管理者ページ</h2>
     <!-- ナビ内容 -->
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
