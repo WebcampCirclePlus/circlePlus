@@ -60,6 +60,22 @@
 	vertical-align: middle;
 }
 
+body {
+    animation: fadeIn 2s ease 0s 1 normal;
+    -webkit-animation: fadeIn 2s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
