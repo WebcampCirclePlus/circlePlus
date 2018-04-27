@@ -1,5 +1,5 @@
 class Admins::OrdersController < ApplicationController
-before_action :authenticate_admin_user!
+before_action :authenticate_admin!
 
   def index
     @orders1 = Order.where(status: 1)

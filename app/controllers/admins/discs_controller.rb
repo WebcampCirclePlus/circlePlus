@@ -1,5 +1,5 @@
 class Admins::DiscsController < ApplicationController
-before_action :authenticate_admin_user!
+before_action :authenticate_admin!
   def new
     @disc = Disc.new
   end
@@ -7,7 +7,6 @@ before_action :authenticate_admin_user!
   def create
     disc = Disc.new(dics_params)
     item = Item.find(params[:id])
-
   end
 
   def show
