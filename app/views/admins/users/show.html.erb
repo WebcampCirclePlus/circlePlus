@@ -11,29 +11,53 @@
 <table class="col-lg-12 table">
   <thead>
     <tr>
-      <th scope="col">購入日</th>
+      <th scope="col">ステータス</th>
+      <th scope="col">注文詳細</th>
       <th scope="col">購入したもの</th>
+      <th scope="col">合計金額</th>
     </tr>
   </thead>
-  <% @user.orders.each do |order| %>
+
+
+  <% @user.orders.each do |order| %><% @total = 0 %>
   <tbody>
     <tr>
-      <th scope="row"><%= order.created_at %></th>
-      <td>
-      	   <table class="table">
-			  <% order.order_items.each do |order_item| %>
-			  <tbody>
-			    <tr class="table-secondary">
-			      <td><%= order_item.item.album_name %></td>
-			      <td><%= order_item.item_order_counted %></td>
-			      <td>¥<%= order_item.item_order_price %></td>
-			    </tr>
-			  </tbody>
-			  <% end %>
-			</table>
-
-
+      <th scope="row">
+        <% if order.status == "準備中" %>
+          <div class="alert alert-danger" role="alert">
+            <h4 class="text-center"><%= order.status %></h4>
+          </div>
+        <% elsif order.status == "発送中" %>
+          <div class="alert alert-warning" role="alert">
+            <h4 class="text-center"><%= order.status %></h4>
+          </div>
+        <% else %>
+          <div class="alert alert-primary" role="alert">
+            <h4 class="text-center"><%= order.status %></h4>
+          </div>
+        <% end %>
+      </th>
+      <td><p><strong>注文確定日</strong></br><%= order.created_at %></p>
+          <p><strong>送付先郵便番号</strong></br><%= order.order_sending_postal_code %></p>
+          <p><strong>送付先住所</strong></br><%= order.order_sending_str %></p></td>
+       <td>
+           <table class="table">
+            <tbody>
+        <% order.order_items.each do |order_item| %>
+          <tr class="table-secondary">
+            <td><%= order_item.item.album_name %></td>
+            <td><%= order_item.item_order_counted %>個</td>
+            <td>*</td>
+            <td>¥<%= order_item.item_order_price %></td>
+            <td>=</td>
+            <td>¥<%= order_item.item_order_counted * order_item.item_order_price %></td>
+          </tr>
+        </tbody>
+        <% @total += order_item.item_order_counted * order_item.item_order_price %>
+        <% end %>
+      </table>
       </td>
+      <td>¥<%= @total %></td>
     </tr>
   </tbody>
   <% end %>

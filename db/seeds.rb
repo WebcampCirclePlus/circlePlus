@@ -125,47 +125,47 @@ CartItem.create(:user_id =>4, :item_id =>1, :item_cart_counted =>4)
 CartItem.create(:user_id =>4, :item_id =>2, :item_cart_counted =>4)
 CartItem.create(:user_id =>4, :item_id =>3, :item_cart_counted =>4)
 
-Order.create(:user_id =>1, :order_sending_id =>1, :order_number =>"1-1-000000001", :status => 1)
+Order.create(:user_id =>1, :order_sending_id =>1, :order_number =>"1-1-000000001", :status => 1, :order_sending_str =>"東京都◯◯◯1-1-1" , :order_sending_postal_code => "1111111")
 OrderItem.create(:item_id =>1, :order_id =>1, :item_order_counted =>1, :item_order_price => 2880)
 OrderItem.create(:item_id =>2, :order_id =>1, :item_order_counted =>2, :item_order_price => 2138)
 
-Order.create(:user_id =>1, :order_sending_id =>1, :order_number =>"1-1-000000002", :status => 1)
+Order.create(:user_id =>1, :order_sending_id =>1, :order_number =>"1-1-000000002", :status => 2, :order_sending_str =>"東京都◯◯◯1-1-1" , :order_sending_postal_code => "1111111")
 OrderItem.create(:item_id =>3, :order_id =>2, :item_order_counted =>1, :item_order_price => 1399)
 OrderItem.create(:item_id =>1, :order_id =>2, :item_order_counted =>2, :item_order_price => 2880)
 
-Order.create(:user_id =>1, :order_sending_id =>1, :order_number =>"1-1-000000003", :status => 1)
+Order.create(:user_id =>1, :order_sending_id =>1, :order_number =>"1-1-000000003", :status => 3, :order_sending_str =>"東京都◯◯◯1-1-1" , :order_sending_postal_code => "1111111")
 OrderItem.create(:item_id =>3, :order_id =>3, :item_order_counted =>2, :item_order_price => 1399)
 OrderItem.create(:item_id =>1, :order_id =>3, :item_order_counted =>1, :item_order_price => 2880)
 
-Order.create(:user_id =>2, :order_sending_id =>2, :order_number =>"2-2-000000004", :status => 2)
+Order.create(:user_id =>2, :order_sending_id =>2, :order_number =>"2-2-000000004", :status => 1, :order_sending_str =>"埼玉県◯◯◯2-2-2" , :order_sending_postal_code => "2222222")
 OrderItem.create(:item_id =>2, :order_id =>4, :item_order_counted =>1, :item_order_price => 2138)
 OrderItem.create(:item_id =>1, :order_id =>4, :item_order_counted =>1, :item_order_price => 2880)
 
-Order.create(:user_id =>2, :order_sending_id =>2, :order_number =>"2-2-000000005", :status => 2)
+Order.create(:user_id =>2, :order_sending_id =>2, :order_number =>"2-2-000000005", :status => 2, :order_sending_str =>"埼玉県◯◯◯2-2-2" , :order_sending_postal_code => "2222222")
 OrderItem.create(:item_id =>3, :order_id =>5, :item_order_counted =>4, :item_order_price => 1399)
 OrderItem.create(:item_id =>2, :order_id =>5, :item_order_counted =>6, :item_order_price => 2138)
 
-Order.create(:user_id =>2, :order_sending_id =>2, :order_number =>"2-2-000000006", :status => 2)
+Order.create(:user_id =>2, :order_sending_id =>2, :order_number =>"2-2-000000006", :status => 3, :order_sending_str =>"埼玉県◯◯◯2-2-2" , :order_sending_postal_code => "2222222")
 OrderItem.create(:item_id =>2, :order_id =>6, :item_order_counted =>1, :item_order_price => 2138)
 
-Order.create(:user_id =>3, :order_sending_id =>1, :order_number =>"3-1-000000007", :status => 3)
+Order.create(:user_id =>3, :order_sending_id =>1, :order_number =>"3-1-000000007", :status => 1, :order_sending_str =>"茨城県◯◯◯3-3-3" , :order_sending_postal_code => "3333333")
 OrderItem.create(:item_id =>3, :order_id =>7, :item_order_counted =>4, :item_order_price => 1399)
 
-Order.create(:user_id =>3, :order_sending_id =>2, :order_number =>"3-2-000000008", :status => 3)
+Order.create(:user_id =>3, :order_sending_id =>2, :order_number =>"3-2-000000008", :status => 2, :order_sending_str =>"茨城県◯◯◯3-3-3" , :order_sending_postal_code => "3333333")
 OrderItem.create(:item_id =>2, :order_id =>8, :item_order_counted =>2, :item_order_price => 2138)
 
-Order.create(:user_id =>3, :order_sending_id =>1, :order_number =>"3-1-000000009", :status => 3)
+Order.create(:user_id =>3, :order_sending_id =>1, :order_number =>"3-1-000000009", :status => 3, :order_sending_str =>"茨城県◯◯◯3-3-3" , :order_sending_postal_code => "3333333")
 OrderItem.create(:item_id =>3, :order_id =>9, :item_order_counted =>11, :item_order_price => 1399)
 
-Order.create(:user_id =>4, :order_sending_id =>2, :order_number =>"4-2-00000000A", :status => 1)
+Order.create(:user_id =>4, :order_sending_id =>2, :order_number =>"4-2-00000000A", :status => 1, :order_sending_str =>"京都府◯◯◯4-4-4" , :order_sending_postal_code => "4444444")
 OrderItem.create(:item_id =>1, :order_id =>10, :item_order_counted =>1, :item_order_price => 2880)
 
-Order.create(:user_id =>4, :order_sending_id =>1, :order_number =>"4-1-00000000B", :status => 2)
+Order.create(:user_id =>4, :order_sending_id =>1, :order_number =>"4-1-00000000B", :status => 2, :order_sending_str =>"京都府◯◯◯4-4-4" , :order_sending_postal_code => "4444444")
 OrderItem.create(:item_id =>1, :order_id =>11, :item_order_counted =>2, :item_order_price => 2880)
 OrderItem.create(:item_id =>2, :order_id =>11, :item_order_counted =>1, :item_order_price => 2138)
 OrderItem.create(:item_id =>3, :order_id =>11, :item_order_counted =>2, :item_order_price => 1399)
 
-Order.create(:user_id =>4, :order_sending_id =>2, :order_number =>"4-2-00000000C", :status => 3)
+Order.create(:user_id =>4, :order_sending_id =>2, :order_number =>"4-2-00000000C", :status => 3, :order_sending_str =>"京都府◯◯◯4-4-4" , :order_sending_postal_code => "4444444")
 OrderItem.create(:item_id =>1, :order_id =>12, :item_order_counted =>4, :item_order_price => 2880)
 OrderItem.create(:item_id =>2, :order_id =>12, :item_order_counted =>6, :item_order_price => 2138)
 OrderItem.create(:item_id =>3, :order_id =>12, :item_order_counted =>9, :item_order_price => 1399)
