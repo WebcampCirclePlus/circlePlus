@@ -16,9 +16,9 @@ class Admins::ItemsController < ApplicationController
     item.item_show_flg = 1
     item.admin_id = current_admin.id
     if item.save
-    redirect_to admins_item_path(item)
+      redirect_to admins_item_path(item)
     else
-     redirect_to admins_artist_path(item.artist)
+      redirect_to admins_artist_path(item.artist)
     end
   end
 

@@ -10,13 +10,16 @@ before_action :authenticate_user!
     @order.user_id = current_user.id
     @order.status = 1
     if @order.save
+
       current_user.cart_items.each do |ci|
         order_item = OrderItem.new(order_item_params)
-        order_item.order_id = order.id
+        order_item.order_id = @order.id
         order_item.item_id = ci.item_id
         order_item.item_order_counted = ci.item_cart_counted
-        item = Item.find_by(params[:item_id])
+        item = ci.item
+        stock_minus = item.stock - ci.item_cart_counted
         order_item.item_order_price = item.item_price_tax_free
+        item.update(stock: stock_minus)
         ci.destroy
         order_item.save
       end

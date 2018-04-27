@@ -24,11 +24,11 @@
 					<p class="mb-3">在庫: <%= @item.stock %>点</p>
 					<% if @item.stock == 0 %>
 					<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>在庫が切れています。</strong></br>申し訳ございませんが、入荷までお待ちください。
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+						<strong>在庫が切れています。</strong></br>申し訳ございませんが、入荷までお待ちください。
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 					<% end %>
 					<%= form_for(@cart_item , url:item_cart_items_path(@item), html:  {class: "float-right"}) do |f|  %>
 					<%= f.number_field :item_cart_counted ,value:"1", in: 1...21, size: 20 %>点
