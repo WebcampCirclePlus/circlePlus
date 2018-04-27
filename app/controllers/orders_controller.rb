@@ -6,11 +6,10 @@ before_action :authenticate_user!
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.user_id = current_user.id
-    @order.status = 1
-    if @order.save
-
+    order = Order.new(order_params)
+    order.user_id = current_user.id
+    order.status = 1
+    if order.save
       current_user.cart_items.each do |ci|
         order_item = OrderItem.new(order_item_params)
         order_item.order_id = @order.id
@@ -33,7 +32,7 @@ before_action :authenticate_user!
 
 	private
   def order_params
-    params.require(:order).permit(:user_id, :order_sending_str, :order_sending_postal_code)
+    params.require(:order).permit(:user_id, :order_sending_str, :order_sending_postal_code, :status)
   end
 
   def order_item_params

@@ -1,4 +1,5 @@
 class Admins::ItemsController < ApplicationController
+before_action :authenticate_admin!
   def show
     @item = Item.find(params[:id])
     @artist = @item.artist

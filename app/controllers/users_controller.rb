@@ -15,8 +15,12 @@ before_action :authenticate_user!
 
   def update
   	user = current_user
-  	user.update(user_params)
+  	if user.update(user_params)
   	redirect_to user_path(user.id)
+    else
+      user = current_user
+      redirect_to edit_user_path(user)
+    end
   end
 
 
