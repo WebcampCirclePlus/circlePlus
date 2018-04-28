@@ -1,9 +1,5 @@
 class AdminsController < ApplicationController
-  def stock
-    @items = Item.all
-  end
-
-  def status
-    @orders = Order.all
+before_action :authenticate_admin!
+  def top
   end
 end
