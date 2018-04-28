@@ -12,7 +12,7 @@ before_action :authenticate_user!
     if order.save
       current_user.cart_items.each do |ci|
         order_item = OrderItem.new(order_item_params)
-        order_item.order_id = @order.id
+        order_item.order_id = order.id
         order_item.item_id = ci.item_id
         order_item.item_order_counted = ci.item_cart_counted
         item = ci.item
