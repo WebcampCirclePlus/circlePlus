@@ -27,6 +27,11 @@
   		</button>
 	</div>
 		   <% end %>
+		   <% if @item.item_show_flg == false %>
+		<div class="alert alert-danger" role="alert">
+  		<strong>大変申し訳ございません。</strong>現在取り扱いを停止しています。</br>
+	</div>
+		   <% end %>
 		   <div class="Bottom-Fixation">
 			<%= form_for(@cart_item , url:item_cart_items_path(@item), html:  {class: "float-right aaa"}) do |f|  %>
 			<%= f.number_field :item_cart_counted ,value:"1", in: 1...21, size: 20 %>点
