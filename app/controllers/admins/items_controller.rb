@@ -1,10 +1,11 @@
 class Admins::ItemsController < ApplicationController
-before_action :authenticate_admin_user!
+before_action :authenticate_admin!
   def show
     @item = Item.find(params[:id])
     @artist = @item.artist
     @discs = @item.discs
     @genre = @item.genre
+    @disc = Disc.new
   end
 
   def new
@@ -17,9 +18,9 @@ before_action :authenticate_admin_user!
     item.item_show_flg = 1
     item.admin_id = current_admin.id
     if item.save
-    redirect_to admins_item_path(item)
+      redirect_to admins_item_path(item)
     else
-     redirect_to admins_artist_path(item.artist)
+      redirect_to admins_artist_path(item.artist)
     end
   end
 
@@ -37,6 +38,30 @@ before_action :authenticate_admin_user!
     item = Item.find(params[:item_id])
     item.update(item_show_flg: 0)
     redirect_to admins_artist_path(item.artist.id)
+  end
+
+  def itemshow
+    item = Item.find(params[:item_id])
+    item.update(item_show_flg: 1)
+    redirect_to admins_artist_path(item.artist.id)
+  end
+
+  def manage_stock
+    item = Item.find(params[:id])
+    item.update(item_params)
+    redirect_to admins_orders_path
+
+  #   item = Item.find(params[:id])
+    # 在庫の増減がやりたい人生だった..けどそのためには@sumを保存するカラムが必要になりそう？
+    # メンターさんに聞きます。
+    # @sums = 0
+    # stock = item.stock
+      # if @sums >= 0
+        # item.stock = stock + @sums
+        # redirect_to admins_orders_path
+      # else
+      # item.stock = stock - @sums
+      # end
   end
 
   private
