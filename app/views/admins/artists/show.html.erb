@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
 
+
     <h2 class="my-5 border-bottom"><%= @artist.artist_name %> の商品一覧</h2>
 
     <div class="my-3 col-12 mx-auto" style="width: 100%;">
@@ -8,7 +9,7 @@
       <%= link_to new_admins_artist_items_path(@artist), class:"btn btn-outline-danger btn-lg float-right btn-sm" do %>
       <i class="fas fa-plus"></i> このアーティストの商品を追加する
       <% end %>
-    </div>
+    </div><h3 class="my-5 border-bottom mx-auto">商品一覧</h3>
     <table class="table col-12 mx-auto" >
       <thead class="thead-light">
         <tr>
@@ -24,7 +25,7 @@
       </thead>
       <tbody>
         <tr class="tr">
-          <% @artist.items.each do |item| %>
+          <% @trueitems.each do |item| %>
           <th scope="row">
           <%= attachment_image_tag item, :item_img, class:"card-img-top", style: "width: 100px; height: 100px; " %>
           </th>
@@ -34,13 +35,57 @@
           <td><%= item.genre.genre_name %></td>
           <td><%= item.stock %></td>
           <td><%= item.on_sale_date %></td>
-          <td><%= link_to "詳細", admins_item_path(item), class: "btn btn-danger " %></td>
+          <td><%= link_to "　　詳細　　", admins_item_path(item), class: "btn btn-danger " %>
+          </br><%= link_to "取り扱い停止", hidden_item_path(item), method: :patch, class: "btn btn-primary" , data:{confirm: "取り扱いを停止しますか？"}%>
+          </td>
         </tr>
         <% end %>
       </tbody>
     </table>
 
-    <div class="mx-auto">
+<!-- 在庫切れアイテムのまとめ -->
+
+    <h3 class="my-5 border-bottom mx-auto">取り扱い停止中商品一覧</h3>
+    <table class="table col-12 mx-auto" >
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">ジャケット</th>
+          <th scope="col">シングル/アルバム名</th>
+          <th scope="col">レーベル</th>
+          <th scope="col">値段</th>
+          <th scope="col">ジャンル</th>
+          <th scope="col">在庫</th>
+          <th scope="col">発売日</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tr">
+          <% @falseitems.each do |item| %>
+          <th scope="row">
+          <%= attachment_image_tag item, :item_img, class:"card-img-top", style: "width: 100px; height: 100px; " %>
+          </th>
+          <td><%= item.album_name %><% if item.item_show_flg == false %>
+          <div class="alert alert-danger" role="alert">
+          停止中
+          </div>
+          <% end %></td>
+          <td><%= item.label %></td>
+          <td><%= item.item_price_tax_free %></td>
+          <td><%= item.genre.genre_name %></td>
+          <td><%= item.stock %></td>
+          <td><%= item.on_sale_date %></td>
+          <td><%= link_to "　　詳細　　", admins_item_path(item), class: "btn btn-danger " %>
+          </br><%= link_to "取り扱い開始", show_item_path(item), method: :patch, class: "btn btn-info" ,data:{confirm: "取り扱いを始めますか？"}%>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+<!-- ページネイトやるときにコメントアウトはずす -->
+   <!--  <div class="mx-auto">
       <nav aria-label="... ">
         <ul class="pagination">
           <li class="page-item disabled">
@@ -59,7 +104,7 @@
           </li>
         </ul>
       </nav>
-    </div>
+    </div> -->
 
     <div class="col-12 text-center mt-3" style="margin-bottom: 50px;">
 
