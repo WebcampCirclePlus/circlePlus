@@ -71,7 +71,7 @@
 <% end %>
 <h4>配送先</h4>
 <%= form_for(@order ,url:user_orders_path,method: :post) do |f| %>
-<%= f.text_field :order_sending_postar_code, value:current_user.postal_code %>
+<%= f.text_field :order_sending_postal_code, value:current_user.postal_code %>
 <%= f.text_field :order_sending_str, value:current_user.address %>
 <%= f.submit "確定", data: {confirm: "本当に確定しますか？"} %>
 <% end %>
