@@ -3,7 +3,7 @@ before_action :authenticate_user!, only: [:create]
 
   def index
     @genres = Genre.all
-    @items = Item.page(params[:page]).reverse_order
+    @items = Item.where(item_show_flg: true).page(params[:page]).reverse_order
   end
 
   def show
@@ -12,11 +12,11 @@ before_action :authenticate_user!, only: [:create]
   end
 
   def search
-    @q = Item.ransack(params[:q])
+    @q = Item.where(item_show_flg: true).ransack(params[:q])
   end
 
   def search_result
-    @q = Item.ransack(params[:q])
+    @q = Item.where(item_show_flg: true).ransack(params[:q])
     @items = @q.result(distinct: true)
   end
 
