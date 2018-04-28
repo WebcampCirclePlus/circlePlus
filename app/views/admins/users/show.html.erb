@@ -37,7 +37,7 @@
           </div>
         <% end %>
       </th>
-      <td><p><strong>注文確定日</strong></br><%= order.created_at %></p>
+      <td><p><strong>注文確定日</strong></br><%= order.created_at.strftime('%Y/%m/%d') %></p>
           <p><strong>送付先郵便番号</strong></br><%= order.order_sending_postal_code %></p>
           <p><strong>送付先住所</strong></br><%= order.order_sending_str %></p></td>
        <td>
