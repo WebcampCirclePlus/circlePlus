@@ -11,6 +11,13 @@ before_action :authenticate_user!
     order.status = 1
     if order.save
       current_user.cart_items.each do |ci|
+        if ci.item_cart_counted >= ci.item.stock
+          flash.now[:countedupdate] = "在庫数量との関係により、カート内商品個数を修正しました。"
+        end
+        if ci.item.item_show_flg == false
+          ci.destroy
+          flash.now[:cartitemdestroy] = "取り扱いが停止された商品をカートから削除しました。"
+        end
         order_item = OrderItem.new(order_item_params)
         order_item.order_id = order.id
         order_item.item_id = ci.item_id
@@ -27,8 +34,6 @@ before_action :authenticate_user!
       render :new
     end
   end
-
-  # orderのshowを作る。
 
 	private
   def order_params

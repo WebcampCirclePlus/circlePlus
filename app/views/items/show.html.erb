@@ -41,7 +41,7 @@
 
 		   <div class="Bottom-Fixation">
 			<%= form_for(@cart_item , url:item_cart_items_path(@item), html:  {class: "float-right aaa"}) do |f|  %>
-			<%= f.number_field :item_cart_counted ,value:"1", in: 1...21, size: 20 %>点
+			<%= f.number_field :item_cart_counted ,value:"1", in: 1...501, size: 20 %>点
 				<% if user_signed_in? %><% if @item.item_show_flg == true %>
 				<%= button_tag :type => "submit", :class =>"btn btn-danger" do %>
 	  				<i class="fas fa-cart-arrow-down"></i> カートにいれる
@@ -52,7 +52,7 @@
 		</div>
 <% end %>
 </div><!-- center column col-lg-5 -->
-	
+
 <!-- right column -->
 <div class="col-lg-2 bg-white mb-5">
 	<h3 class="my-3 mx-3">DISK</h3>

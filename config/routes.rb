@@ -18,7 +18,6 @@ devise_for :users, :controllers => {
     resources :cart_items, only: [:update, :destroy]
     resources :orders, only: [:new, :create, :edit, :update]
   end
-  resources :artists, only: [:create]
   resources :genres, only: [:show]
   resources :items, only: [:index, :show]  do
       resources :cart_items, only: [:create]

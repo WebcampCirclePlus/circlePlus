@@ -73,7 +73,7 @@
 		<div class="card">
 		  <div class="card-body text-center">
 		  	<a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= order.id %>">
-				      <p class="w-25 float-left">注文番号：<%= @sum %></p><p class="w-75 float-right">　配送状況：<%= order.status %></p></a>
+				      <p class="w-25 float-left">注文番号：<%= order.id %>-<%= order.user_id%><%= order.order_sending_id %></p><p class="w-75 float-right">　配送状況：<%= order.status %></p></a>
 		  </div>
 		 	<div id="collapse<%= order.id %>" class="card-collapse collapse in">
 				<div class="card-body"><% order.order_items.each do |oi| %>
@@ -81,8 +81,6 @@
 				<% @total += oi.item_order_counted * oi.item_order_price %>
 			<% end %>
 			<p>合計：<%= @total %>円</p></br>
-				<% @sum += 1 %>
-
 				</div>
 			</div>
 	</div><!-- /list-group -->

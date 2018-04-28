@@ -18,9 +18,9 @@
   <h4><strong>カートに商品を追加してください。</strong></h4>
 </div>
 <% else %>
+<h2 class="text-center text-danger"><%= flash[:cartitemdestroy] %></br><%= flash[:countedupdate] %></h2>
 
-
-<div class="col-10">
+<div class="col-11 mx-auto">
 	<!-- エラーメッセージ -->
 	<% if @order.errors.any? %>
 	<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -38,9 +38,11 @@
     <% end %>
     <% end %>
 
-<div class="card pb-3" style="width: 90%;">
+<div class="card pb-3 mx-auto" style="width: 90%;">
   <div class="card-body">
-    <h5 class="card-title text-center">注文内容</h5>
+    <h5 class="card-title text-center">注文内容
+      <strong><%= flash[:cartitemdestroy] %></strong>
+    </h5>
     <div class="card mr-2 ml-2" style="width: 95%;">
   <ul class="list-group list-group-flush">
     <% current_user.cart_items.each do |ci| %>
