@@ -35,8 +35,6 @@
 <%= f.submit do %><i class="fas fa-plus"></i> Discを新しく追加する <% end %>
 <% end %></br>
 
-
-
  <table class="table">
    <thead class="thead-dark">
      <tr>
@@ -69,7 +67,9 @@
     </tr>
   </tbody>
 </table>
-
+<%= link_to top_path, class: "btn btn-warning white-text float-right" do %>
+        <i class="fas fa-plus"></i> Disc追加
+        <% end %>
 <h3 class="my-5">含まれているdisc一覧</h3>
 
 <table class="table">

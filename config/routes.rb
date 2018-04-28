@@ -37,6 +37,7 @@ patch '/users/:id/destroy'=> 'users#destroy_update', as: 'user_destroy'
  get '/admins/' => 'admins#top'
 
  namespace :admins do
+
    resources :orders, only: [:index, :update]
    resources :artists, only: [:new, :create]
    resources :users, only: [:index, :edit, :update, :show]
