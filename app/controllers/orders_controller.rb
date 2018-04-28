@@ -12,11 +12,19 @@ before_action :authenticate_user!
     if order.save
       current_user.cart_items.each do |ci|
         if ci.item_cart_counted >= ci.item.stock
+          sum = cart_item.item.stock
+          cart_item.update(item_cart_counted: sum)
           flash.now[:countedupdate] = "在庫数量との関係により、カート内商品個数を修正しました。"
         end
         if ci.item.item_show_flg == false
           ci.destroy
-          flash.now[:cartitemdestroy] = "取り扱いが停止された商品をカートから削除しました。"
+          flash[:cartitemdestroy] = "取り扱いが停止された商品をカートから削除しました。"
+          redirect_to cart_path
+        end
+         if cart_item.item.stock == 0
+        cart_item.destroy
+        flash[:counteddestroy] = "在庫数が0の商品をカートから削除しました。"
+        redirect_to cart_path
         end
         order_item = OrderItem.new(order_item_params)
         order_item.order_id = order.id

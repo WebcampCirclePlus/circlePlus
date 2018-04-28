@@ -5,7 +5,7 @@ class CartItemsController < ApplicationController
   	@cart_items.each do |cart_item|
   		@price = cart_item.item.item_price_tax_free * cart_item.item_cart_counted
   		@sum += @price
-      if cart_item.item_cart_counted > cart_item.item.stock
+      if cart_item.item_cart_counted > cart_item.item.stock && cart_item.item.stock != 0
         sum = cart_item.item.stock
         cart_item.update(item_cart_counted: sum)
         flash.now[:countupdate] = '在庫数量との関係により、カート内商品個数を修正しました。'
@@ -13,6 +13,11 @@ class CartItemsController < ApplicationController
       if cart_item.item.item_show_flg == false
         cart_item.destroy
         flash.now[:cartitemdestroy] = "取り扱いが停止された商品をカートから削除しました。"
+      end
+      if cart_item.item.stock == 0
+        cart_item.destroy
+        flash[:counteddestroy] = "在庫数が0の商品をカートから削除しました。"
+        redirect_to cart_path
       end
   	end
   end

@@ -37,7 +37,7 @@
 	</div>
 
 	<% end %>
-	<% if @item.item_show_flg == true %>
+	<% if @item.item_show_flg == true && @item.stock != 0 %>
 
 		   <div class="Bottom-Fixation">
 			<%= form_for(@cart_item , url:item_cart_items_path(@item), html:  {class: "float-right aaa"}) do |f|  %>
