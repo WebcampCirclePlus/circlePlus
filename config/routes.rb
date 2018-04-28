@@ -37,13 +37,12 @@ patch '/users/:id/destroy'=> 'users#destroy_update', as: 'user_destroy'
  get '/admins/' => 'admins#top'
 
  namespace :admins do
-   get 'discs/edit'
-   get 'items/edit'
+
    resources :orders, only: [:index, :update]
    resources :artists, only: [:new, :create]
    resources :users, only: [:index, :edit, :update, :show]
    resources :items, only: [:show, :create, :edit, :update] do
-     resources :discs, only: [:new, :show, :edit, :update, :destroy] do
+     resources :discs, only: [:create, :edit, :update, :destroy] do
        resources :songs, only: [:create, :destroy, :update]
      end
    end
@@ -56,7 +55,9 @@ patch '/users/:id/destroy'=> 'users#destroy_update', as: 'user_destroy'
  get 'admins/stock'=> 'admins#stock', as: 'admins_stock'
  get 'admins/status'=> 'admins#status', as: 'admins_status'
  patch 'admins/items/:item_id/hidden' => 'admins/items#hidden', as: 'hidden_item'
+ patch 'admins/items/:item_id/itemoshow' => 'admins/items#itemshow', as: 'show_item'
  patch 'admins/users/:id/destroy'=> 'admins/users#destroy_update', as: 'admins_destroy_user'
+ patch 'admins/items/:id/manage' => 'admins/items#manage_stock' , as: 'stock'
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 
