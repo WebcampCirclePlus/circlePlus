@@ -37,6 +37,7 @@ before_action :authenticate_admin!
   def hidden
     item = Item.find(params[:item_id])
     item.update(item_show_flg: 0)
+    # CartItem.destroy()
     redirect_to admins_artist_path(item.artist.id)
   end
 

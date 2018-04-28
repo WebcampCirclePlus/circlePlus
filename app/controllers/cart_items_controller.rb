@@ -5,33 +5,31 @@ class CartItemsController < ApplicationController
   	@cart_items.each do |cart_item|
   		@price = cart_item.item.item_price_tax_free * cart_item.item_cart_counted
   		@sum += @price
+      if cart_item.item_cart_counted > cart_item.item.stock
+        sum = cart_item.item.stock
+        cart_item.update(item_cart_counted: sum)
+      end
   	end
   end
 
   def create
     item = Item.find(params[:item_id])
-    #if cart_items.include?(item.id)
-
-    #  if 
-    cart_item = CartItem.new(ci_update_params)
-    if item.stock >= cart_item.item_cart_counted
-      @cart_items = current_user.cart_items
-      catch :not_prime do
-        #@cart_items.each do |cart_item|
-        #  if cart_item.id == cart_item.id
-        #    throw :not_prime
-        #  end
-        #end
-        cart_item.user_id = current_user.id
-        cart_item.item_id = item.id
-        if cart_item.save
-          redirect_to cart_path
-        else
-          redirect_to item_path(item)
-        end
-      end
+    user = current_user
+    cart_items = current_user.cart_items.where(item_id: item.id)
+    # binding.pry
+    if cart_items.count >= 1
+      cart_item = CartItem.find_by(item_id: item.id,user_id: user.id)
+      cart_item.update(cart_item_params)
+      redirect_to cart_path
+    else
+      cart_item = CartItem.new(ci_update_params)
+      cart_item.user_id = current_user.id
+      cart_item.item_id = item.id
+      cart_item.save(ci_update_params)
+      redirect_to cart_path
+       # flash[:notice]メッセージを付ける予定
     end
-    end
+  end
 
   def update
     cart_item = CartItem.find(params[:id])
@@ -51,9 +49,9 @@ class CartItemsController < ApplicationController
   private
   def cart_item_params
    params.require(:cart_item).permit(:item_cart_counted)
- end
+   end
   def ci_update_params
-    params.require(:cart_item).permit(:user_id, :item_id, :item_cart_counted)
+   params.require(:cart_item).permit(:user_id, :item_id, :item_cart_counted)
   end
 
 end
