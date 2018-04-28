@@ -44,7 +44,7 @@
 
 
      <%= form_for(cart_item, url: user_cart_item_path(current_user,cart_item), method: :patch) do |f| %>
-     <%= f.number_field :item_cart_counted , in: 1...20 %>
+     <%= f.number_field :item_cart_counted , in: 1...21 %>
       <%= button_tag :type => "submit", :class =>"btn btn-danger" do %>
         <i class="fas fa-sync"></i>
       <% end %>
