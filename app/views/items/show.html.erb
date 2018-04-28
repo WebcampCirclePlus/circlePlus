@@ -3,7 +3,11 @@
 
 <div class="container">
 	<div class="row">
-
+		<% if @item.item_show_flg == false %>
+<div class="alert alert-danger mx-auto" role="alert">
+  <strong>申し訳ございません。このアイテムは現在、取り扱っておりません。</strong>
+</div>
+<% end %>
 		<div class="col-lg-10 mx-auto">
 			<div class="container">
 			<div class = "row">
@@ -33,8 +37,10 @@
 					<%= form_for(@cart_item , url:item_cart_items_path(@item), html:  {class: "float-right"}) do |f|  %>
 					<%= f.number_field :item_cart_counted ,value:"1", in: 1...21, size: 20 %>点
 					<% if user_signed_in? %>
+					<% if @item.item_show_flg == true %>
 						<%= button_tag :type => "submit", :class =>"btn btn-danger my-5" do %>
 	  					<i class="fas fa-cart-arrow-down"></i> カートにいれる
+						<% end %>
 						<% end %>
 					<% end %>
 
