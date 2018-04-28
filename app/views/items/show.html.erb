@@ -2,88 +2,96 @@
 			<p>Find me in app/views/items/show.html.erb</p>
 
 <div class="container">
-	<div class="row">
-		<% if @item.item_show_flg == false %>
-<div class="alert alert-danger mx-auto" role="alert">
-  <strong>申し訳ございません。このアイテムは現在、取り扱っておりません。</strong>
+
+
+<div class="row">
+	<!-- left　column -->
+<div class="col-lg-5 bg-white mb-5">
+	<%= attachment_image_tag @item, :item_img, class:"", style: "width: 100%; height: 100%;" %>
 </div>
-<% end %>
-		<div class="col-lg-10 mx-auto">
-			<div class="container">
-			<div class = "row">
-				<!-- 左 -->
-				<div class="col-lg-6 mb-5">
-					<%= attachment_image_tag @item, :item_img, class:"", style: "width: 100%; height: 100%;" %>
-				</div>
-				<!-- 右 -->
-				<div class="col-lg-6 bg-white px-3 mb-5">
+				
+	<!-- center column -->
+<div class="col-lg-5 bg-white px-3 mb-5">
+		<h2 class="my-3"><%= @item.album_name %></h2>
+		<p class="mb-2">アーティスト: <%= @item.artist.artist_name %></p>
+		<p class="mb-1">レーベル: <%= @item.label %></p>
+		<p class="mb-2">ジャンル: <%= @item.genre.genre_name %></p>
+		<p class="d-inline">価格</p>
+		<h3  class="mb-3">¥ <%= @item.item_price_tax_free %></h3>
+		<p class="mb-3">在庫: <%= @item.stock %>点</p>
+		   <% if @item.stock == 0 %>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  		<strong>在庫が切れています。</strong></br>申し訳ございませんが、入荷までお待ちください。
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+		   <% end %>
+		   <div class="Bottom-Fixation">
+			<%= form_for(@cart_item , url:item_cart_items_path(@item), html:  {class: "float-right aaa"}) do |f|  %>
+			<%= f.number_field :item_cart_counted ,value:"1", in: 1...21, size: 20 %>点
+				<% if user_signed_in? %><% if @item.item_show_flg == true %>
+				<%= button_tag :type => "submit", :class =>"btn btn-danger" do %>
+	  				<i class="fas fa-cart-arrow-down"></i> カートにいれる
+				<% end %><% end %>
+			<% end %>
+		<% end %>
 
-					<h2 class="my-3"><%= @item.album_name %></h2>
-					<p class="mb-2">アーティスト: <%= @item.artist.artist_name %></p>
-					<p class="mb-1">レーベル: <%= @item.label %></p>
-					<p class="mb-2">ジャンル: <%= @item.genre.genre_name %></p>
-					<p class="d-inline">価格</p>
-					<h3  class="mb-3">¥ <%= @item.item_price_tax_free %></h3>
-
-					<p class="mb-3">在庫: <%= @item.stock %>点</p>
-					<% if @item.stock == 0 %>
-					<div class="alert alert-warning alert-dismissible fade show" role="alert">
-						<strong>在庫が切れています。</strong></br>申し訳ございませんが、入荷までお待ちください。
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<% end %>
-					<%= form_for(@cart_item , url:item_cart_items_path(@item), html:  {class: "float-right"}) do |f|  %>
-					<%= f.number_field :item_cart_counted ,value:"1", in: 1...21, size: 20 %>点
-					<% if user_signed_in? %>
-					<!-- ここは複数条件を使えばもう少しきれいに書けそう。余裕があれば書き換えます。 -->
-					<% if @item.item_show_flg == true %>
-						<%= button_tag :type => "submit", :class =>"btn btn-danger my-5" do %>
-	  					<i class="fas fa-cart-arrow-down"></i> カートにいれる
-						<% end %>
-						<% end %>
-					<% end %>
-
-					<% end %>
-
-				</div>
-
-			</div>
-			</div>
 		</div>
 
+</div><!-- center column col-lg-5 -->
+	
+<!-- right column -->
+<div class="col-lg-2 bg-white mb-5">
+	<h3 class="my-3 mx-3">DISK</h3>
+<!-- Button trigger modal -->
+	<% @n = 1%>
 
-		<div class="w-100 bg-white py-3 px-5 mb-5">
-<h4 class="text-center">商品内容</h4>
-<ul class="nav nav-tabs" id="myTab" role="tablist"><% @n = 1%>
 	<% @item.discs.each do |id| %>
-  <li class="nav-item">
-    <a class="nav-link <% if @n == 1 %>active<% end %>" id="home-tab" data-toggle="tab" href="#home<%= @n %>" role="tab" aria-controls="home" aria-selected="true">No.<%= @n %></a>
-  </li><% @n += 1 %><% end %>
-</ul>
+	<button type="button" class="btn btn-outline-warning w-100 mb-3" data-toggle="modal" data-target="#exampleModalLong<%= @n %>">
+  	No.<%= @n %>
+	</button>
+	<% @n += 1 %><% end %>
 
-<div class="tab-content" id="myTabContent"><% @n2 = 1%>
-	<% @item.discs.each do |ud| %>
-  			<div class="tab-pane fade <% if @n2 == 1 %>show active<% end %>" id="home<%= @n2 %>" role="tabpanel" aria-labelledby="home-tab">商品型：<%= ud.disc_type %></br>
+<!-- Modal -->
+<% @n2 = 1%>
+<% @item.discs.each do |ud| %>
+<div class="modal fade" id="exampleModalLong<%= @n2 %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">
+        	商品型：<%= ud.disc_type %>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 				<% @no = 1 %>
 				<% ud.songs.each do |is| %>
 				No.<%= @no %>：<%= is.song_name%><br><% @no += 1 %>
 				<% end %>
 				<% @n2 += 1 %>
-			</div>
-<% end %>
-</div>
-</div>
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div><!-- /modal-content -->
+  </div><!-- /div class="modal-dialog" role="document" -->
+
+</div>
+<% end %>
+</div><!-- right column col-lg-2 -->
 
 
 <%= link_to :back, class: "btn btn-success white-text col-lg-6 mx-auto mb-5" do %>
                     <i class="fas fa-chevron-left"></i> 前のページに戻る
                     <% end %>
 
-	</div>
-</div>
 
-<div class="aaaaa"></div>
+</div><!-- /row -->
+</div><!-- /container -->
 
