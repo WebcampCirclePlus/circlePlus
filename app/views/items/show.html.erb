@@ -28,11 +28,11 @@
 					<p class="mb-3">在庫: <%= @item.stock %>点</p>
 					<% if @item.stock == 0 %>
 					<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>在庫が切れています。</strong></br>申し訳ございませんが、入荷までお待ちください。
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
+						<strong>在庫が切れています。</strong></br>申し訳ございませんが、入荷までお待ちください。
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
 					<% end %>
 					<%= form_for(@cart_item , url:item_cart_items_path(@item), html:  {class: "float-right"}) do |f|  %>
 					<%= f.number_field :item_cart_counted ,value:"1", in: 1...21, size: 20 %>点
@@ -56,8 +56,6 @@
 
 		<div class="w-100 bg-white py-3 px-5 mb-5">
 <h4 class="text-center">商品内容</h4>
-
-
 <ul class="nav nav-tabs" id="myTab" role="tablist"><% @n = 1%>
 	<% @item.discs.each do |id| %>
   <li class="nav-item">
@@ -71,15 +69,13 @@
 				<% @no = 1 %>
 				<% ud.songs.each do |is| %>
 				No.<%= @no %>：<%= is.song_name%><br><% @no += 1 %>
-				<% end %><% @n2 += 1 %>
+				<% end %>
+				<% @n2 += 1 %>
 			</div>
-
 <% end %>
 </div>
-
-
-
 </div>
+
 
 
 <%= link_to :back, class: "btn btn-success white-text col-lg-6 mx-auto mb-5" do %>
@@ -88,3 +84,6 @@
 
 	</div>
 </div>
+
+<div class="aaaaa"></div>
+
