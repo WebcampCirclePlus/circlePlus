@@ -18,6 +18,7 @@
 		<p class="mb-2">ジャンル: <%= @item.genre.genre_name %></p>
 		<p class="d-inline">価格</p>
 		<h3  class="mb-3">¥ <%= @item.item_price_tax_free %></h3>
+		<% if @item.item_show_flg == true %>
 		<p class="mb-3">在庫: <%= @item.stock %>点</p>
 		   <% if @item.stock == 0 %>
 		<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -27,14 +28,17 @@
   		</button>
 	</div>
 		   <% end %>
-<<<<<<< HEAD
-=======
+
+		   <% end %>
+
 		   <% if @item.item_show_flg == false %>
 		<div class="alert alert-danger" role="alert">
   		<strong>大変申し訳ございません。</strong>現在取り扱いを停止しています。</br>
 	</div>
-		   <% end %>
->>>>>>> cd30ead3e03993060f67f925e7dde56304897325
+
+	<% end %>
+	<% if @item.item_show_flg == true %>
+
 		   <div class="Bottom-Fixation">
 			<%= form_for(@cart_item , url:item_cart_items_path(@item), html:  {class: "float-right aaa"}) do |f|  %>
 			<%= f.number_field :item_cart_counted ,value:"1", in: 1...21, size: 20 %>点
@@ -46,7 +50,7 @@
 		<% end %>
 
 		</div>
-
+<% end %>
 </div><!-- center column col-lg-5 -->
 	
 <!-- right column -->
