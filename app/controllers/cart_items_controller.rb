@@ -12,7 +12,8 @@ class CartItemsController < ApplicationController
       end
       if cart_item.item.item_show_flg == false
         cart_item.destroy
-        flash.now[:cartitemdestroy] = "取り扱いが停止された商品をカートから削除しました。"
+        flash[:cartitemdestroy] = "取り扱いが停止された商品をカートから削除しました。"
+        redirect_to cart_path
       end
       if cart_item.item.stock == 0
         cart_item.destroy
