@@ -12,8 +12,8 @@ before_action :authenticate_user!
     if order.save
       current_user.cart_items.each do |ci|
         if ci.item_cart_counted >= ci.item.stock
-          sum = cart_item.item.stock
-          cart_item.update(item_cart_counted: sum)
+          sum = ci.item.stock
+          ci.update(item_cart_counted: sum)
           flash.now[:countedupdate] = "在庫数量との関係により、カート内商品個数を修正しました。"
         end
         if ci.item.item_show_flg == false
@@ -22,7 +22,7 @@ before_action :authenticate_user!
           redirect_to cart_path
         end
          if ci.item.stock == 0
-        cart_item.destroy
+        ci.destroy
         flash[:counteddestroy] = "在庫数が0の商品をカートから削除しました。"
         redirect_to cart_path
         end
