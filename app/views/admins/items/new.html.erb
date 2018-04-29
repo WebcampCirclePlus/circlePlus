@@ -6,7 +6,7 @@
 		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 			<h1><%= @artist.artist_name %>の商品を追加</h1>
-
+<h3 class="text-danger text-center"><%= notice %></h3>
 			<%= form_for(@item, url: admins_items_path, method: :post) do |f| %>
 				<table>
 					<tr>
@@ -45,22 +45,25 @@
 					<tr>
 						<td>発売日</td>
 						<td><%= f.text_field :on_sale_date %></td>
-						<td></td>
+						<td><%= f.submit '商品を新規追加する', class: "btn btn-danger" %></td>
 					</tr>
 					<tr>
 						<td>アーティストid</td>
 						<td><%= f.text_field :artist_id, value: @artist.id %></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td><%= f.submit '商品を新規追加する', class: "btn btn-danger" %></td>
+						<td><%= link_to '　　　 戻る 　　　',:back , class: "btn btn-info px-3" %></td>
 					</tr>
 				</table>
 			<% end %>
 		</div>
-		
+		<div class="alert alert-success my-3 col-8 mx-auto" role="alert">
+  <h4 class="alert-heading text-center"><strong>ジャンルについて</strong></h4>
+  <p class="text-center">以下に従って数字を入力してください。</p>
+  <hr>
+  <p class="mb-0 col-4 float-left">1.j-POP</br>2.J-ROCK</br>3.サウンドトラック</br>4.洋楽</p><p class="mb-0 col-4 float-right">5.EDM</br>6.ジャズ</br>8.クラック</br>9.アニメ/キッズ/ゲーム</br></p>
+</div>
+
 		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+
 	</div>
 </div>
+

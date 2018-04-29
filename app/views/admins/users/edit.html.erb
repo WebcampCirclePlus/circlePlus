@@ -43,14 +43,15 @@
    </tr>
    <tr>
      <td></td>
-     <td></td>
      <td><%= f.submit "Update User" %></td>
+     <td></td>
    </tr>
  </table>
  <% end %>
- <%= link_to admins_destroy_user_path(@user), method: :patch , deta: {confirm: "本当にこのユーザーを削除しますか？\n一度削除したユーザーは元に戻せません。"} , class: "btn btn-danger white-text mt-3" do %>
+
+ <%= link_to admins_destroy_user_path(@user), method: :patch , data: {confirm: "本当にこのユーザーを削除しますか？\n一度削除したユーザーは元に戻せません。"} , class: "btn btn-danger white-text my-3 w-50" do %>
   このユーザーを削除する<i class="far fa-trash-alt"></i>
- <% end %>
+ <% end %> </br><%= link_to '　 　　　　戻る 　   　　　',admins_users_path , class: "btn btn-info px-4" %>
 </div>
 
 
