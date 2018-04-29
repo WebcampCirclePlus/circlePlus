@@ -1,64 +1,224 @@
 <h1>Orders#index</h1>
 <p>Find me in app/views/orders/index.html.erb</p>
+<div class="alert alert-info text-center" role="alert">
+<h4>配送ステータスは以下の順に更新されます。</br><strong>準備中→発送準備中→発送完了</strong></h4>
+</div>
 
-<h4>配送ステータスは準備中→発送準備中→発送完了の順に更新されます。</h4></br>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">準備中</a>
+  </li><!-- 準備中 -->
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">発送中</a>
+  </li><!-- 発送中 -->
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">発送完了</a>
+  </li><!-- 発送完了 -->
+  <li class="nav-item">
+    <a class="nav-link" id="stock-tab" data-toggle="tab" href="#stock" role="tab" aria-controls="contact" aria-selected="false">在庫僅か</a>
+  </li>  <!-- 在庫管理-->
+</ul><!-- タイトル -->
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  		<% @orders1.each do |o1| %>
+  	<div class="card mx-2 my-4 text-center">
+      <div class="card-body bg-white">
+  		<h5 class="card-title1">
+<% @total = 0 %><strong>注文番号：</strong><%= o1.id %>-<%= o1.user_id%><%= o1.order_sending_id %></br>
+ユーザー：<%= link_to admins_user_path(o1.user) do %><%= o1.user.user_name %><% end %>
+		</h5><!-- card-title1 -->
+		<h6 class="card-subtitle mb-2 text-muted">
+氏名：<%= o1.user.name_kanji %>(<%= o1.user.name_kana %>)</br>
+送付先：<%= o1.user.address %></h6><!-- card-subtitle -->
+<h6 class="card-text"><strong>注文内容</strong></h6>
+<p class="card-text2 bg-black">
+	<% o1.order_items.each do |o_oi| %>
 
-<!-- 準備中（受付中） -->
-<% @orders1.each do |o| %>
-<% @total = 0 %><%= o.id %>
-ステータス：<%= o.status %></br>
-注文ユーザー：<%= o.user.user_name %></br>
-氏名：<%= o.user.name_kanji %>(<%= o.user.name_kana %>)</br>
-送付先：<%= o.user.address %></br>
+アルバム名：<%= o_oi.item.album_name %></br>
+単価：<%= o_oi.item_order_price %>　購入個数：<%= o_oi.item_order_counted %>  
+小計：<%= o_oi.item_order_price * o_oi.item_order_counted %></br>
+<% @total += o_oi.item_order_price * o_oi.item_order_counted %>
+
+<% end %><!-- order.order_item each -->
+</p><!-- card-text2 -->
+合計：<%= @total %></br></br>
+<div class="alert alert-danger col-4 mx-auto" role="alert">ステータス：<%= o1.status %></div>
+<%= link_to admins_order_path(o1), method: :patch, data: {confirm: "発送中に更新しますか？"},class:"btn btn-danger text-white mx-auto" do %>更新する <i class="fas fa-check-square"></i><% end %>
+
+
+</div><!-- card-body-->
+</div><!-- card-->
+<% end %><!-- order each-->
+</div><!-- 準備中 -->
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+ <% @orders2.each do |o2| %>
+  	<div class="card mx-2 my-4 text-center">
+      <div class="card-body bg-white">
+  		<h5 class="card-title1">
+<% @total = 0 %><strong>注文番号：</strong><%= o2.id %>-<%= o2.user_id%><%= o2.order_sending_id %></br>
+ユーザー：<%= link_to admins_user_path(o2.user) do %><%= o2.user.user_name %><% end %>
+		</h5><!-- card-title1 -->
+		<h6 class="card-subtitle mb-2 text-muted">
+氏名：<%= o2.user.name_kanji %>(<%= o2.user.name_kana %>)</br>
+送付先：<%= o2.user.address %></h6><!-- card-subtitle -->
+<h6 class="card-text"><strong>注文内容</strong></h6>
+<p class="card-text2 bg-black">
+	<% o2.order_items.each do |o_oi| %>
+
+アルバム名：<%= o_oi.item.album_name %></br>
+単価：<%= o_oi.item_order_price %>　購入個数：<%= o_oi.item_order_counted %>  
+小計：<%= o_oi.item_order_price * o_oi.item_order_counted %></br>
+<% @total += o_oi.item_order_price * o_oi.item_order_counted %>
+
+<% end %><!-- order.order_item each -->
+</p><!-- card-text2 -->
+合計：￥<%= @total %></br></br>
+<div class="alert alert-warning col-4 mx-auto" role="alert">ステータス：<%= o2.status %></div>
+<%= link_to admins_order_path(o2), method: :patch, data: {confirm: "発送完了に更新しますか？"},class:"btn btn-warning text-white mx-auto" do %>更新する <i class="fas fa-check-square"></i><% end %>
+
+
+</div><!-- card-body-->
+</div><!-- card-->
+<% end %><!-- order each-->
+  </div><!-- 発送中 -->
+
+
+
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+  <% @orders3.each do |o3| %>
+  	<div class="card mx-2 my-4 text-center">
+      <div class="card-body bg-white">
+  		<h5 class="card-title1">
+<% @total = 0 %><strong>注文番号：</strong><%= o3.id %>-<%= o3.user_id%><%= o3.order_sending_id %></br>
+ユーザー：<%= link_to admins_user_path(o3.user) do %><%= o3.user.user_name %><% end %>
+		</h5><!-- card-title1 -->
+		<h6 class="card-subtitle mb-2 text-muted">
+氏名：<%= o3.user.name_kanji %>(<%= o3.user.name_kana %>)</br>
+送付先：<%= o3.user.address %></h6><!-- card-subtitle -->
+<h6 class="card-text"><strong>注文内容</strong></h6>
+<p class="card-text2 bg-black">
+	<% o3.order_items.each do |o_oi| %>
+
+アルバム名：<%= o_oi.item.album_name %></br>
+単価：<%= o_oi.item_order_price %>　購入個数：<%= o_oi.item_order_counted %>  
+小計：<%= o_oi.item_order_price * o_oi.item_order_counted %></br>
+<% @total += o_oi.item_order_price * o_oi.item_order_counted %>
+
+<% end %><!-- order.order_item each -->
+</p><!-- card-text2 -->
+合計：￥<%= @total %></br></br>
+<div class="alert alert-primary col-4 mx-auto" role="alert">ステータス：<%= o3.status %></div>
+</div><!-- card-body-->
+</div><!-- card-->
+<% end %><!-- order each-->
+  </div><!-- 発送完了-->
+   <div class="tab-pane fade" id="stock" role="tabpanel" aria-labelledby="contact-tab">
+<% @items.each do |i| %>
+  	<div class="card mx-4 my-4">
+      <div class="card-body bg-white text-center">
+  		<h5 class="card-title1">
+<strong></strong><%= link_to admins_item_path(i) do %><%= i.album_name %><% end %></h5><!-- card-title1 -->
+		<h6 class="card-subtitle mb-2 text-muted">
+発売日：<%= i.on_sale_date %></br>
+単価：<%= i.item_price_tax_free %></h6><!-- card-subtitle -->
+<h6 class="card-text"><strong>現在の在庫数：<%= i.stock %></strong></h6>
+<p class="card-text2 bg-black">
+	<%= form_for(i, url:stock_path(i)) do |f| %>
+<%= f.number_field :stock ,in: 1..5001 %></br>
+<%= f.submit "在庫数を更新する"  , class:"btn btn-primary text-white mx-auto my-2"%>
+<% end %><!-- f.submit-->
+	<%= link_to "取り扱いをやめる" , hidden_item_path(i) ,method: :patch, data: {confirm: "アイテムの取り扱いを停止します"} , class:"btn btn-danger text-white mx-auto" %></p><!-- card-text2 -->
+</div><!-- card-body-->
+</div><!-- card-->
+
+
+
+<% end %><!-- each文-->
+
+  </div><!-- 在庫管理 -->
+</div><!-- 本文 -->
+
+
+
+
+
+<!-- 元のコード -->
+
+</br></br><h4>元コード</h4>
+
+<!-- 準備中（受付中）の注文を表示する機能 -->
+<% @orders1.each do |o1| %>
+<% @total = 0 %>注文番号：<%= o1.id %>-<%= o1.user_id%><%= o1.order_sending_id %></br>
+注文ユーザー：<%= link_to admins_user_path(o1.user) do %><%= o1.user.user_name %><% end %></br>
+氏名：<%= o1.user.name_kanji %>(<%= o1.user.name_kana %>)</br>
+送付先：<%= o1.user.address %></br>
 
 注文内容</br>
-<% o.order_items.each do |o_oi| %>
+<% o1.order_items.each do |o_oi| %>
 アルバム名：<%= o_oi.item.album_name %></br>
-アーティスト名：<%= o_oi.item.artist.artist_name %></br>
 単価：<%= o_oi.item_order_price %>　購入個数：<%= o_oi.item_order_counted %>  
 小計：<%= o_oi.item_order_price * o_oi.item_order_counted %>
 <% @total += o_oi.item_order_price * o_oi.item_order_counted %>
-<% end %>
+<% end %><!-- order.order_item each　-->
 合計：<%= @total %></br>
-<%= link_to "配送ステータス変更",admins_order_path(o), method: :patch, data: {confirm: "配送ステータスを変更しますか？"} %></br></br>
-<% end %></br></br>
+ステータス：<%= o1.status %></br>
+<%= link_to "更新する",admins_order_path(o1), method: :patch, data: {confirm: "発送中に更新しますか？"} %></br></br>
+<% end %><!-- order each-->
+</br></br>
 
-<!-- 発想準備中 -->
-<% @orders2.each do |o| %>
-<% @total = 0 %><%= o.id %>
-ステータス：<%= o.status %></br>
-注文ユーザー：<%= o.user.user_name %></br>
-氏名：<%= o.user.name_kanji %>(<%= o.user.name_kana %>)</br>
-送付先：<%= o.user.address %></br>
+
+<!-- 発想準備中の注文を表示する機能 -->
+<% @orders2.each do |o2| %>
+<% @total = 0 %>注文番号：<%= o2.id %>-<%= o2.user_id%><%= o2.order_sending_id %></br>
+注文ユーザー：<%= link_to admins_user_path(o2.user) do %><%= o2.user.user_name %><% end %></br>
+氏名：<%= o2.user.name_kanji %>(<%= o2.user.name_kana %>)</br>
+送付先：<%= o2.user.address %></br>
 
 注文内容</br>
-<% o.order_items.each do |o_oi| %>
+<% o2.order_items.each do |o_oi| %>
 アルバム名：<%= o_oi.item.album_name %></br>
-アーティスト名：<%= o_oi.item.artist.artist_name %></br>
 単価：<%= o_oi.item_order_price %>　購入個数：<%= o_oi.item_order_counted %>  
 小計：<%= o_oi.item_order_price * o_oi.item_order_counted %>
 <% @total += o_oi.item_order_price * o_oi.item_order_counted %>
-<% end %>
+<% end %><!-- order.order_item each　-->
 合計：<%= @total %></br>
-<%= link_to "配送ステータス変更",admins_order_path(o), method: :patch, data: {confirm: "配送ステータスを変更しますか？"} %></br></br>
-<% end %></br></br>
+ステータス：<%= o2.status %></br>
+<%= link_to "更新する",admins_order_path(o2), method: :patch, data: {confirm: "発送完了に更新しますか？"} %></br></br>
+<% end %><!-- order each　-->
+</br></br>
 
-<!-- 発送完了 -->
-<% @orders3.each do |o| %>
-<% @total = 0 %><%= o.id %>
-ステータス：<%= o.status %></br>
-注文ユーザー：<%= o.user.user_name %></br>
-氏名：<%= o.user.name_kanji %>(<%= o.user.name_kana %>)</br>
-送付先：<%= o.user.address %></br>
+
+<!-- 発送完了の注文を表示する機能 -->
+<% @orders3.each do |o3| %>
+<% @total = 0 %>注文番号：<%= o3.id %>-<%= o3.user_id%><%= o3.order_sending_id %></br>
+注文ユーザー：<%= link_to admins_user_path(o3.user) do %><%= o3.user.user_name %><% end %></br>
+氏名：<%= o3.user.name_kanji %>(<%= o3.user.name_kana %>)</br>
+送付先：<%= o3.user.address %></br>
 
 注文内容</br>
-<% o.order_items.each do |o_oi| %>
+<% o3.order_items.each do |o_oi| %>
 アルバム名：<%= o_oi.item.album_name %></br>
-アーティスト名：<%= o_oi.item.artist.artist_name %></br>
 単価：<%= o_oi.item_order_price %>　購入個数：<%= o_oi.item_order_counted %>  
 小計：<%= o_oi.item_order_price * o_oi.item_order_counted %>
 <% @total += o_oi.item_order_price * o_oi.item_order_counted %>
-<% end %>
+<% end %><!-- order.order_item each　-->
 合計：<%= @total %></br>
-<%= link_to "配送ステータス変更",admins_order_path(o), method: :patch, data: {confirm: "配送ステータスを変更しますか？"} %></br></br>
-<% end %></br></br>
+ステータス：<%= o3.status %></br>
+</br></br>
+<% end %><!-- order each　-->
+</br></br>
+
+
+<!-- 在庫が50以下の商品を表示し、在庫数を編集する機能 -->
+<% @items.each do |i| %>
+アルバム名：
+<%= link_to admins_item_path(i) do %><%= i.album_name %><% end %></br>
+発売日：<%= i.on_sale_date %></br>
+単価：<%= i.item_price_tax_free %></br>
+現在の在庫数：<%= i.stock %></br>
+<%= form_for(i, url:stock_path(i)) do |f| %>
+<%= f.number_field :stock ,in: 1..5001 ,size:10 %></br>
+<%= f.submit "在庫数を更新する" %>
+<% end %><!-- f.submit -->
+<%= link_to "取り扱いをやめる" , hidden_item_path(i) ,method: :patch, data: {confirm: "アイテムの取り扱いを停止します"} %></br></br>
+<% end %><!-- each文-->

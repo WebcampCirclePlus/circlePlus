@@ -1,15 +1,23 @@
-<div class="container">
-	<div class="row">
-		<h1>Admins::Items#edit</h1>
+<h1>Admins::Items#edit</h1>
 		<p>Find me in app/views/admins/items/edit.html.erb</p>
 
-	    <div class="my-3 col-12 mx-auto" style="width: 100%;">
+<div class="container">
+	<div class="row">
+	    <div class="my-3 col-10 mx-auto" style="width: 100%;">
 	      <h3 class="border-bottom mb-5">商品の詳細を編集してください。</h3>
+<% if @item.item_show_flg == false %>
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  		<strong>取り扱い停止中のアイテムです！</strong></br>更新する前に取り扱いを再開してください。
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+   		<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+<% end %>
 		</div>
 
 	    <div class="row">
         	<%= form_for(@item, url: admins_item_path, method: :patch) do |f| %>
-			    <table class="table col-12 mx-auto" >
+			    <table class="table col-10 mx-auto" >
 			      <thead class="thead-light">
 			        <tr>
 			          <th scope="col">ジャケット</th>
@@ -24,20 +32,22 @@
 			      </thead>
 			      <tbody>
 			        <tr class="tr">
-						<td><%= f.attachment_field :item_img %></td>
-						<td><%= f.text_field :album_name %></td>
-						<td><%= f.text_field :label %></td>
-						<td><%= f.text_field :item_price_tax_free %></td>
-						<td><%= f.text_field :genre_id %></td>
-						<td><%= f.text_field :stock %></td>
-						<td><%= f.text_field :on_sale_date %></td>
+						<td><%= f.attachment_field :item_img%></td>
+						<td><%= f.text_field :album_name,size: 12 %></td>
+						<td><%= f.text_field :label,size: 5 %></td>
+						<td><%= f.text_field :item_price_tax_free,size: 5 %></td>
+						<td><%= f.text_field :genre_id,size: 1 %></td>
+						<td><%= f.text_field :stock ,size: 3%></td>
+						<td><%= f.text_field :on_sale_date,size: 8 %></td>
 						<td>
-							<%= f.submit "更新", class: "btn btn-danger" %><% end %>
-							<%= link_to "削除", hidden_item_path(@item), method: :patch, class: "btn btn-danger" %>
+							<%= f.submit "更新", class: "btn btn-danger mb-2" %><% end %>
 						</td>
 			        </tr>
 			      </tbody>
 				</table>
 		</div>
+	      <%= link_to :back, class: "my-3 col-2 btn btn-success white-text mx-auto" do %>
+                    <i class="fas fa-chevron-left"></i> 前のページに戻る
+                    <% end %>
 	</div>
 </div>
