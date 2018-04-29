@@ -62,9 +62,9 @@
     <!-- ナビ内容 -->
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-        <li class="nav-item">
+        <li class="nav-item my-auto">
         <%= link_to admins_users_path, class:"nav-link mx-2" do %>
-           ユーザー一覧
+           <i class="fas fa-user mr-1"></i>ユーザー一覧
          <% end %>
        </li>
 
@@ -73,17 +73,22 @@
            <!-- CD一覧 -->
           <!-- end  -->
       <!-- </li> -->
-      <li class="nav-item">
+      <li class="nav-item my-auto">
         <%= link_to new_admins_artist_path, class:"nav-link mx-2" do %>
-           CD新規追加
+          アーティスト一覧</br><i class="fas fa-headphones mr-1"></i>CD新規追加
          <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item my-auto">
+        <%= link_to admins_orders_path, class:"nav-link mx-2" do %>
+           <i class="fas fa-file-alt mr-1"></i>注文一覧
+         <% end %>
+      </li>
+      <li class="nav-item my-auto">
         <%= link_to destroy_admin_session_path, method: :delete, class:"nav-link mx-2"  do %>
           <i class="fas fa-sign-out-alt"></i> Log Out
         <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item my-auto">
         <%= link_to items_search_path, class:"btn btn-outline-light mx-2" do %>
           <i class="fas fa-search"></i>
         <% end %>
