@@ -6,7 +6,7 @@ before_action :authenticate_admin!
   end
 
   def index
-    @users = User.where(quit_flg: false)
+    @users = User.where(quit_flg: false).or(User.where(quit_flg: nil))
     @quit_user = User.where(quit_flg: true)
   end
 

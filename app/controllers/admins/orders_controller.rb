@@ -24,7 +24,7 @@ before_action :authenticate_admin!
   end
 
 
-	private
+  private
   def order_update_params
     params.fetch(:order,{}).permit(:status)
   end
