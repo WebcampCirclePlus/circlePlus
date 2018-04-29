@@ -21,7 +21,7 @@ before_action :authenticate_user!
           flash[:cartitemdestroy] = "取り扱いが停止された商品をカートから削除しました。"
           redirect_to cart_path
         end
-         if cart_item.item.stock == 0
+         if ci.item.stock == 0
         cart_item.destroy
         flash[:counteddestroy] = "在庫数が0の商品をカートから削除しました。"
         redirect_to cart_path
