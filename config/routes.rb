@@ -18,7 +18,6 @@ devise_for :users, :controllers => {
     resources :cart_items, only: [:update, :destroy]
     resources :orders, only: [:new, :create, :edit, :update]
   end
-  resources :artists, only: [:create]
   resources :genres, only: [:show]
   resources :items, only: [:index, :show]  do
       resources :cart_items, only: [:create]
@@ -37,6 +36,7 @@ patch '/users/:id/destroy'=> 'users#destroy_update', as: 'user_destroy'
  get '/admins/' => 'admins#top'
 
  namespace :admins do
+
    resources :orders, only: [:index, :update]
    resources :artists, only: [:new, :create]
    resources :users, only: [:index, :edit, :update, :show]
@@ -51,8 +51,6 @@ patch '/users/:id/destroy'=> 'users#destroy_update', as: 'user_destroy'
      resource :items, only: [:new]
    end
  end
- get 'admins/stock'=> 'admins#stock', as: 'admins_stock'
- get 'admins/status'=> 'admins#status', as: 'admins_status'
  patch 'admins/items/:item_id/hidden' => 'admins/items#hidden', as: 'hidden_item'
  patch 'admins/items/:item_id/itemoshow' => 'admins/items#itemshow', as: 'show_item'
  patch 'admins/users/:id/destroy'=> 'admins/users#destroy_update', as: 'admins_destroy_user'

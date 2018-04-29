@@ -67,6 +67,7 @@
            ユーザー一覧
          <% end %>
        </li>
+
        <!-- <li class="nav-item"> -->
         <!-- = link_to (), class:"nav-link mx-2" do  -->
            <!-- CD一覧 -->
@@ -77,10 +78,14 @@
            CD新規追加
          <% end %>
       </li>
-      
       <li class="nav-item">
         <%= link_to destroy_admin_session_path, method: :delete, class:"nav-link mx-2"  do %>
           <i class="fas fa-sign-out-alt"></i> Log Out
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to items_search_path, class:"btn btn-outline-light mx-2" do %>
+          <i class="fas fa-search"></i>
         <% end %>
       </li>
     </ul>

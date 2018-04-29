@@ -20,7 +20,7 @@ before_action :authenticate_admin!
     if item.save
       redirect_to admins_item_path(item)
     else
-      redirect_to admins_artist_path(item.artist)
+      redirect_to new_admins_artist_items_path(item.artist),notice:"!情報を正しく入力してください。"
     end
   end
 
@@ -37,6 +37,7 @@ before_action :authenticate_admin!
   def hidden
     item = Item.find(params[:item_id])
     item.update(item_show_flg: 0)
+    # CartItem.destroy()
     redirect_to admins_artist_path(item.artist.id)
   end
 
