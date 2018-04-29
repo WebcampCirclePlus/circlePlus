@@ -16,24 +16,16 @@
 <% end %>
 <!-- 注意書き終わり -->
 
-<!-- 商品取り扱い更新のボタンです。一応ここにもいれましたが、artist/showにもあるのでビューいじる方がいらないと思ったら消してくださって構いません。 -->
+<!-- 商品取り扱い更新のボタンです。 -->
 <% if @item.item_show_flg == true %>
- <%= link_to hidden_item_path(@item),method: :patch, class: "btn btn-danger white-text float-right mb-2",data:{confirm: "取り扱いを停止します。"} do %>
+ <%= link_to hidden_item_path(@item),method: :patch, class: "btn btn-danger white-text float-right mb-3",data:{confirm: "取り扱いを停止します。"} do %>
         <i class="fas fa-minus"></i> 取り扱いを停止する
         <% end %>
 <% else %>
- <%= link_to show_item_path(@item),method: :patch, class: "btn btn-info white-text float-right mb-2",data:{confirm: "取り扱いを開始します。"} do %>
+ <%= link_to show_item_path(@item),method: :patch, class: "btn btn-info white-text float-right mb-3",data:{confirm: "取り扱いを開始します。"} do %>
         <i class="fas fa-plus"></i> 取り扱いを再開する
         <% end %>
 <% end %>
-
-
-<!-- Discnewを消したので追加しました。できればドロップダウン等の、通常は隠れるような仕様にしたいです。 -->
-<span><strong>Disc新規追加</strong></span>
-<%= form_for(@disc, url:admins_item_discs_path(@item,@disc)) do |f| %>
-ディスクタイプ<%= f.text_field :disc_type %>
-<%= f.submit do %><i class="fas fa-plus"></i> Discを新しく追加する <% end %>
-<% end %></br>
 
  <table class="table">
    <thead class="thead-dark">
@@ -60,18 +52,48 @@
        <td><%= @item.stock %></td>
        <td><%= @item.created_at.strftime('%y年%m月%d日') %></td>
        <td>
-        <%= link_to edit_admins_item_path(@item), class: "btn btn-danger white-text" do %>
+        <%= link_to edit_admins_item_path(@item), class: "btn btn-outline-danger" do %>
         <i class="fas fa-wrench"></i> 編集
         <% end %>
       </td>
     </tr>
   </tbody>
 </table>
-<%= link_to top_path, class: "btn btn-warning white-text float-right" do %>
-        <i class="fas fa-plus"></i> Disc追加
-        <% end %>
-<h3 class="my-5">含まれているdisc一覧</h3>
 
+<h3 class="my-5">含まれているDisc一覧</h3>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#exampleModal">
+  <i class="fas fa-plus"></i> Disc新規追加
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Disc新規追加します。<br>Discを追加したのち、曲の追加に移ります。
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <%= form_for(@disc, url:admins_item_discs_path(@item,@disc)) do |f| %>
+        ディスクタイプ: <%= f.text_field :disc_type %>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+        <%= button_tag type: 'submit', class: 'btn btn-primary' do %>
+          <i class="fas fa-plus"></i> Discを新しく追加する 
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <table class="table">
 
   <thead class="thead-light">
@@ -87,11 +109,9 @@
   <tbody><% @disc_number = 1 %>
     <% @discs.each do |disc| %>
     <tr>
-      <td><%= link_to  edit_admins_item_disc_path(@item,disc),method: :post do %>ディスクNo.<%= @disc_number %><% end %></td>
+      <td>ディスクNo.<%= @disc_number %></td>
       <td scope="row"><%= disc.disc_type %></td>
       <td><%= disc.songs.count %></td>
-
-      <!-- 折りたたみコンテンツでの曲名一覧はエラーが出たので、とりあえずは後回しで 須加尾-->
 
       <td>
           <% disc.songs.each do |disc_song| %><!-- 曲名のeach -->
@@ -103,7 +123,7 @@
         </div>
       </td>
       <td>
-        <%= link_to edit_admins_item_disc_path(@item, disc), class: "btn btn-danger white-text mt-3" do %>
+        <%= link_to edit_admins_item_disc_path(@item, disc), class: "btn btn-outline-danger mt-3" do %>
         <i class="fas fa-wrench"></i> 編集
         <% end %></td>
         <td>
@@ -120,4 +140,4 @@
   <% end %>
 </div>
 
-</div>
+</div><!-- /col-lg-10 col-md-10 col-sm-10 col-xs-10 mx-auto -->
