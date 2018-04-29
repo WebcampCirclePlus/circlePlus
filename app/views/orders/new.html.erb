@@ -18,65 +18,125 @@
   <h4><strong>カートに商品を追加してください。</strong></h4>
 </div>
 <% else %>
-<h2 class="text-center text-danger"><%= flash[:cartitemdestroy] %></br><%= flash[:counteddestroy] %></br><%= flash[:countedupdate] %></h2>
-
-<div class="col-11 mx-auto">
-	<!-- エラーメッセージ -->
+<h2 class="text-center text-danger"><%= flash[:cartitemdestroy] %></h2>
+<h2 class="text-center text-danger"><%= flash[:counteddestroy] %></h2>
+<h2 class="text-center text-danger"><%= flash[:countedupdate] %></h2>	<!-- エラーメッセージ -->
 	<% if @order.errors.any? %>
+  <div class="col-11 mx-auto">
 	<div class="alert alert-warning alert-dismissible fade show" role="alert">
 	  <strong><%= @order.errors.count %>件のエラーがあります。</strong>
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	    <span aria-hidden="true">&times;</span></button>
 	</div>
     <% @order.errors.full_messages.each do |msg| %>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
   	<%= msg %>
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 	  <span aria-hidden="true">&times;</span>
 	  </button>
 	</div>
+  </div><!-- /col-11 mx-auto -->
     <% end %>
     <% end %>
 
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+<h2 class="text-center border-bottom my-5">注文内容の確認</h2>
+<table class="table table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ジャケット</th>
+      <th scope="col">商品情報</th>
+      <th scope="col">単価</th>
+      <th scope="col">数量</th>
+      <th scope="col">小計</th>
+    </tr>
+  </thead>
+  <% @total = 0 %>
+  <% current_user.cart_items.each do |ci| %>
+  <tbody class="bg-white">
+    <tr>
+      <th scope="row">
+        <%= attachment_image_tag ci.item, :item_img, class:"card-img-top", style: "width: 100px; height: 100px;" %>
+      </th>
+      <td>
+        <strong>アルバム名：<%= ci.item.album_name %></strong><br>
+        アーティスト名：<%= ci.item.artist.artist_name %><br>
+        レーベル：<%= ci.item.label %><br>
+      </td>
+      <td>¥<%= ci.item.item_price_tax_free %></td>
+      <td><%= ci.item_cart_counted %></td>
+      <td>¥<%= ci.item.item_price_tax_free * ci.item_cart_counted %></td>
+    </tr>
+    <% @total += ci.item.item_price_tax_free * ci.item_cart_counted %>
+  </tbody>
+  <% end %>
+  <tbody class="bg-white">
+    <tr>
+      <td colspan="4" class="text-right">送料</td>
+      <td>¥0</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="text-right">手数料</td>
+      <td>¥0</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="text-right">合計</td>
+      <td>¥<%= @total %></td>
+    </tr>
+  </tbody>
+</table>
 
-<div class="card pb-3 mx-auto" style="width: 90%;">
-  <div class="card-body">
-    <h5 class="card-title text-center">注文内容
-      <strong><%= flash[:cartitemdestroy] %></strong>
-    </h5>
-    <div class="card mr-2 ml-2" style="width: 95%;">
-  <ul class="list-group list-group-flush">
-    <% current_user.cart_items.each do |ci| %>
-    <li class="list-group-item text-center"><%= ci.item.album_name %></li>
-    <li class="list-group-item"><p>アーティスト名：<%= ci.item.artist.artist_name %></p>
-<p>レーベル：<%= ci.item.label %></p>
-<p>単価：<%= ci.item.item_price_tax_free %>　購入個数：<%= ci.item_cart_counted %></p>
-<p class="text-right">小計：<%= ci.item.item_price_tax_free * ci.item_cart_counted %></p></li>
-    <% end %>
-  </ul>
-</div>
-  </div>
-</div>
-</div>
+<!-- 注文者情報 -->
+<h2 class="text-center border-bottom my-5">注文者様</h2>
+<table class="table table-bordered">
+  <tbody class="bg-white">
+    <tr>
+      <th scope="row" style="background-color: #e9ecef;">お名前</th>
+      <td><%= current_user.name_kanji %></td>
+      <td>読み: <%= current_user.name_kana %></td>
+    </tr>
+    <tr>
+      <th scope="row" style="background-color: #e9ecef;">郵便番号</th>
+      <td colspan="2"><%= current_user.postal_code %></td>
+    </tr>
+    <tr>
+      <th scope="row" style="background-color: #e9ecef;">住所</th>
+      <td colspan="2"><%= current_user.address %></td>
+    </tr>
+    <tr>
+      <th scope="row" style="background-color: #e9ecef;">電話番号</th>
+      <td colspan="2"><%= current_user.phone_number %></td>
+    </tr>
+    <tr>
+      <th scope="row" style="background-color: #e9ecef;">メールアドレス</th>
+      <td colspan="2"><%= current_user.email %></td>
+    </tr>
+  </tbody>
+</table>
 
-<P>最終確認</P>
-<h4>カート内容</h4>
+<h2 class="text-center border-bottom my-5">配送先</h2>
 
-
-<% current_user.cart_items.each do |ci| %>
-<p>アルバム名：<%= ci.item.album_name %></p>
-<p>アーティスト名：<%= ci.item.artist.artist_name %></p>
-<p>レーベル：<%= ci.item.label %></p>
-<p>単価：<%= ci.item.item_price_tax_free %></p>
-<p>購入個数：<%= ci.item_cart_counted %></p>
-<p>合計：<%= ci.item.item_price_tax_free * ci.item_cart_counted %></p></br>
-<!-- ジャケット画像の追加は任意。アルバム名～レーベルの配置も変えてください。 -->
-<% end %>
-<h4>配送先</h4>
 <%= form_for(@order ,url:user_orders_path,method: :post) do |f| %>
-<%= f.text_field :order_sending_postal_code, value:current_user.postal_code %>
-<%= f.text_field :order_sending_str, value:current_user.address %>
-<%= f.submit "確定", data: {confirm: "本当に確定しますか？"} %>
+<table class="table table-bordered">
+  <tbody class="bg-white">
+    <tr>
+      <th scope="row" style="background-color: #e9ecef;">郵便番号</th>
+      <td colspan="2"><%= f.text_field :order_sending_postal_code, value:current_user.postal_code, class:"form-control" %></td>
+    </tr>
+    <tr>
+      <th scope="row" style="background-color: #e9ecef;">住所</th>
+      <td colspan="2"><%= f.text_field :order_sending_str, value:current_user.address, class:"form-control" %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= f.submit "注文を確定する", data: {confirm: "本当に確定しますか？"}, class:"btn btn-primary col-lg-12 my-5" %>
 <% end %>
 
 <% end %>
+
+</div><!-- col-lg-12 -->
+</div><!-- /row -->
+</div><!-- /container -->
