@@ -30,7 +30,7 @@
 		</h5><!-- card-title1 -->
 		<h6 class="card-subtitle mb-2 text-muted">
 氏名：<%= o1.user.name_kanji %>(<%= o1.user.name_kana %>)</br>
-送付先：<%= o1.user.address %></h6><!-- card-subtitle -->
+送付先：<%= o1.order_sending_str %></h6><!-- card-subtitle -->
 <h6 class="card-text"><strong>注文内容</strong></h6>
 <p class="card-text2 bg-black">
 	<% o1.order_items.each do |o_oi| %>
@@ -61,7 +61,7 @@
 		</h5><!-- card-title1 -->
 		<h6 class="card-subtitle mb-2 text-muted">
 氏名：<%= o2.user.name_kanji %>(<%= o2.user.name_kana %>)</br>
-送付先：<%= o2.user.address %></h6><!-- card-subtitle -->
+送付先：<%= o2.order_sending_str %></h6><!-- card-subtitle -->
 <h6 class="card-text"><strong>注文内容</strong></h6>
 <p class="card-text2 bg-black">
 	<% o2.order_items.each do |o_oi| %>
@@ -95,7 +95,7 @@
 		</h5><!-- card-title1 -->
 		<h6 class="card-subtitle mb-2 text-muted">
 氏名：<%= o3.user.name_kanji %>(<%= o3.user.name_kana %>)</br>
-送付先：<%= o3.user.address %></h6><!-- card-subtitle -->
+送付先：<%= o3.order_sending_str %></h6><!-- card-subtitle -->
 <h6 class="card-text"><strong>注文内容</strong></h6>
 <p class="card-text2 bg-black">
 	<% o3.order_items.each do |o_oi| %>
