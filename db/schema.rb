@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180424025135) do
+ActiveRecord::Schema.define(version: 20180430085240) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20180424025135) do
     t.string "postal_code"
     t.string "address"
     t.string "phone_number"
-    t.boolean "quit_flg"
+    t.boolean "quit_flg", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

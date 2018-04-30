@@ -1,0 +1,2 @@
+      invoke  active_record
+    conflict    db/migrate/20180430084324_add_quit_flg_to_users.rb
