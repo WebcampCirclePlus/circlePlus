@@ -1,13 +1,13 @@
 
 <div class=" mx-auto col-10 my-5" style="width: 300px;">
-  <h2>Sign in</h2>
+  <h2 class="border-bottom my-5 text-center">Sign in</h2>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "email" %>
+  <div class="form-group">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "email", :class => "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "off",placeholder: "パスワード" %>
+  <div class="form-group">
+    <%= f.password_field :password, autocomplete: "off",placeholder: "パスワード", :class => "form-control" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -19,9 +19,10 @@
   <!-- remenber me は消しても大丈夫です。 -->
 
   <div class="actions">
-    <%= f.submit "ログイン" %>
+    <%= button_tag :type => "submit", :class =>"btn btn-info w-100 my-3" do %>
+    <i class="fas fa-sign-in-alt"></i> ログイン
+<% end %>
   </div>
   <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
   <% end %>
 </div>
-

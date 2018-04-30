@@ -1,9 +1,7 @@
+<h2 class="text-center border-bottom my-5">Discの中の曲 編集</h2>
 <div class="container">
 <div class="row">
-
-<h2><%= disc.disc_type %>の中の曲 編集</h2>
-
-<div class="mx-auto my-5 col-8">
+<div class="mx-auto mb-5 col-8">
 
  <!-- 曲の編集・削除 -->
 <table class="table">
@@ -37,6 +35,14 @@
   </tbody>
     <% end %>
   <% end %>
+  <tbody>
+    <tr>
+      <th></th>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
 <!-- 曲を追加 -->
   <thead>
     <tr>
@@ -59,7 +65,9 @@
   <!-- 曲を追加終わり -->
 </table>
 <!-- 曲の編集・削除終わり -->
-<%= link_to "アイテムの詳細に戻る", admins_item_path(@item), :class=>"btn btn-info" %>
+<%= link_to admins_item_path(@item), :class=>"btn btn-info w-100 my-5" do %>
+<i class="fas fa-chevron-left"></i> アイテムの詳細に戻る
+<% end %>
 </div><!-- /mx-auto my-5 col-8 -->
 </div><!-- /row -->
 </div><!-- /container -->

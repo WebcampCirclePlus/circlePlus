@@ -1,21 +1,16 @@
-<h1>CartItems#index:マイカート</h1>
-<p>Find me in app/views/cart_items/index.html.erb</p>
 
-<p><%= current_user.user_name %>さんのカート一覧</p>
-
-
-
-<h2 class="text-center text-danger"><%= flash[:countupdate] %></br><%= flash[:counteddestroy] %></br>
- <%= flash[:cartitemdestroy] %></h2>
+<h2 class="text-center text-danger"><%= flash[:countupdate] %></h2>
+<h2 class="text-center text-danger"><%= flash[:counteddestroy] %></h2>
+ <h2 class="text-center text-danger"><%= flash[:cartitemdestroy] %></h2>
 <div class="container">
 <div class="row">
 
 <div class="mt-5 col-10 mx-auto" style="width: 100%;">
- <h1 class="border-bottom mb-5 float-left">
-   <i class="fas fa-shopping-cart"></i><%= current_user.user_name %> Cart
+ <h1 class="border-bottom mb-5">
+   <i class="fas fa-shopping-cart"></i> <%= current_user.user_name %> のカート内容
  </h1>
 
-<%= link_to new_user_order_path(current_user.id), class:"btn btn-outline-danger col-2 float-right" do %>
+<%= link_to new_user_order_path(current_user.id), class:"btn btn-outline-danger col-4 float-right mb-3" do %>
      <i class="fas fa-shopping-basket"></i> レジに進む
 <% end %>
 </div>
