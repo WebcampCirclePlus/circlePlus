@@ -21,6 +21,7 @@
           <th scope="col">在庫</th>
           <th scope="col">発売日</th>
           <th scope="col"></th>
+
         </tr>
       </thead>
       <tbody>
@@ -35,13 +36,23 @@
           <td><%= item.genre.genre_name %></td>
           <td><%= item.stock %></td>
           <td><%= item.on_sale_date %></td>
-          <td><%= link_to "　　詳細　　", admins_item_path(item), class: "btn btn-danger " %>
+          <td><%= link_to "  詳細  ", admins_item_path(item), class: "btn btn-danger " %>
           </td>
         </tr>
-      </tbody>
-    </table>
-    <%= link_to "！この商品の取り扱い停止！", hidden_item_path(item), method: :patch, class: "btn btn-warning col-10 mx-auto" , data:{confirm: "取り扱いを停止しますか？"}%>
+        <tr>
+          <td></td>
+          <td colspan="6">
+            <%= link_to hidden_item_path(item), method: :patch, class: "btn btn-warning col-12 mb-3 mt-0" , data:{confirm: "取り扱いを停止しますか？"} do %>
+              <i class="fas fa-arrow-up"></i>
+              <i class="fas fa-arrow-up"></i>
+              <i class="fas fa-arrow-up"></i> 商品名『<%= item.album_name %>』の取り扱いの停止する
             <% end %>
+          </td>
+          <td></td>
+        </tr>
+      </tbody>
+            <% end %>
+    </table>
 
 <!-- 在庫切れアイテムのまとめ -->
 
