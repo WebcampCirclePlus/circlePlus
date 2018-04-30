@@ -82,6 +82,7 @@
         <thead class="thead-light">
           <tr>
             <th scope="col">購入商品名</th>
+            <th scope="col">単価</th>
             <th scope="col">個数</th>
             <th scope="col">小計</th>
           </tr>
@@ -90,6 +91,7 @@
           <tbody>
             <tr>
               <th scope="row"><%= oi.item.album_name %></th>
+              <td>¥<%= oi.item_order_price %></td>
               <td><%= oi.item_order_counted %></td>
               <td>¥<%=oi.item_order_counted * oi.item_order_price %></td>
             </tr>
@@ -98,7 +100,7 @@
           <% end %>
           <tbody>
             <tr>
-              <th scope="row" colspan="2" class="text-right">合計</th>
+              <th scope="row" colspan="3" class="text-right">合計</th>
               <td>¥<%= @total %></td>
             </tr>
           </tbody>
