@@ -36,12 +36,12 @@
           <td><%= item.stock %></td>
           <td><%= item.on_sale_date %></td>
           <td><%= link_to "　　詳細　　", admins_item_path(item), class: "btn btn-danger " %>
-          </br><%= link_to "取り扱い停止", hidden_item_path(item), method: :patch, class: "btn btn-primary" , data:{confirm: "取り扱いを停止しますか？"}%>
           </td>
         </tr>
-        <% end %>
       </tbody>
     </table>
+    <%= link_to "！この商品の取り扱い停止！", hidden_item_path(item), method: :patch, class: "btn btn-warning col-10 mx-auto" , data:{confirm: "取り扱いを停止しますか？"}%>
+            <% end %>
 
 <!-- 在庫切れアイテムのまとめ -->
 

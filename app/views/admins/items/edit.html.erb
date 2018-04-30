@@ -1,10 +1,9 @@
-<h1>Admins::Items#edit</h1>
-		<p>Find me in app/views/admins/items/edit.html.erb</p>
 
 <div class="container">
 	<div class="row">
-	    <div class="my-3 col-10 mx-auto" style="width: 100%;">
-	      <h3 class="border-bottom mb-5">商品の詳細を編集してください。</h3>
+
+	    <div class="my-3 col-12" style="width: 100%;">
+	      <h3 class="border-bottom text-center my-5">商品の詳細を編集してください。</h3>
 <% if @item.item_show_flg == false %>
 	<div class="alert alert-danger alert-dismissible fade show" role="alert">
   		<strong>取り扱い停止中のアイテムです！</strong></br>更新する前に取り扱いを再開してください。
@@ -13,11 +12,8 @@
   		</button>
 	</div>
 <% end %>
-		</div>
-
-	    <div class="row">
         	<%= form_for(@item, url: admins_item_path, method: :patch) do |f| %>
-			    <table class="table col-10 mx-auto" >
+			    <table class="table" >
 			      <thead class="thead-light">
 			        <tr>
 			          <th scope="col">ジャケット</th>
@@ -46,8 +42,9 @@
 			      </tbody>
 				</table>
 		</div>
-	      <%= link_to :back, class: "my-3 col-2 btn btn-success white-text mx-auto" do %>
+		<%= link_to :back, class: "my-3 col-2 btn btn-success white-text mx-auto" do %>
                     <i class="fas fa-chevron-left"></i> 前のページに戻る
                     <% end %>
 	</div>
 </div>
+

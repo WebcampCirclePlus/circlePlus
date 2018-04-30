@@ -1,21 +1,21 @@
 <% if user_signed_in?%>
-<div class=" mx-auto w-75">
-<h2>現在、<%= current_user.user_name %>さんでログインしています。</br>
-一度ログアウトしてからもう一度接続し直してください。</h2></div>
-
+<h2 class="text-center mt-5">現在、<span class="text-danger">"<%= current_user.user_name %>"</span> さんでログインしています。</h2>
+<h2 class="text-center mt-3 mb-5">一度ログアウトしてからもう一度接続し直してください。</h2> 
+<h2 class="text-center w-100 bg-white">
+<%= image_tag("sorry.jpg") %>
+</h2>
 <% else %>
 
-<div class=" mx-auto col-10 pad_admin_login" style="width: 250px;">
-<h2>Admin Log in</h2>
+
+<div class=" mx-auto col-10 my-5" style="width: 300px;">
+<h1 class="border-bottom my-5 text-center text-danger">Admin</h1>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="form-group">
+    <%= f.email_field :email, autofocus: true, placeholder: "email", autocomplete: "email", :class => "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.password_field :password, placeholder: "password", autocomplete: "off", :class => "form-control" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -26,7 +26,9 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= button_tag :type => "submit", :class =>"btn btn-info w-100 my-3" do %>
+    <i class="fas fa-sign-in-alt"></i> Log in
+    <% end %>
   </div>
   <% end %>
 </div>

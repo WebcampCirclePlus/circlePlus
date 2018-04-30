@@ -4,10 +4,14 @@
 
 <div class="col-4 mx-auto">
   <%= link_to user_path(current_user) do %>
-  <button type="button" class="btn btn-warning float-left">マイページに戻る</button>
+  <button type="button" class="btn btn-warning float-left">
+  	<i class="fas fa-chevron-left"></i> マイページに戻る
+  </button>
   <% end %>
   <%= link_to top_path do %>
-  <button type="button" class="btn btn-warning float-right">TOPページに戻る</button>
+  <button type="button" class="btn btn-warning float-right">
+  TOPページに戻る <i class="fas fa-chevron-right"></i>
+  </button>
   <% end %>
 </div>
 
