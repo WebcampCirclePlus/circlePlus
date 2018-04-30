@@ -36,11 +36,9 @@ before_action :authenticate_user!
         item.update(stock: stock_minus)
         ci.destroy
         order_item.save
+        end
       end
-      redirect_to thanks_path
-    else
-      render :new
-    end
+        redirect_to thanks_path
   end
 
 	private
