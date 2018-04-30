@@ -1,9 +1,5 @@
 <!-- メインカラム -->
-<div class="container">
-<div class="row">
-<h2 class="border-bottom my-5"><%= @genre.genre_name %>に属するCD一覧</h2>
-</div>
-</div>
+<h1 class="pt-3 my-5 text-center emboss wf-nicomoji"> <%= @genre.genre_name %> </h1>
 <div class="container">
 <div class="row">
 
@@ -19,16 +15,16 @@
 <div class="row">
 
 <% @genre_items.each do |item| %>
-<div class="card mx-auto mb-3" style="width: 18rem;">
-<%= attachment_image_tag item, :item_img, class:"card-img-top", style: "height: 200px;" %>
+<div class="card mx-auto mb-3" style="width: 16rem;">
+<%= attachment_image_tag item, :item_img, class:"card-img-top", style: "height: 16rem;" %>
   <div class="card-body">
-    <h5 class="card-title"><%= link_to item.album_name, item_path(item.id), class:"text-danger" %></h5>
-    <h5 class="card-title"><%= item.artist.artist_name %></h5>
-    <h5 class="card-title"><%= item.label %></h5>
-    <h5 class="card-title">¥<%= item.item_price_tax_free %></h5>
+    <h5 class="card-title wf-nicomoji"><%= link_to item.album_name, item_path(item.id), class:"text-danger" %></h5>
+    <h5 class="card-title wf-nicomoji"><%= item.artist.artist_name %></h5>
+    <h5 class="card-title wf-nicomoji"><%= item.label %></h5>
+    <h5 class="card-title wf-nicomoji">¥<%= item.item_price_tax_free %></h5>
     <div class="card-body button-center" style="padding: 0;">
-    <%= link_to item_path(item.id), class:"btn btn-outline-danger card-button" do %>
-    詳細 <i class="fas fa-chevron-right"></i>
+    <%= link_to item_path(item.id), class:"btn btn-outline-danger card-button wf-nicomoji" do %>
+    SHOW <i class="fas fa-chevron-right"></i>
     <% end %>
     </div>
   </div>
