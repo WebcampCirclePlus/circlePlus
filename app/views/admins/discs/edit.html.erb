@@ -1,35 +1,65 @@
 <div class="container">
 <div class="row">
 
-<div class=" mx-auto my-5 col-8">
-  <h2 class="text-center mb-3">ディスク編集</h2>
-  <h3 class="text-center mb-3">シングル・アルバム名：<%= @item.album_name %></h3>
-  <h3 class="text-center mb-5">ディスクタイプ：<%= @disc.disc_type %></h3>
-  <!-- 曲の編集・削除 -->
+<h2><%= disc.disc_type %>の中の曲 編集</h2>
+
+<div class="mx-auto my-5 col-8">
+
+ <!-- 曲の編集・削除 -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">編集する曲名</th>
+      <th scope="col"></th>
+      <th scope="col">更新</th>
+      <th scope="col">削除</th>
+    </tr>
+  </thead>
   <% @disc.songs.each do |song| %>
   <%= form_for(song, url: admins_item_disc_song_path(@item, @disc, song), method: :patch) do |f| %>
-  <table>
+  <tbody>
     <tr>
-      <td ><%= f.text_field :song_name, value: song.song_name, class:"form-control" %></td>
-      <td><%= f.submit "更新", :class=>"btn btn-success mx-3" %></td>
-      <td><%= link_to "削除", admins_item_disc_song_path(@item, @disc, song), method: :delete, :class=>"btn btn-danger" %></td>
+      <th scope="row">
+        <%= f.text_field :song_name, value: song.song_name, class:"form-control" %>
+      </th>
+      <td></td>
+      <td>
+        <%= button_tag :type => "submit", :class =>"btn btn-success" do %>
+        <i class="fas fa-sync-alt"></i>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to admins_item_disc_song_path(@item, @disc, song), method: :delete, :class=>"btn btn-danger" do %>
+        <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </td>
     </tr>
-  </table>
+  </tbody>
+    <% end %>
   <% end %>
-  <% end %>
-  <!-- 曲の編集・削除終わり -->
-
-  <!-- 曲を追加 -->
-  <%= form_for(@song, url: admins_item_disc_songs_path(@item, @disc), method: :post) do |f| %>
-  <td><%= f.text_field :song_name, class:"form-control col-8" %></td>
-  <td>
-    <%= f.submit "曲を追加", :class=>"btn btn-primary" %>
-  </td>
+<!-- 曲を追加 -->
+  <thead>
+    <tr>
+      <th scope="col">追加する曲名</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col">曲を追加</th>
+    </tr>
+  </thead>
+   <%= form_for(@song, url: admins_item_disc_songs_path(@item, @disc), method: :post) do |f| %>
+  <tbody>
+    <tr>
+      <th scope="row"><%= f.text_field :song_name, class:"form-control col-8" %></th>
+      <td></td>
+      <td></td>
+      <td><%= f.submit "曲を追加", :class=>"btn btn-primary" %></td>
+    </tr>
+  </tbody>
   <% end %>
   <!-- 曲を追加終わり -->
-
+</table>
+<!-- 曲の編集・削除終わり -->
 <%= link_to "アイテムの詳細に戻る", admins_item_path(@item), :class=>"btn btn-info" %>
-</div>
-
+</div><!-- /mx-auto my-5 col-8 -->
 </div><!-- /row -->
 </div><!-- /container -->
