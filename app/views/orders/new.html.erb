@@ -19,23 +19,6 @@
 <h2 class="text-center text-danger"><%= flash[:cartitemdestroy] %></h2>
 <h2 class="text-center text-danger"><%= flash[:counteddestroy] %></h2>
 <h2 class="text-center text-danger"><%= flash[:countedupdate] %></h2>	<!-- エラーメッセージ -->
-	<% if @order.errors.any? %>
-  <div class="col-11 mx-auto">
-	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-	  <strong><%= @order.errors.count %>件のエラーがあります。</strong>
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    <span aria-hidden="true">&times;</span></button>
-	</div>
-    <% @order.errors.full_messages.each do |msg| %>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  	<%= msg %>
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	  <span aria-hidden="true">&times;</span>
-	  </button>
-	</div>
-  </div><!-- /col-11 mx-auto -->
-    <% end %>
-    <% end %>
 
 <div class="container">
 <div class="row">

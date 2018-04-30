@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :name_kana, presence: true,
                  format: {
                    with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/,
-                   message: "全角カタカナのみで入力して下さい"
+                   message: "全角空白・カタカナのみで入力して下さい"
                  }
 
   validates :user_name, presence: true

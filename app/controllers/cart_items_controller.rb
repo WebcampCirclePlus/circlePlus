@@ -1,5 +1,6 @@
 class CartItemsController < ApplicationController
   def index
+    if user_signed_in?
   	@cart_items = current_user.cart_items
   	@sum = 0
   	@cart_items.each do |cart_item|
@@ -9,18 +10,19 @@ class CartItemsController < ApplicationController
         sum = cart_item.item.stock
         cart_item.update(item_cart_counted: sum)
         flash.now[:countupdate] = '在庫数量との関係により、カート内商品個数を修正しました。'
-      end
-      if cart_item.item.item_show_flg == false
+      elsif cart_item.item.item_show_flg == false
         cart_item.destroy
         flash[:cartitemdestroy] = "取り扱いが停止された商品をカートから削除しました。"
         redirect_to cart_path
-      end
-      if cart_item.item.stock == 0
+      elsif cart_item.item.stock == 0
         cart_item.destroy
         flash[:counteddestroy] = "在庫数が0の商品をカートから削除しました。"
         redirect_to cart_path
       end
-  	end
+    end
+    else
+      redirect_to top_path
+    end
   end
 
   def create

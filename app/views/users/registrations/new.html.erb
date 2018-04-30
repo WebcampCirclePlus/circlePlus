@@ -62,7 +62,7 @@
     <div class="field">
       <td><span class = "fa fa-lock"></span><%= f.label :パスワード %>
       <% if @minimum_password_length %>
-      <em>(最大<%= @minimum_password_length %>文字 )</em>
+      <em>(最小<%= @minimum_password_length %>文字 )</em>
       <% end %></td>
       <td><%= f.password_field :password, autocomplete: "off" , placeholder: "パスワード" %></td>
     </div>

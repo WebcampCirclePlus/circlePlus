@@ -33,15 +33,15 @@
   		<strong>大変申し訳ございません。</strong>現在取り扱いを停止しています。</br>
 	</div>
 	<% end %>
-	<% if @item.item_show_flg == true && @item.stock != 0 %>
+	<% if @item.item_show_flg == true && @item.stock != 0 && user_signed_in? %>
 
 		   <div class="Bottom-Fixation">
 			<%= form_for(@cart_item , url:item_cart_items_path(@item), html:  {class: "float-right aaa"}) do |f|  %>
 			<%= f.number_field :item_cart_counted ,value:"1", in: 1...501, size: 20 %>点
-				<% if user_signed_in? %><% if @item.item_show_flg == true %>
+				<% if @item.item_show_flg == true %>
 				<%= button_tag :type => "submit", :class =>"btn btn-danger" do %>
 	  				<i class="fas fa-cart-arrow-down"></i> カートにいれる
-				<% end %><% end %>
+				<% end %>
 			<% end %>
 		<% end %>
 

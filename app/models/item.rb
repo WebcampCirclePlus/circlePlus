@@ -16,4 +16,10 @@ class Item < ApplicationRecord
   belongs_to :genre
   belongs_to :artist
   belongs_to :admin
+  validates :label, presence: true
+  validates :item_price_tax_free, presence: true
+  validates :stock, presence: true
+  validates :album_name, presence: true
+  validates :on_sale_date, presence: true
 end
+

@@ -20,7 +20,8 @@ before_action :authenticate_admin!
     if item.save
       redirect_to admins_item_path(item)
     else
-      redirect_to new_admins_artist_items_path(item.artist),notice:"!情報を正しく入力してください。"
+      flash[:hoge] = "!情報を正しく入力してください。"
+      redirect_to new_admins_artist_items_path(item.artist)
     end
   end
 
