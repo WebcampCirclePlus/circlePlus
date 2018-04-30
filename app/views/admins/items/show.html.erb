@@ -78,19 +78,18 @@
       <div class="modal-body">
         
         <%= form_for(@disc, url:admins_item_discs_path(@item,@disc)) do |f| %>
-        ディスクタイプ: <%= f.text_field :disc_type %>
+        <p  class="text-center my-3">Disc Type: <%= f.text_field :disc_type %></p>
+        <p class="my-3 text-center">Please Enter!</p>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-        <%= button_tag type: 'submit', class: 'btn btn-primary' do %>
-          <i class="fas fa-plus"></i> Discを新しく追加する 
-        <% end %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
 <table class="table">
 
   <thead class="thead-light">
