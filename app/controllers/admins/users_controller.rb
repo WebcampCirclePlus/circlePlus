@@ -27,8 +27,8 @@ before_action :authenticate_admin!
   def destroy_update
       user = User.find(params[:id])
       user.update(quit_flg: true)
+      flash[:hoge] = "正常に削除されました。"
       redirect_to admins_users_path
-      flash[:notice] = "正常に削除されました。"
   end
 
   private
