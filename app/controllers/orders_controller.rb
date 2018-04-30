@@ -9,21 +9,23 @@ before_action :authenticate_user!
     order = Order.new(order_params)
     order.user_id = current_user.id
     order.status = 1
+    if order.save
       current_user.cart_items.each do |ci|
         if ci.item_cart_counted >= ci.item.stock
           sum = ci.item.stock
           ci.update(item_cart_counted: sum)
-          flash[:countedupdate] = "在庫数量との関係により、カート内商品個数を修正しました。"
-          new_user_order_path(current_user)
-        elsif ci.item.item_show_flg == false
+          flash.now[:countedupdate] = "在庫数量との関係により、カート内商品個数を修正しました。"
+        end
+        if ci.item.item_show_flg == false
           ci.destroy
           flash[:cartitemdestroy] = "取り扱いが停止された商品をカートから削除しました。"
-          redirect_to new_user_order_path(current_user)
-        elsif ci.item.stock == 0
-          ci.destroy
-          flash[:counteddestroy] = "在庫数が0の商品をカートから削除しました。"
-          redirect_to new_user_order_path(current_user)
-        elsif order.save
+          redirect_to cart_path
+        end
+         if ci.item.stock == 0
+        ci.destroy
+        flash[:counteddestroy] = "在庫数が0の商品をカートから削除しました。"
+        redirect_to cart_path
+        end
         order_item = OrderItem.new(order_item_params)
         order_item.order_id = order.id
         order_item.item_id = ci.item_id
@@ -34,10 +36,11 @@ before_action :authenticate_user!
         item.update(stock: stock_minus)
         ci.destroy
         order_item.save
-        redirect_to thanks_path
-       else
-        render :new
-       end
+      end
+      redirect_to thanks_path
+    else
+      render :new
+    end
   end
 
 	private
