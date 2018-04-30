@@ -1,3 +1,16 @@
 // Place all the styles related to the Genres controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.emboss {
+  font-size: 50px;
+  color: rgba(0,0,0,0.6);
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+               0px -5px 16px rgba(255,255,255,0.3);
+  background-color: #ECECEC;
+  height: 100px;     
+  background-image: -webkit-gradient(linear, 0 0, 100% 100%,color-stop(.25, #F9F9F9), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, #F9F9F9), color-stop(.75, #F9F9F9), color-stop(.75, transparent),to(transparent));
+  background-size: 30px 30px;       
+}
+

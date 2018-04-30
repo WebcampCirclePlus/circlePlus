@@ -7,13 +7,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <%= image_tag '1.jpg', class:"d-block w-100 h-100", :alt => 'First slide' %>
+      <%= image_tag 'a.jpg', class:"d-block w-100 h-100", :alt => 'First slide' %>
     </div>
     <div class="carousel-item">
-    <%= image_tag '2.jpg', class:"d-block w-100 h-100", :alt => 'Second slide' %>
+    <%= image_tag 'b.jpg', class:"d-block w-100 h-100", :alt => 'Second slide' %>
     </div>
     <div class="carousel-item">
-    <%= image_tag '3.jpg', class:"d-block w-100 h-100", :alt => 'Third slide' %>
+    <%= image_tag 'c.jpg', class:"d-block w-100 h-100", :alt => 'Third slide' %>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -38,16 +38,16 @@
 <div class="open">
   <div id="nav-drawer">
       <input id="nav-input" type="checkbox" class="nav-unshown">
-      <label class="col-lg-12 btn btn-danger" for="nav-input">
-      ジャンル一覧</label>
+      <label class="col-lg-12 btn btn-danger wf-nicomoji" for="nav-input" style="font-size: 30px;">
+      ジャンルべつはこちら</label>
       <label class="nav-unshown" id="nav-close" for="nav-input"></label>
 
       <div id="nav-content">
-        <h2 class="text-center border-bottom my-2">ジャンル</h2>
+        <h2 class="text-center border-bottom my-2 wf-nicomoji">ジャンル</h2>
         <% @genres.each do |genre| %>
         <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <%= link_to genre.genre_name , genre_path(genre.id), class:"nav-link text-danger" %>
+          <li class="nav-item wf-nicomoji">
+            <%= link_to genre.genre_name , genre_path(genre.id), class:"nav-link text-danger", style:"font-size: 20px;" %>
           </li>
           <% end %>
         </ul>
@@ -56,27 +56,25 @@
   </div><!-- open -->
 </div><!-- col-lg-12 my-3 -->
 
-<p class="">
-<%= @items.total_count %>件中<%= @items.offset_value %>
-〜<%= @items.offset_value + @items.length %>件を表示しています。
-</p>
-
 <!-- メインカラム -->
 <div class="col-lg-12 mb-5">
-
+<p class="ml-3 wf-nicomoji">
+<%= @items.total_count %>contents 『<%= @items.offset_value %>
+〜<%= @items.offset_value + @items.length %>』
+</p>
 <div class="container">
 <div class="row">
 
 <% @items.each do |item| %>
-<div class="card mx-auto mb-3" style="width: 18rem;">
-<%= attachment_image_tag item, :item_img, class:"card-img-top", style: "height: 200px;" %>
+<div class="card mx-auto mb-3" style="width: 15rem;">
+<%= attachment_image_tag item, :item_img, class:"card-img-top", style: "height: 15rem;" %>
   <div class="card-body">
-    <h5 class="card-title"><%= item.album_name %></h5>
-    <h5 class="card-title"><%= item.artist.artist_name %></h5>
-    <h5 class="card-title">¥<%= item.item_price_tax_free %></h5>
+    <h5 class="card-title wf-nicomoji"><%= item.album_name %></h5>
+    <h5 class="card-title wf-nicomoji"><%= item.artist.artist_name %></h5>
+    <h5 class="card-title wf-nicomoji mt-4">¥<%= item.item_price_tax_free %></h5>
     <div class="card-body button-center" style="padding: 0;">
-    <%= link_to item_path(item.id), class:"btn btn-outline-danger card-button" do %>
-    詳細 <i class="fas fa-chevron-right"></i>
+    <%= link_to item_path(item.id), class:"btn btn-outline-danger card-button wf-nicomoji" do %>
+    SHOW <i class="fas fa-chevron-right"></i>
     <% end %>
     </div>
   </div>
