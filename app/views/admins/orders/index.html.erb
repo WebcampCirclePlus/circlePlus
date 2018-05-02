@@ -1,5 +1,5 @@
 
-<div class="alert alert-info text-center" role="alert">
+<div class="alert alert-info text-center mb-5" role="alert">
 <h4>配送ステータスは以下の順に更新されます。</br><strong>準備中→発送準備中→発送完了</strong></h4>
 </div>
 
@@ -32,6 +32,7 @@
 送付先：<%= o1.order_sending_str %></h6><!-- card-subtitle -->
 <h6 class="card-text"><strong>注文内容</strong></h6>
 <p class="card-text2 bg-black">
+
 	<% o1.order_items.each do |o_oi| %>
 
 アルバム名：<%= o_oi.item.album_name %></br>
