@@ -181,7 +181,7 @@
 	 			  <div class="collapse" id="collapseExample">
 				    <div class="card card-body">
 				  	  <p class="text-danger text-center">一度行った退会処理は取り消すことができません。</p>
-					  <p class="text-center">また、同じメールアドレスでの会員登録はできません。</p><%= link_to "承諾して退会する", user_destroy_path(current_user),method: :patch ,class:"text-center" %>
+					  <p class="text-center">また、同じメールアドレスでの会員登録はできません。</p><%= link_to "承諾して退会する", user_destroy_path(current_user),method: :patch ,class:"text-center" ,data:{confirm: "本当に退会しますか？"}%>
 					</div>
 		    	  </div>
 		</div><!-- /card-body -->
