@@ -45,7 +45,6 @@ before_action :authenticate_user!
   def order_params
     params.require(:order).permit(:user_id, :order_sending_str, :order_sending_postal_code, :status)
   end
-
   def order_item_params
     params.fetch(:order_item, {}).permit(:order_id, :item_id, :item_order_counted, :item_order_price)
   end
